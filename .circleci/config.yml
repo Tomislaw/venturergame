@@ -9,7 +9,7 @@ jobs:
     executor: unity-win
     steps:
       - checkout # check out the code in the project directory
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile
+      - run: echo "hello world" # run the `echo` command
 workflows:
   version: 2
   build:
