@@ -9,7 +9,7 @@ jobs:
     executor: unity-win
     steps:
       - checkout # check out the code in the project directory
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile || exit 0
+      - run: /opt/Unity/Editor/Unity -username "$UNITY_LOGIN" -password "$UNITY_PASSWORD" -quit -batchmode -nographics -silent-crashes -logFile || exit 0
 workflows:
   version: 2
   build:
