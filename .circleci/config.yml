@@ -1,0 +1,17 @@
+version: 2.1
+executors:
+  unity-win:
+    docker:
+      # https://hub.docker.com/r/gableroux/unity3d/tags
+      - image: gableroux/unity3d:2019.2.16f1-windows
+jobs:
+  build-win:
+    executor: unity-win
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
+workflows
+  version: 2
+  build:
+    jobs:
+      - build-win
