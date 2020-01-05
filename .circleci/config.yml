@@ -9,8 +9,27 @@ jobs:
     executor: unity-win
     steps:
       - checkout # check out the code in the project directory
-      - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-      - run: /opt/Unity/Editor/Unity -logFile -manualLicenseFile .circleci/license.ulf -quit -batchmode -nographics -silent-crashes -logFile || exit 0
+      - run: > 
+          echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+          echo "$(.circleci/license.ulf)"
+      - run: >
+          /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .circleci/license.ulf
+      
+          UNITY_EXIT_CODE=$?
+
+          if [ $UNITY_EXIT_CODE -eq 0 ]; then
+            echo "Run succeeded, no failures occurred";
+          elif [ $UNITY_EXIT_CODE -eq 2 ]; then
+            echo "Run succeeded, some tests failed";
+          elif [ $UNITY_EXIT_CODE -eq 3 ]; then
+            echo "Run failure (other failure)";
+          else
+            echo "Unexpected exit code $UNITY_EXIT_CODE";
+          fi
+
+          ls -la $BUILD_PATH
+          [ -n "$(ls -A $BUILD_PATH)" ] 
+
 workflows:
   version: 2
   build:
