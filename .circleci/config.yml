@@ -10,7 +10,7 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .circleci/license.ulf | exit 0
+      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .circleci/license.ulf || exit 0
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -buildWindows64Player build
       
 
