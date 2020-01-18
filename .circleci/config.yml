@@ -2,7 +2,6 @@ version: 2.1
 executors:
   unity-win:
     docker:
-      # https://hub.docker.com/r/gableroux/unity3d/tags
       - image: gableroux/unity3d:2019.2.16f1-windows
 jobs:
   build-win:
@@ -11,10 +10,11 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: /opt/Unity/Editor/Unity -batchmode -quit -executeMethod BuildExecutor.Test
       - run: /opt/Unity/Editor/Unity -batchmode -quit -executeMethod BuildExecutor.BuildWindows
       - store_artifacts:
           path: /build
-          destination: venturer-win
+          destination: Venturer_Windows
       
 
 workflows:
