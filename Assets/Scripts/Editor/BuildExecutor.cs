@@ -4,73 +4,44 @@ using System;
 
 namespace Pipeline
 {
-    public class FileLogger
-    {
-        private string filePath;
-
-        public FileLogger(string path = @"./Build/build.log")
-        {
-            filePath = path;
-            if (System.IO.File.Exists(filePath))
-                System.IO.File.Delete(filePath);
-
-            var dir = System.IO.Path.GetDirectoryName(filePath);
-            if (!System.IO.Directory.Exists(dir))
-                System.IO.Directory.CreateDirectory(dir);
-
-            using (var writer = new System.IO.StreamWriter(System.IO.File.Create(path)))
-            {
-                writer.WriteLine("------ Build log ------");
-                writer.Close();
-            }
-        }
-
-        public void Log(string message)
-        {
-            Debug.Log(message);
-            using (var writer = System.IO.File.AppendText(filePath))
-            {
-                writer.WriteLine(message);
-                writer.Close();
-            }
-        }
-    }
-
     public class BuildExecutor
     {
         public static string[] scenes = { "Assets/Scenes/SampleScene.unity" };
         public static string name = "Venturer";
-        private static FileLogger logger = new FileLogger();
 
         private static int Build(string buildName, BuildTarget target)
         {
-            logger.Log("--- Building " + buildName + " ---");
-            logger.Log("Current directory: " + Environment.CurrentDirectory.ToString());
+            ////
+            var before = Application.GetStackTraceLogType(LogType.Log);
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
+            ////
+
+            Debug.Log("--- Building " + buildName + " ---");
+            Debug.Log("Current directory: " + Environment.CurrentDirectory.ToString());
 
             UnityEditor.Build.Reporting.BuildReport report;
-            logger.Log("Target: " + target.ToString());
+            Debug.Log("Target: " + target.ToString());
             try
             {
                 report = BuildPipeline.BuildPlayer(scenes, buildName, target, BuildOptions.None);
             }
             catch (Exception e)
             {
-                logger.Log(e.ToString());
+                Debug.Log(e.ToString());
+                Application.SetStackTraceLogType(LogType.Log, before);
                 return 1;
             }
-            logger.Log(report.summary.result.ToString());
-            logger.Log(report.summary.ToString());
-            logger.Log("File count: " + report.files.Length);
-            logger.Log("----------------\n");
-            return 0;
-        }
 
-        [MenuItem("Build/af All")]
-        public static int Test()
-        {
-            logger.Log("--- Test ---");
-            logger.Log("Test method");
-            logger.Log("Test");
+            Debug.Log("Result: " + report.summary.result.ToString());
+            Debug.Log("Output path " + report.summary.outputPath.ToString());
+            Debug.Log("Total time " + report.summary.totalTime.ToString());
+            Debug.Log("Total size " + report.summary.totalSize.ToString());
+            Debug.Log("Total warnings " + report.summary.totalWarnings.ToString());
+            Debug.Log("File count: " + report.files.Length);
+            Debug.Log("----------------\n");
+
+            ////
+            Application.SetStackTraceLogType(LogType.Log, before);
             return 0;
         }
 

@@ -15,11 +15,7 @@ jobs:
       - store_artifacts:
           path: build
       - store_artifacts:
-          path: ./build/*.log
-      - store_artifacts:
-          path: ./ProjectSettings
-      - store_artifacts:
-          path: ProjectSettings
+          path: ./build/Venturer_Windows
 
 workflows:
   version: 2
