@@ -48,19 +48,19 @@ namespace Pipeline
         [MenuItem("Build/Build WebGL")]
         public static int BuildWebGL()
         {
-            return Build("./Build/" + name + "_Web/" + name, BuildTarget.WebGL);
+            return Build("Build/" + name + "_Web/" + name, BuildTarget.WebGL);
         }
 
         [MenuItem("Build/Build Windows")]
         public static int BuildWindows()
         {
-            return Build("./Build/" + name + "_Windows/" + name + ".exe", BuildTarget.StandaloneWindows64);
+            return Build("Build/" + name + "_Windows/" + name + ".exe", BuildTarget.StandaloneWindows64);
         }
 
         [MenuItem("Build/Build Linux")]
         public static int BuildLinux()
         {
-            return Build("./Build/" + name + "_Linux/" + name, BuildTarget.StandaloneLinux64);
+            return Build("Build/" + name + "_Linux/" + name, BuildTarget.StandaloneLinux64);
         }
 
         [MenuItem("Build/Build All")]
