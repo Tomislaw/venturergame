@@ -13,8 +13,13 @@ jobs:
       - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-test.log" -executeMethod Pipeline.BuildExecutor.Test
       - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
       - store_artifacts:
-          path: /build
-      
+          path: build
+      - store_artifacts:
+          path: ./build/*.log
+      - store_artifacts:
+	  path: ./ProjectSettings
+      - store_artifacts:
+	  path: ProjectSettings
 
 workflows:
   version: 2
