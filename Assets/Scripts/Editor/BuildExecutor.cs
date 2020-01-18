@@ -11,11 +11,6 @@ namespace Pipeline
 
         private static int Build(string buildName, BuildTarget target)
         {
-            ////
-            var before = Application.GetStackTraceLogType(LogType.Log);
-            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.None);
-            ////
-
             Debug.Log("--- Building " + buildName + " ---");
             Debug.Log("Current directory: " + Environment.CurrentDirectory.ToString());
 
@@ -28,7 +23,6 @@ namespace Pipeline
             catch (Exception e)
             {
                 Debug.Log(e.ToString());
-                Application.SetStackTraceLogType(LogType.Log, before);
                 return 1;
             }
 
@@ -37,11 +31,14 @@ namespace Pipeline
             Debug.Log("Total time " + report.summary.totalTime.ToString());
             Debug.Log("Total size " + report.summary.totalSize.ToString());
             Debug.Log("Total warnings " + report.summary.totalWarnings.ToString());
-            Debug.Log("File count: " + report.files.Length);
-            Debug.Log("----------------\n");
 
-            ////
-            Application.SetStackTraceLogType(LogType.Log, before);
+            var files = "File count: " + report.files.Length + "\n";
+            foreach (var file in report.files)
+                files += file.path + "\n";
+            Debug.Log(files);
+
+            System.IO.Compression.zz.CreateFromDirectory(startPath, zipPath);
+
             return 0;
         }
 
