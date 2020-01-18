@@ -17,9 +17,9 @@ jobs:
       - store_artifacts:
           path: ./build/*.log
       - store_artifacts:
-	  path: ./ProjectSettings
+          path: ./ProjectSettings
       - store_artifacts:
-	  path: ProjectSettings
+          path: ProjectSettings
 
 workflows:
   version: 2
