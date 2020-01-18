@@ -10,7 +10,6 @@ jobs:
       - checkout # check out the code in the project directory
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
-      - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-test.log" -executeMethod Pipeline.BuildExecutor.Test
       - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
       - store_artifacts:
           path: build
