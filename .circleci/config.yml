@@ -4,6 +4,7 @@ executors:
     docker:
       - image: gableroux/unity3d:2019.2.16f1-windows
   unity-webgl:
+    docker:
       - image: gableroux/unity3d:2019.2.16f1-webgl
 jobs:
   build-win:
