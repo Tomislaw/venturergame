@@ -37,8 +37,6 @@ namespace Pipeline
                 files += file.path + "\n";
             Debug.Log(files);
 
-            System.IO.Compression.zz.CreateFromDirectory(startPath, zipPath);
-
             return 0;
         }
 
