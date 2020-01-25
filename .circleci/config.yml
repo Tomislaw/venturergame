@@ -3,31 +3,43 @@ executors:
   unity-win:
     docker:
       - image: gableroux/unity3d:2019.2.16f1-windows
-  main:
-    docker:
-      - image: circleci/python:3.7.3
+  unity-webgl:
+      - image: gableroux/unity3d:2019.2.16f1-webgl
 jobs:
   build-win:
     executor: unity-win
     steps:
       - checkout # check out the code in the project directory
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-win-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
       - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
       - run: ls -a build
       - store_artifacts:
-          path: build/Venturer_Windows
-  
+          path: build
+  build-webgl:
+    executor: unity-webgl
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-webgl-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-webgl.log" -executeMethod Pipeline.BuildExecutor.BuildWebGl
+      - run: ls -a build
+      - store_artifacts:
+          path: build
   test:
     executor: unity-win
     steps:
       - run: ls -a build
 
   deploy:
-    executor: main
+    executor: unity-win
     steps:
+      - run: apt-get -y update
+      - run: apt-get -y install zip
       - run: zip build/Venturer_Windows.zip build/Venturer_Windows || exit 0
+      - run: zip build/Venturer_Web.zip build/Venturer_Web || exit 0
       - run: ls -a build
+      - run: ls -a
       - store_artifacts:
           path: build
           
@@ -36,5 +48,11 @@ workflows:
   build:
     jobs:
       - build-win
-      - test
-      - deploy
+      - build-webgl
+      - test:
+          requires:
+            - build-win
+            - build-webgl
+      - deploy:
+          requires:
+            - test
