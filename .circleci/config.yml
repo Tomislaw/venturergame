@@ -11,10 +11,12 @@ jobs:
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
       - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
+      - run: zip Venturer_Windows.zip Venturer_Windows
+      - run: ls -a
       - store_artifacts:
           path: build
       - store_artifacts:
-          path: ./build/Venturer_Windows
+          path: build/Venturer_Windows
 
 workflows:
   version: 2
