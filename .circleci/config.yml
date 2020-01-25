@@ -115,11 +115,11 @@ workflows:
   build:
     jobs:
       - build-win
-#      - build-webgl
+      - build-webgl
       - test:
           requires:
             - build-win
-#            - build-webgl
+            - build-webgl
       - deploy:
           requires:
             - test
