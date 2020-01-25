@@ -7,7 +7,7 @@ namespace Pipeline
     public class BuildExecutor
     {
         public static string[] scenes = { "Assets/Scenes/SampleScene.unity" };
-        public static string name = "Venturer";
+        public static string name = "venturer";
 
         private static int Build(string buildName, BuildTarget target)
         {
@@ -43,19 +43,19 @@ namespace Pipeline
         [MenuItem("Build/Build WebGL")]
         public static int BuildWebGL()
         {
-            return Build("Build/" + name + "_Web/" + name, BuildTarget.WebGL);
+            return Build("build/" + name + "_web/" + name, BuildTarget.WebGL);
         }
 
         [MenuItem("Build/Build Windows")]
         public static int BuildWindows()
         {
-            return Build("Build/" + name + "_Windows/" + name + ".exe", BuildTarget.StandaloneWindows64);
+            return Build("build/" + name + "_windows/" + name + ".exe", BuildTarget.StandaloneWindows64);
         }
 
         [MenuItem("Build/Build Linux")]
         public static int BuildLinux()
         {
-            return Build("Build/" + name + "_Linux/" + name, BuildTarget.StandaloneLinux64);
+            return Build("build/" + name + "_linux/" + name, BuildTarget.StandaloneLinux64);
         }
 
         [MenuItem("Build/Build All")]
