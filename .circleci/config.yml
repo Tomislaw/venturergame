@@ -9,7 +9,7 @@ config:
       - image: gableroux/unity3d:2019.2.16f1-webgl
   main: &main
     docker:
-      - image: circleci/python:3.7.3
+      - image: alpine:3.9.5
 jobs:
   build-win:
     <<: *unity-win
@@ -33,7 +33,7 @@ jobs:
       - run: 
           name: Zip
           command: |
-            zip venturer_win.zip build/venturer_windows
+            zip -r venturer_win.zip build/venturer_windows
       - save_cache:
           key: venturer-win
           paths:
@@ -65,7 +65,7 @@ jobs:
       - run: 
           name: Zip
           command: |
-            zip venturer_web.zip build/venturer_web
+            zip -r venturer_web.zip build/venturer_web
       - save_cache:
           key: venturer-web
           paths:
@@ -92,6 +92,7 @@ jobs:
           command: |
             apt-get -y update
             apt-get -y install unzip
+            apt-get -y install curl
       - run:
           name: Publish zips
           command: |
