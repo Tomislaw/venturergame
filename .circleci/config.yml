@@ -7,7 +7,7 @@ jobs:
   build-win:
     executor: unity-win
     steps:
-      - run: sudo apt-get install zip
+      - run: apt-get install zip
       - checkout # check out the code in the project directory
       - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
       - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
