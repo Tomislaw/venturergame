@@ -7,12 +7,19 @@ config:
   unity-webgl: &unity-webgl
     docker:
       - image: gableroux/unity3d:2019.2.16f1-webgl
-   
+  main: &main
+    docker:
+      - image: circleci/python:3.7.3
 jobs:
   build-win:
     <<: *unity-win
     steps:
-      - checkout # check out the code in the project directory
+      - checkout
+      - run:
+          name: apt-get
+          command: |
+            apt-get -y update
+            apt-get -y install zip
       - run:
           name: Load license
           command: |
@@ -23,12 +30,28 @@ jobs:
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-win/build.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
             ls -a build/venturer_windows
+      - run: 
+          name: Zip
+          command: |
+            zip venturer_win.zip build/venturer_windows
+      - save_cache:
+          key: venturer-win
+          paths:
+            - venturer_win.zip
+            - logs-win
       - store_artifacts:
           path: logs-win
+      - store_artifacts:
+          path: venturer_win.zip
   build-webgl:
     <<: *unity-webgl
     steps:
-      - checkout # check out the code in the project directory
+      - checkout
+      - run:
+          name: apt-get
+          command: |
+            apt-get -y update
+            apt-get -y install zip
       - run:
           name: Load license
           command: |
@@ -39,31 +62,53 @@ jobs:
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-web/build.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
             ls -a build/venturer_web
+      - run: 
+          name: Zip
+          command: |
+            zip venturer_web.zip build/venturer_web
+      - save_cache:
+          key: venturer-web
+          paths:
+            - venturer_web.zip
+            - logs-web
       - store_artifacts:
           path: logs-web
+      - store_artifacts:
+          path: venturer_web.zip
   test:
     <<: *unity-win
     steps:
-      - run: tree -a build || exit 0
+      - checkout
+      - run: ls -a || exit 0
   deploy:
-    <<: *unity-win
+    <<: *main
     steps:
+      - restore_cache:
+          keys:
+            - venturer-win
+            - venturer-web 
       - run:
           name: apt-get
           command: |
             apt-get -y update
-            apt-get -y install zip
-            apt-get -y install tree
+            apt-get -y install unzip
       - run:
-          name: zip
+          name: Publish zips
           command: |
-            mkdir delivery
-            zip delivery/venturer_windows.zip build/venturer_windows || exit 0
-            zip delivery/venturer_web.zip build/venturer_web || exit 0
-            tree -a build
-            tree -a delivery
+            ls -a
+      - run:
+          name: Publish webgl
+          command: |
+            unzip venturer_web.zip web
+            ls -a web
       - store_artifacts:
-          path: delivery 
+          path: logs-win
+      - store_artifacts:
+          path: logs-web
+      - store_artifacts:
+          path: venturer_win.zip
+      - store_artifacts:
+          path: venturer_web.zip
 workflows:
   version: 2
   build:
