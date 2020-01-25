@@ -11,22 +11,34 @@ jobs:
     executor: unity-win
     steps:
       - checkout # check out the code in the project directory
-      - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-win-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
-      - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
-      - run: ls -a build
+      - run:
+          name: Load license
+          command: |
+            echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs-win/license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: 
+          name: Build
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-win/build.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
+            ls -a build/venturer_windows
       - store_artifacts:
-          path: build
+          path: logs-win
   build-webgl:
     executor: unity-webgl
     steps:
       - checkout # check out the code in the project directory
-      - run: echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-      - run: /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./build/build-webgl-license.log" -manualLicenseFile .circleci/license.ulf || exit 0
-      - run: /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./build/build-webgl.log" -executeMethod Pipeline.BuildExecutor.BuildWebGl
-      - run: ls -a build
+      - run:
+          name: Load license
+          command: |
+            echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs-web/license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: 
+          name: Build
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-web/build.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
+            ls -a build/venturer_web
       - store_artifacts:
-          path: build
+          path: logs-web
   test:
     executor: unity-win
     steps:
@@ -35,15 +47,19 @@ jobs:
   deploy:
     executor: unity-win
     steps:
-      - run: apt-get -y update
-      - run: apt-get -y install zip
-      - run: zip build/Venturer_Windows.zip build/Venturer_Windows || exit 0
-      - run: zip build/Venturer_Web.zip build/Venturer_Web || exit 0
-      - run: ls -a build
-      - run: ls -a
+      - run:
+          name: apt-get
+          command: |
+            apt-get -y update
+            apt-get -y install zip
+      - run:
+          name: zip
+          command: |
+            zip build/venturer_windows.zip build/venturer_windows || exit 0
+            zip build/venturer_web.zip build/venturer_web || exit 0
+            ls -a build
       - store_artifacts:
-          path: build
-          
+          path: build 
 workflows:
   version: 2
   build:
