@@ -1,14 +1,16 @@
 version: 2.1
-executors:
-  unity-win:
+     
+config:
+  unity-win: &unity-win
     docker:
       - image: gableroux/unity3d:2019.2.16f1-windows
-  unity-webgl:
+  unity-webgl: &unity-webgl
     docker:
       - image: gableroux/unity3d:2019.2.16f1-webgl
+   
 jobs:
   build-win:
-    executor: unity-win
+    <<: *unity-win
     steps:
       - checkout # check out the code in the project directory
       - run:
@@ -20,11 +22,11 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-win/build.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
-            ls -a build/venturer_windows
+            tree -a build/venturer_windows
       - store_artifacts:
           path: logs-win
   build-webgl:
-    executor: unity-webgl
+    <<: *unity-webgl
     steps:
       - checkout # check out the code in the project directory
       - run:
@@ -36,16 +38,15 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-web/build.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
-            ls -a build/venturer_web
+            tree -a build/venturer_web
       - store_artifacts:
           path: logs-web
   test:
-    executor: unity-win
+    <<: *unity-win
     steps:
-      - run: ls -a build
-
+      - run: tree -a build || exit 0
   deploy:
-    executor: unity-win
+    <<: *unity-win
     steps:
       - run:
           name: apt-get
@@ -55,21 +56,23 @@ jobs:
       - run:
           name: zip
           command: |
-            zip build/venturer_windows.zip build/venturer_windows || exit 0
-            zip build/venturer_web.zip build/venturer_web || exit 0
-            ls -a build
+            mkdir delivery
+            zip delivery/venturer_windows.zip build/venturer_windows || exit 0
+            zip delivery/venturer_web.zip build/venturer_web || exit 0
+            tree -a build
+            tree -a delivery
       - store_artifacts:
-          path: build 
+          path: delivery 
 workflows:
   version: 2
   build:
     jobs:
       - build-win
-      - build-webgl
+#      - build-webgl
       - test:
           requires:
             - build-win
-            - build-webgl
+#            - build-webgl
       - deploy:
           requires:
             - test
