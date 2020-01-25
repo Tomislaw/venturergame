@@ -22,7 +22,7 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-win/build.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
-            tree -a build/venturer_windows
+            ls -a build/venturer_windows
       - store_artifacts:
           path: logs-win
   build-webgl:
@@ -38,7 +38,7 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-web/build.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
-            tree -a build/venturer_web
+            ls -a build/venturer_web
       - store_artifacts:
           path: logs-web
   test:
@@ -53,6 +53,7 @@ jobs:
           command: |
             apt-get -y update
             apt-get -y install zip
+            apt-get -y install tree
       - run:
           name: zip
           command: |
