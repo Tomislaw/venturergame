@@ -26,7 +26,7 @@ jobs:
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
             ls -a build/venturer_windows
       - persist_to_workspace:
-          root: ~/
+          root: ~/project
           paths: 
             - build
             - logs
@@ -48,7 +48,7 @@ jobs:
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-web.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
             ls -a build/venturer_web
       - persist_to_workspace:
-          root: ~/
+          root: ~/project
           paths: 
             - build
             - logs
