@@ -63,16 +63,17 @@ jobs:
     <<: *main
     steps:
       - attach_workspace:
-          at: ~/
+          at: ~/project
       - run:
           name: apk
           command: |
-            apk -y update
-            apk -y add zip
-            apk -y add curl
+            apk update
+            apk add zip
+            apk add curl
       - run:
           name: Prepare zips
           command: |
+            ls -a
             ls -a build
             zip -r venturer_web.zip build/venturer_web || exit 0
             zip -r venturer_win.zip build/venturer_win || exit 0
