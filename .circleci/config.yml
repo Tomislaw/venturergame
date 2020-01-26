@@ -16,83 +16,66 @@ jobs:
     steps:
       - checkout
       - run:
-          name: apt-get
-          command: |
-            apt-get -y update
-            apt-get -y install zip
-      - run:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs-win/license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-win.log" -manualLicenseFile .circleci/license.ulf || exit 0
       - run: 
           name: Build
           command: |
-            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-win/build.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildWindows
             ls -a build/venturer_windows
-      - run: 
-          name: Zip
-          command: |
-            zip -r venturer_win.zip build/venturer_windows
-      - save_cache:
-          key: venturer-win
-          paths:
-            - venturer_win.zip
-            - logs-win
+      - persist_to_workspace:
+          root: ~/
+          paths: 
+            - build
+            - logs
       - store_artifacts:
-          path: logs-win
-      - store_artifacts:
-          path: venturer_win.zip
+          path: logs
+          
   build-webgl:
     <<: *unity-webgl
     steps:
       - checkout
       - run:
-          name: apt-get
-          command: |
-            apt-get -y update
-            apt-get -y install zip
-      - run:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs-web/license.log" -manualLicenseFile .circleci/license.ulf || exit 0
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-web.log" -manualLicenseFile .circleci/license.ulf || exit 0
       - run: 
           name: Build
           command: |
-            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs-web/build.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-web.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
             ls -a build/venturer_web
-      - run: 
-          name: Zip
-          command: |
-            zip -r venturer_web.zip build/venturer_web
-      - save_cache:
-          key: venturer-web
-          paths:
-            - venturer_web.zip
-            - logs-web
+      - persist_to_workspace:
+          root: ~/
+          paths: 
+            - build
+            - logs
       - store_artifacts:
-          path: logs-web
-      - store_artifacts:
-          path: venturer_web.zip
+          path: logs
   test:
-    <<: *unity-win
+    <<: *main
     steps:
       - checkout
       - run: ls -a || exit 0
   deploy:
     <<: *main
     steps:
-      - restore_cache:
-          keys:
-            - venturer-win
-            - venturer-web 
+      - attach_workspace:
+          at: ~/
       - run:
-          name: apt-get
+          name: apk
           command: |
-            apt-get -y update
-            apt-get -y install unzip
-            apt-get -y install curl
+            apk -y update
+            apk -y add zip
+            apk -y add curl
+      - run:
+          name: Prepare zips
+          command: |
+            ls -a build
+            zip -r venturer_web.zip build/venturer_web || exit 0
+            zip -r venturer_win.zip build/venturer_win || exit 0
       - run:
           name: Publish zips
           command: |
@@ -100,12 +83,9 @@ jobs:
       - run:
           name: Publish webgl
           command: |
-            unzip venturer_web.zip web
-            ls -a web
+            ls -a build/venturer_web/venturer || exit 0
       - store_artifacts:
-          path: logs-win
-      - store_artifacts:
-          path: logs-web
+          path: logs
       - store_artifacts:
           path: venturer_win.zip
       - store_artifacts:
