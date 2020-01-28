@@ -75,8 +75,8 @@ jobs:
           command: |
             ls -a
             ls -a build
-            zip -r venturer_web.zip build/venturer_web || exit 0
-            zip -r venturer_win.zip build/venturer_win || exit 0
+            (cd build/venturer_web/venturer; zip -r ../../../venturer_web.zip .) || exit 0
+            (cd build/venturer_windows; zip -r ../../venturer_windows64.zip .) || exit 0
       - run:
           name: Publish zips
           command: |
@@ -88,7 +88,7 @@ jobs:
       - store_artifacts:
           path: logs
       - store_artifacts:
-          path: venturer_win.zip
+          path: venturer_windows64.zip
       - store_artifacts:
           path: venturer_web.zip
 workflows:

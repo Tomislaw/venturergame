@@ -46,9 +46,11 @@ public class ExpensiveGrassStalk : MonoBehaviour
 
     private void Update()
     {
+        //dont let grass fall into ground
         if (transform.position.y <= attach.y)
             transform.position = new Vector2(transform.position.x, attach.y);
 
+        //slowdown
         if (rb.velocity.y >= 0)
             rb.velocity += new Vector2(-rb.velocity.x * Mathf.Min(1, Time.deltaTime * 5), 0);
     }

@@ -11,16 +11,15 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     private Mesh mesh;
     private Material material;
 
-    public Material debugLineMat;
-
     public int width = 32;
     public int height = 32;
-    public int freeSpaceXOffset = 32;
+    public int freeSpaceXOffsetLeft = 32;
+    public int freeSpaceXOffsetRight = 32;
     public Shader shader;
 
     private void Start()
     {
-        texture = new Texture2D(width + freeSpaceXOffset * 2, height);
+        texture = new Texture2D(width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight, height);
         texture.filterMode = FilterMode.Point;
         expensiveGrass = GetComponent<ExpensiveGrass>();
         mesh = CreateMesh();
@@ -73,16 +72,25 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     public Vector2Int ToLocalIntVector(Vector2 vector)
     {
         var v = (vector - (Vector2)transform.position) * (float)(width) / expensiveGrass.Width;
-        return new Vector2Int((int)v.x + freeSpaceXOffset, (int)v.y);
+        if (v.x < -freeSpaceXOffsetLeft)
+            v.x = -freeSpaceXOffsetLeft;
+        else if (v.x > width + freeSpaceXOffsetRight)
+            v.x = width + freeSpaceXOffsetRight;
+        if (v.y < 0)
+            v.y = 0;
+        else if (v.y > height)
+            v.y = height;
+
+        return new Vector2Int((int)v.x + freeSpaceXOffsetLeft, (int)v.y);
     }
 
     private void DrawLine(Vector2Int point1, Vector2Int point2, ref Texture2D texture, Color color)
     {
-        int x0 = (int)point1.x;
-        int y0 = (int)point1.y;
+        int x0 = point1.x;
+        int y0 = point1.y;
 
-        int x1 = (int)point2.x;
-        int y1 = (int)point2.y;
+        int x1 = point2.x;
+        int y1 = point2.y;
 
         int dx = Mathf.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1;
         int dy = Mathf.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1;
@@ -102,9 +110,10 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     {
         var mesh = new Mesh();
 
-        float offsetSize = freeSpaceXOffset / width * expensiveGrass.Width;
-        float start = -offsetSize;
-        float end = expensiveGrass.Width + offsetSize;
+        float offsetSizeL = (float)(freeSpaceXOffsetLeft) / width * expensiveGrass.Width;
+        float offsetSizeR = (float)(freeSpaceXOffsetRight) / width * expensiveGrass.Width;
+        float start = -offsetSizeL;
+        float end = expensiveGrass.Width + offsetSizeR;
         var vertices = new Vector3[4]
         {
             new Vector3(start, 0, 0),
@@ -145,10 +154,11 @@ public class ExpensiveGrassRenderer : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        float offsetSize = freeSpaceXOffset / width * expensiveGrass.Width;
-        var start = new Vector2(transform.position.x - offsetSize, transform.position.y);
-        var size = new Vector2(expensiveGrass.Width, expensiveGrass.Height);
-        size += new Vector2(offsetSize * 2, 0);
+        float offsetSizeL = (float)(freeSpaceXOffsetLeft) / (float)width * expensiveGrass.Width;
+        float offsetSizeR = (float)(freeSpaceXOffsetRight) / (float)width * expensiveGrass.Width;
+        var start = new Vector2(transform.position.x - offsetSizeL, transform.position.y);
+        var size = new Vector2(expensiveGrass.Width, 1);
+        size += new Vector2(offsetSizeL + offsetSizeR, 0);
 
         Gizmos.DrawCube(start + size / 2, size);
 
