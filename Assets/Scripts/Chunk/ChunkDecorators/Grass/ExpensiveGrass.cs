@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Chunk.ChunkDecorators;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +30,6 @@ public static class Rigidbody2DExtension
     }
 }
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(DistanceJoint2D))]
 public class ExpensiveGrassStalk : MonoBehaviour
 {
@@ -73,18 +73,22 @@ public class ExpensiveGrassStalk : MonoBehaviour
     }
 }
 
-public class ExpensiveGrass : MonoBehaviour
+[RequireComponent(typeof(Rigidbody2D))]
+public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 {
-    public int StalkCount = 16;
+    public static int StalkCount = 26;
+    public float Width = 1;
+    public float Height = 1;
+    public float MaxNoise = 0.1f;
+
     public List<Color> StalkColors = new List<Color>() { Color.green };
     public float StalkMass = 0.1f;
     public int Seed = 0;
 
-    public float Width = 1;
-    public float Height = 1;
-    public float MaxNoise = 0.1f;
     public bool CornerLeft = false;
     public bool CornerRight = false;
+
+    private List<GameObject> stalks = new List<GameObject>();
 
     // Start is called before the first frame update
     private void Start()
@@ -95,11 +99,23 @@ public class ExpensiveGrass : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //if (transform.hasChanged)
+        //{
+        //    int i = 0;
+        //    foreach (var stalk in stalks)
+        //    {
+        //        var joint = stalk.GetComponent<DistanceJoint2D>();
+        //        joint.anchor = transform.position + new Vector3(Width * i / (StalkCount) + (Width * 1 / StalkCount) / 2, 0, 0);
+        //        stalk.transform.position = joint.anchor + new Vector2(0, joint.distance);
+        //        i++;
+        //    }
+        //}
     }
 
     private void GenerateGrass()
     {
         var rnd = new System.Random(Seed);
+        stalks.Clear();
 
         for (int i = 0; i < StalkCount; i++)
         {
@@ -113,16 +129,18 @@ public class ExpensiveGrass : MonoBehaviour
             stalkHeight = Mathf.Abs(stalkHeight);
 
             var go = CreateStalk(
-                transform.position + new Vector3(Width * i / (StalkCount) + (Width * 1 / StalkCount) / 2, 0, 0),
+                Width * i / (StalkCount) + (Width * 1 / StalkCount) / 2,
                 StalkColors[rnd.Next(0, StalkColors.Count - 1)],
                 stalkHeight);
 
             go.name = name + "_" + "stalk" + i;
+            stalks.Add(go);
         }
     }
 
-    private GameObject CreateStalk(Vector2 pos, Color col, float length)
+    private GameObject CreateStalk(float xPos, Color col, float length)
     {
+        var pos = transform.position + new Vector3(xPos, 0, 0);
         var go = new GameObject();
         go.transform.localPosition = new Vector2(pos.x, pos.y + length);
         go.transform.parent = transform;
@@ -167,5 +185,19 @@ public class ExpensiveGrass : MonoBehaviour
         if (CornerRight)
             Gizmos.DrawLine((Vector2)transform.position + new Vector2(size.x, 0), (Vector2)transform.position + new Vector2(size.x / 2, size.y));
         Gizmos.color = Color.white;
+    }
+
+    public void SaveChunkDecorator()
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public void LoadFromChunkDecorator()
+    {
+        var cd = GetComponent<ChunkDecorator>();
+        if (cd == null)
+            return;
+
+        Seed = cd.GetProperty("seed", 0);
     }
 }

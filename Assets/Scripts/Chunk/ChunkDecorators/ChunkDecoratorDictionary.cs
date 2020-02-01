@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class ChunkDecoratorDictionary : MonoBehaviour
 {
-    public Dictionary<string, GameObject> entries;
+    [SerializeField]
+    public Dictionary<string, GameObject> entries = new Dictionary<string, GameObject>();
 
-    private void Start()
+    private void Awake()
     {
         var list = Resources.LoadAll<GameObject>("Prefabs/ChunkDecorators");
         foreach (var item in list)
@@ -18,3 +18,37 @@ public class ChunkDecoratorDictionary : MonoBehaviour
         }
     }
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(ChunkDecoratorDictionary))]
+public class ChunkDecoratorEditorDisplay : Editor
+{
+    private Dictionary<string, GameObject> entries;
+    private Vector2 scrollPos;
+
+    private void OnEnable()
+    {
+        entries = (serializedObject.targetObject as ChunkDecoratorDictionary).entries;
+    }
+
+    public override void OnInspectorGUI()
+    {
+        EditorGUILayout.LabelField("Entries - " + entries.Count());
+
+        int size = entries.Count() * 16;
+        if (size > 400)
+            size = 400;
+        scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Height(size));
+
+        EditorGUI.indentLevel++;
+
+        foreach (var entry in entries)
+            EditorGUILayout.LabelField(entry.Key);
+        EditorGUI.indentLevel--;
+
+        EditorGUILayout.EndScrollView();
+    }
+}
+
+#endif

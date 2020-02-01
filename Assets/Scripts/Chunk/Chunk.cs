@@ -1,64 +1,65 @@
-﻿using System;
+﻿using ChunkGenerators;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Chunk : MonoBehaviour
 {
-    [Serializable]
-    public struct Decorator
-    {
-        public Vector3 Offset;
-        public Sprite Sprite;
-    }
+    public const int CHUNK_SIZE = 24;
 
-    public Vector2 Size = new Vector2(4, 1);
-    public List<Decorator> Decorators = new List<Decorator>();
-    // Start is called before the first frame update
+    [SerializeField]
+    public ChunkDecoratorDictionary dictionary;
+
+    public List<ChunkDecoratorData> items;
+
+    public bool Loaded
+    {
+        get { return !(items != null && items.Count > 0); }
+    }
 
     private void Start()
     {
-        //AddDecorators();
+        items = DecidousChunkGenerator.GenerateForest();
+        LoadChunk();
     }
 
-    private void Update()
+    public void LoadChunk()
     {
-    }
+        if (Loaded)
+            return;
 
-#if UNITY_EDITOR
-
-    private void OnValidate()
-    {
-        UnityEditor.EditorApplication.delayCall += () =>
-        {
-            if (this == null)
-                return;
-            for (int i = this.transform.childCount; i > 0; --i)
-                DestroyImmediate(this.transform.GetChild(0).gameObject);
-            AddDecorators();
-        };
-    }
-
-#endif
-
-    private void OnDestroy()
-    {
-        for (int i = this.transform.childCount; i > 0; --i)
-            Destroy(this.transform.GetChild(0).gameObject);
-    }
-
-    private void AddDecorators()
-    {
         int counter = 0;
-        foreach (var decorator in Decorators)
+        foreach (var item in items)
         {
-            var obj = new GameObject();
-            obj.name = gameObject.name + "_decorator" + counter;
-            var renderer = obj.AddComponent<SpriteRenderer>();
-            renderer.sprite = decorator.Sprite;
-            obj.transform.position = gameObject.transform.position + decorator.Offset;
-            obj.transform.SetParent(gameObject.transform, true);
-            counter++;
-            //Instantiate(obj);
+            var go = ChunkDecorator.Create(dictionary, item);
+
+            if (go == null)
+            {
+                Debug.LogWarning("Item not found: " + item.name);
+                continue;
+            }
+            go.name = item.name;
+            go.transform.parent = gameObject.transform;
+            go.GetComponent<ChunkDecorator>().Initialize();
+        }
+        items.Clear();
+    }
+
+    public void UnloadChunk()
+    {
+        if (!Loaded)
+            return;
+
+        items = new List<ChunkDecoratorData>();
+
+        foreach (var child in GetComponentsInChildren<ChunkDecorator>())
+        {
+            items.Add(child.data);
+        }
+
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
         }
     }
 }

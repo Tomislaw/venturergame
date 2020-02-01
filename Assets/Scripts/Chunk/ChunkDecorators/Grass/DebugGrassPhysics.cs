@@ -22,7 +22,6 @@ public class DebugGrassPhysics : MonoBehaviour
         {
             switchable *= -1;
             var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Input down " + pos);
             var colliders = Physics2D.OverlapCircleAll(pos, Radius);
             foreach (var collide in colliders)
             {
@@ -36,7 +35,6 @@ public class DebugGrassPhysics : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log("Input down " + pos);
             var colliders = Physics2D.OverlapCircleAll(pos, Radius);
             foreach (var collide in colliders)
             {

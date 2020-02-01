@@ -7,8 +7,8 @@ public class Zone : MonoBehaviour
     public Zone zoneToLeft;
     public Zone zoneToRight;
 
-    public float chunkSize = 4;
-    public List<GameObject> chunks = new List<GameObject>();
+    public float chunkSize = 10;
+    public List<Chunk> chunks = new List<Chunk>();
 
     private void Start()
     {

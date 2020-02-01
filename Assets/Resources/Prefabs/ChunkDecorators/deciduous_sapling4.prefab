@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355121897428587332}
   - component: {fileID: 5010680647714296902}
+  - component: {fileID: -3835147614004410779}
   m_Layer: 0
   m_Name: deciduous_sapling5
   m_TagString: Untagged
@@ -81,3 +82,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3835147614004410779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515876304779752914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7969ec1b2ff8ac94a89ad504a75bd85a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+    name: deciduous_sapling5
