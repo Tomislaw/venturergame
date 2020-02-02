@@ -17,7 +17,7 @@ public class ParallaxResolver : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void LateUpdate()
     {
         Vector3 newPos = startingPosition;
         if (moveX)

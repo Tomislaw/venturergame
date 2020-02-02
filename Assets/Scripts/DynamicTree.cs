@@ -20,6 +20,11 @@ public class DynamicTree : MonoBehaviour
 
     private Mesh mesh;
 
+    private void Awake()
+    {
+        Load();
+    }
+
     private void Start()
     {
         bendPositionResolver = ConfigureBendPositionResolver();
@@ -29,9 +34,6 @@ public class DynamicTree : MonoBehaviour
     {
         mesh = SpriteToMesh(Sprite);
         GetComponent<MeshFilter>().sharedMesh = mesh;
-        var renderer = GetComponent<MeshRenderer>();
-        renderer.sharedMaterial = new Material(Material);
-        renderer.sharedMaterial.SetTexture("_MainTex", Sprite.texture);
 
         float minVectorPos = float.MaxValue;
         float maxVectorPos = float.MinValue;
@@ -45,16 +47,25 @@ public class DynamicTree : MonoBehaviour
         }
         float distance = (maxVectorPos - minVectorPos);
 
+        initialVerticlesPosition.Clear();
         foreach (var v in Sprite.vertices)
         {
             var factor = v.y / distance;
             initialVerticlesPosition.Add((new Vector2(v.x, v.y), factor));
         }
+
+        var renderer = GetComponent<MeshRenderer>();
+        renderer.sharedMaterial = new Material(Material);
+        renderer.sharedMaterial.SetTexture("_MainTex", Sprite.texture);
+        hash = GetHashCode();
     }
+
+    private int hash = 0;
 
     private void OnValidate()
     {
-        Load();
+        if (hash != GetHashCode())
+            Load();
     }
 
     private Mesh SpriteToMesh(Sprite sprite)
