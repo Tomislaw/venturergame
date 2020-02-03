@@ -9,13 +9,18 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     private ExpensiveGrass expensiveGrass;
     private Texture2D texture;
     private Mesh mesh;
-    private Material material;
+    private Material _material;
 
     public int width = 32;
     public int height = 32;
     public int freeSpaceXOffsetLeft = 32;
     public int freeSpaceXOffsetRight = 32;
-    public Shader shader;
+    public Material material;
+
+    private void Awake()
+    {
+        enabled = false;
+    }
 
     private void Start()
     {
@@ -23,16 +28,26 @@ public class ExpensiveGrassRenderer : MonoBehaviour
         texture.filterMode = FilterMode.Point;
         expensiveGrass = GetComponent<ExpensiveGrass>();
         mesh = CreateMesh();
-        material = new Material(shader);
-        material.mainTexture = texture;
+        _material = new Material(material);
+        _material.mainTexture = texture;
+    }
+
+    private void OnBecameVisible()
+    {
+        enabled = true;
+        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
+    }
+
+    private void OnBecameInvisible()
+    {
+        enabled = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
         Draw();
-
-        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, material, 0);
+        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
     }
 
     private void Draw()

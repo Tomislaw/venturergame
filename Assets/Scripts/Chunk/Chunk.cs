@@ -19,7 +19,7 @@ public class Chunk : MonoBehaviour
 
     private void Start()
     {
-        items = DecidousChunkGenerator.GenerateForest();
+        items = DecidousChunkGenerator.Forest.GenerateForest();
         LoadChunk();
     }
 

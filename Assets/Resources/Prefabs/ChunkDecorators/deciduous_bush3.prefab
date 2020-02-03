@@ -96,7 +96,7 @@ MonoBehaviour:
   RetractionForce: 5
   Mass: 0.5
   Sprite: {fileID: 5066834904594745908, guid: 4e7e2b3cbc104ca4ca7c1640ec00d7cc, type: 3}
-  Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  Material: {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
 --- !u!61 &8351648719560728897
 BoxCollider2D:
   m_ObjectHideFlags: 0

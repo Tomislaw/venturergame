@@ -93,5 +93,16 @@ PrefabInstance:
       propertyPath: CornerLeft
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6871817211193568746, guid: 38f75388da8a814489f82751efd15894,
+        type: 3}
+      propertyPath: shader
+      value: 
+      objectReference: {fileID: -6465566751694194690, guid: bf6730bab71f5424d918037c0610cb07,
+        type: 3}
+    - target: {fileID: 6871817211193568746, guid: 38f75388da8a814489f82751efd15894,
+        type: 3}
+      propertyPath: material
+      value: 
+      objectReference: {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38f75388da8a814489f82751efd15894, type: 3}

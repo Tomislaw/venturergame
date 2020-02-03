@@ -46,16 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34accdc2b76b5b34b9b18ae8d5b36d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StalkCount: 16
+  Width: 1
+  Height: 0.3
+  MaxNoise: 0.3
   StalkColors:
   - {r: 0.54901963, g: 0.6666667, b: 0.45098042, a: 1}
   - {r: 0.38823533, g: 0.50980395, b: 0.2901961, a: 1}
   - {r: 0.23529413, g: 0.36862746, b: 0.17254902, a: 1}
   StalkMass: 0.1
   Seed: 1
-  Width: 1
-  Height: 0.3
-  MaxNoise: 0.3
   CornerLeft: 0
   CornerRight: 1
 --- !u!114 &2033242832172541997
@@ -72,8 +71,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 32
   height: 32
-  freeSpaceXOffset: 32
-  shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+  freeSpaceXOffsetLeft: 32
+  freeSpaceXOffsetRight: 32
+  material: {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
 --- !u!61 &2033242832172541986
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

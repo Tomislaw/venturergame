@@ -76,7 +76,7 @@ public class ExpensiveGrassStalk : MonoBehaviour
 [RequireComponent(typeof(Rigidbody2D))]
 public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 {
-    public static int StalkCount = 26;
+    public static int StalkCount = 32;
     public float Width = 1;
     public float Height = 1;
     public float MaxNoise = 0.1f;
@@ -90,15 +90,24 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 
     private List<GameObject> stalks = new List<GameObject>();
 
+    private Vector3 previousPosition;
+
     // Start is called before the first frame update
+
     private void Start()
     {
+        previousPosition = transform.position;
         GenerateGrass();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (previousPosition != transform.position)
+        {
+            GenerateGrass();
+            previousPosition = transform.position;
+        }
         //if (transform.hasChanged)
         //{
         //    int i = 0;
@@ -114,6 +123,9 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 
     private void GenerateGrass()
     {
+        var _seed = GetComponent<ChunkDecorator>()?.GetProperty("seed", Seed);
+        if (_seed.HasValue)
+            Seed = _seed.Value;
         var rnd = new System.Random(Seed);
         stalks.Clear();
 
