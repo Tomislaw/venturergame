@@ -11,6 +11,7 @@ public class Chunk : MonoBehaviour
     public ChunkDecoratorDictionary dictionary;
 
     public List<ChunkDecoratorData> items;
+    public int style = 0;
 
     public bool Loaded
     {
@@ -19,8 +20,29 @@ public class Chunk : MonoBehaviour
 
     private void Start()
     {
-        items = DecidousChunkGenerator.Forest.GenerateForest();
+        if (style == 0)
+            items = DecidousChunkGenerator.Forest.GenerateForest();
+        else if (style == 1)
+            items = DecidousChunkGenerator.LightForest.GenerateForest();
+        else
+            items = DecidousChunkGenerator.LightForest.GenerateForest();
+
         LoadChunk();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            UnloadChunk();
+            if (style == 0)
+                items = DecidousChunkGenerator.Forest.GenerateForest();
+            else if (style == 1)
+                items = DecidousChunkGenerator.LightForest.GenerateForest();
+            else
+                items = DecidousChunkGenerator.Grassland.GenerateForest();
+            LoadChunk();
+        }
     }
 
     public void LoadChunk()

@@ -35,7 +35,6 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     private void OnBecameVisible()
     {
         enabled = true;
-        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
     }
 
     private void OnBecameInvisible()
