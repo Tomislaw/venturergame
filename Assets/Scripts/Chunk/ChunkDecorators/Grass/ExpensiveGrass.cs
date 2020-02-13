@@ -211,5 +211,7 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
             return;
 
         Seed = cd.GetProperty("seed", 0);
+        CornerLeft = cd.GetProperty("cornerLeft", false);
+        CornerRight = cd.GetProperty("cornerRight", false);
     }
 }

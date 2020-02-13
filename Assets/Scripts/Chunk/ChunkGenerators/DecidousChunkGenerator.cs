@@ -16,12 +16,13 @@ namespace ChunkGenerators
             int saplings = 4,
             int bushes = 4,
             int shrubs = 10,
-            int fenrs = 0)
+            int ferns = 0)
         {
             this.trees = trees;
             this.saplings = saplings;
             this.bushes = bushes;
             this.shrubs = shrubs;
+            this.ferns = ferns;
         }
 
         public int trees = 6;
@@ -29,7 +30,7 @@ namespace ChunkGenerators
         public int bushes = 4;
         public int shrubs = 10;
         public int ferns = 10;
-
+        public int floorType = 0;
         public static DecidousChunkGenerator Forest = new DecidousChunkGenerator(6, 2, 3, 2, 8);
         public static DecidousChunkGenerator LightForest = new DecidousChunkGenerator(3, 2, 1, 2, 4);
         public static DecidousChunkGenerator Grassland = new DecidousChunkGenerator(1, 1, 1, 3, 0);
@@ -42,15 +43,63 @@ namespace ChunkGenerators
             List<ChunkDecoratorData> chunk = new List<ChunkDecoratorData>();
 
             //Generate grass
+
             var rng = new System.Random(seed);
+
+            float grassToRoadRatioLeft = 0f;
+            float grassToRoadRatioRight = 1f;
+
+            bool[] grassList = new bool[Chunk.CHUNK_SIZE];
             for (int i = 0; i < Chunk.CHUNK_SIZE; i++)
             {
-                ChunkDecoratorData grass;
-                grass.name = "grass_center" + (i % 2 + 1);
-                grass.properties = new Dictionary<string, object>();
-                grass.properties.Add("seed", rng.Next());
-                grass.properties.Add("position", new Vector3(i, 0, 0));
-                chunk.Add(grass);
+                float propability = Mathf.Lerp(grassToRoadRatioLeft, grassToRoadRatioRight, (float)i / (Chunk.CHUNK_SIZE - 1));
+                grassList[i] = rng.NextDouble() - propability < 0;
+            }
+
+            for (int i = 0; i < Chunk.CHUNK_SIZE; i++)
+            {
+                bool cornerLeft =
+                    (i == 0 && !(grassToRoadRatioLeft == 0 || grassToRoadRatioLeft == 1))
+                    || (i > 0 && grassList[i - 1] != grassList[i]);
+                bool corneRight =
+                    (i == Chunk.CHUNK_SIZE - 1 && !(grassToRoadRatioRight == 0 || grassToRoadRatioRight == 1))
+                    || (i < Chunk.CHUNK_SIZE - 1 && grassList[i + 1] != grassList[i]);
+                bool isGrass = grassList[i];
+
+                if (isGrass)
+                {
+                    ChunkDecoratorData grass;
+                    if (cornerLeft == false && corneRight == false)
+                        grass.name = "grass_center" + (i % 2 + 1);
+                    else if (cornerLeft == false && corneRight == true)
+                        grass.name = "grass_right";
+                    else if (cornerLeft == true && corneRight == false)
+                        grass.name = "grass_left";
+                    else
+                        grass.name = "grass";
+
+                    grass.properties = new Dictionary<string, object>();
+                    grass.properties.Add("seed", rng.Next());
+                    grass.properties.Add("position", new Vector3(i, 0, 0));
+                    grass.properties.Add("cornerLeft", cornerLeft);
+                    grass.properties.Add("corneRight", corneRight);
+                    chunk.Add(grass);
+                }
+                else
+                {
+                    ChunkDecoratorData road;
+                    //if (cornerLeft == false && corneRight == true)
+                    //    road.name = "road_right";
+                    //else if (cornerLeft == true && corneRight == false)
+                    //    road.name = "road_left";
+                    //else
+                    road.name = "road_center" + (i % 2 + 1);
+
+                    road.properties = new Dictionary<string, object>();
+                    road.properties.Add("seed", rng.Next());
+                    road.properties.Add("position", new Vector3(i, 0, 0));
+                    chunk.Add(road);
+                }
             }
 
             int previous = 0;
