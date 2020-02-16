@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3752379214775730095}
   - component: {fileID: 3752379214775730094}
   - component: {fileID: 3752379214775730093}
+  - component: {fileID: 4468285262937697287}
   m_Layer: 0
   m_Name: deciduous_sapling4
   m_TagString: Untagged
@@ -138,3 +139,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.28125, y: 3.90625}
   m_EdgeRadius: 0
+--- !u!210 &4468285262937697287
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3752379214775730092}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0

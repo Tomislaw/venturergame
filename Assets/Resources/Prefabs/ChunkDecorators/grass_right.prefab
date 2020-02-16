@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2033242832172541997}
   - component: {fileID: 2033242832172541986}
   - component: {fileID: 2033242832172541998}
+  - component: {fileID: -8735900316811831830}
   m_Layer: 0
   m_Name: grass_right
   m_TagString: Untagged
@@ -150,3 +151,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &-8735900316811831830
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033242832172541987}
+  m_Enabled: 1
+  m_SortingLayerID: -1746336397
+  m_SortingLayer: 2
+  m_SortingOrder: 0

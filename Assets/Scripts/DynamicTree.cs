@@ -32,6 +32,7 @@ public class DynamicTree : MonoBehaviour
 
     private void Load()
     {
+        hash = GetHashCode();
         mesh = SpriteToMesh(Sprite);
         GetComponent<MeshFilter>().sharedMesh = mesh;
 

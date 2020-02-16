@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2546239957857841863}
   - component: {fileID: 4528280811577998956}
   - component: {fileID: 4800649956644100045}
+  - component: {fileID: 6333781288566921104}
   m_Layer: 0
   m_Name: deciduous_shrub5
   m_TagString: Untagged
@@ -123,3 +124,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!210 &6333781288566921104
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6402571161800685824}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0

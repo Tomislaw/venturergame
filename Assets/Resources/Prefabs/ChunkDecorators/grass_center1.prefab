@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9147581758178815633}
   - component: {fileID: 9147581758178815632}
   - component: {fileID: 9147581758178815724}
+  - component: {fileID: -7965881202174082737}
   m_Layer: 0
   m_Name: grass_center1
   m_TagString: Untagged
@@ -149,3 +150,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &-7965881202174082737
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9147581758178815639}
+  m_Enabled: 1
+  m_SortingLayerID: -1746336397
+  m_SortingLayer: 2
+  m_SortingOrder: 0

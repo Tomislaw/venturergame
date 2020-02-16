@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2925739029773883533}
   - component: {fileID: 3142693194782246982}
+  - component: {fileID: 5563254352774000064}
   m_Layer: 0
   m_Name: terrain1_right
   m_TagString: Untagged
@@ -81,3 +82,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &5563254352774000064
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4358361622243662870}
+  m_Enabled: 1
+  m_SortingLayerID: -1746336397
+  m_SortingLayer: 2
+  m_SortingOrder: 0

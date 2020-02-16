@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3485138816863081610}
   - component: {fileID: 4304010017919811539}
   - component: {fileID: -5318211079529789164}
+  - component: {fileID: -301470841898382993}
   m_Layer: 0
   m_Name: deciduous_bush2
   m_TagString: Untagged
@@ -138,3 +139,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!210 &-301470841898382993
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074883574012209539}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0

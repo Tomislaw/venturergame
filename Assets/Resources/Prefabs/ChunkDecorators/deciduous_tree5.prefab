@@ -1,5 +1,16 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!210 &6431265482856366686
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434094988918597334}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0
 --- !u!1001 &6655871374484730976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,3 +86,9 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8726faaf48c424b49989ea1557cd9511, type: 3}
+--- !u!1 &1434094988918597334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5744493106279174838, guid: 8726faaf48c424b49989ea1557cd9511,
+    type: 3}
+  m_PrefabInstance: {fileID: 6655871374484730976}
+  m_PrefabAsset: {fileID: 0}

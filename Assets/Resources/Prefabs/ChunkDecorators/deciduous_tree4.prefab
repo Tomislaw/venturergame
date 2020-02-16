@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4166716692024791007}
   - component: {fileID: 6392647998499528766}
+  - component: {fileID: 4966312768124194751}
   m_Layer: 0
   m_Name: deciduous_tree4
   m_TagString: Untagged
@@ -81,3 +82,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &4966312768124194751
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5744493106279174838}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0

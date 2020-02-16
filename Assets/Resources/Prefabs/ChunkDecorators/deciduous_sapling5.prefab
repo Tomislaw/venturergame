@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7645901907107914967}
   - component: {fileID: 7645901907107914966}
   - component: {fileID: 7645901907107914965}
+  - component: {fileID: 5300691365633578279}
   m_Layer: 0
   m_Name: deciduous_sapling5
   m_TagString: Untagged
@@ -96,3 +97,14 @@ MonoBehaviour:
   Mass: 0.5
   Sprite: {fileID: 7068361837226075513, guid: 4e7e2b3cbc104ca4ca7c1640ec00d7cc, type: 3}
   Material: {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
+--- !u!210 &5300691365633578279
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645901907107914964}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0

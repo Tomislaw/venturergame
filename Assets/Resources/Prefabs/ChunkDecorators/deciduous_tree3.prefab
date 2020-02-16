@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3794408821651438075}
   - component: {fileID: 6349281579592474042}
   - component: {fileID: -7733662648326326068}
+  - component: {fileID: 6253726227561583537}
   m_Layer: 0
   m_Name: deciduous_tree3
   m_TagString: Untagged
@@ -96,3 +97,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
     name: deciduous_tree3
+--- !u!210 &6253726227561583537
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5698630102604174979}
+  m_Enabled: 1
+  m_SortingLayerID: -2103064757
+  m_SortingLayer: -1
+  m_SortingOrder: 0
