@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoonAndSun : MonoBehaviour
 {
+    public Vector2 offset;
     private float timer = 0;
 
     private void Start()
@@ -27,6 +28,6 @@ public class MoonAndSun : MonoBehaviour
 
     private void LateUpdate()
     {
-        transform.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y - 3);
+        transform.position = new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.y) + offset;
     }
 }

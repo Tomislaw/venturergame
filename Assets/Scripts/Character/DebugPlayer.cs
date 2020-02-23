@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(SpriteAnimator))]
 public class DebugPlayer : MonoBehaviour
 {
-    public Animator animator;
     public bool walking = false;
 
     // Start is called before the first frame update
@@ -17,24 +18,28 @@ public class DebugPlayer : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position -= new Vector3(3 * Time.deltaTime, 0, 0);
-            transform.localScale = new Vector3(1, 1, 1);
-            walking = true;
+            GetComponent<CharacterController>().moveLeft(true);
+            GetComponent<SpriteAnimator>().SetAnimation("run");
             PushGrass(-20);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(3 * Time.deltaTime, 0, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
-            walking = true;
+            GetComponent<CharacterController>().moveRight(true);
+            GetComponent<SpriteAnimator>().SetAnimation("run");
             PushGrass(20);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            GetComponent<SpriteAnimator>().SetAnimation("sit");
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            GetComponent<SpriteAnimator>().SetAnimation("stand");
         }
         else
         {
-            walking = false;
+            GetComponent<SpriteAnimator>().SetAnimation("idle");
         }
-
-        animator.SetBool("walk", walking);
     }
 
     private void PushGrass(float force)

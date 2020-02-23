@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7911911060348794452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7414511691120351906}
+  - component: {fileID: 7456574867165051320}
+  - component: {fileID: 994441219896282260}
+  m_Layer: 0
+  m_Name: hud_crystals_small
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7414511691120351906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911911060348794452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7456574867165051320
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911911060348794452}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &994441219896282260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7911911060348794452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0921891cf495c47b19547da732d64c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 8667414148781156111, guid: 42dacf26cd7027441b7251b04d541431, type: 3}
+  enemy2: {fileID: -5016584076255988731, guid: 42dacf26cd7027441b7251b04d541431, type: 3}
+  neutral: {fileID: -3740006264722291636, guid: 42dacf26cd7027441b7251b04d541431,
+    type: 3}
+  friendly: {fileID: 8445420122362886703, guid: 42dacf26cd7027441b7251b04d541431,
+    type: 3}
+  ally: {fileID: -7649203878470796952, guid: 42dacf26cd7027441b7251b04d541431, type: 3}
+  background: {fileID: -9037822134027384594, guid: 42dacf26cd7027441b7251b04d541431,
+    type: 3}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  _type: 0
+  visible: 1
+  pixelsPerUnit: 32

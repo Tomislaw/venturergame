@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Skybox
+    uniqueID: 1898534017
+    locked: 0
   - name: Paralax
     uniqueID: 2238685587
     locked: 0
@@ -55,4 +58,10 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1521481887
+    locked: 0
+  - name: GameHud
+    uniqueID: 1809283417
+    locked: 0
+  - name: MenuHud
+    uniqueID: 2208619673
     locked: 0
