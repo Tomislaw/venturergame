@@ -27,11 +27,13 @@ public class ParallaxResolver : MonoBehaviour
         transform.position = newPos;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         var sr = GetComponent<SpriteRenderer>();
 
         if (sr == null)
+            return;
+        if (sr.sprite == null)
             return;
 
         Gizmos.color = Color.green;

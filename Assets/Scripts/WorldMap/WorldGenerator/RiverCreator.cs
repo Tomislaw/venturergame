@@ -9,13 +9,9 @@ namespace RiverSearch
 {
     internal static class EdgeExtensions
     {
-        public static Node ToNode(this Edge edge, Node parent)
+        public static RiverNode ToNode(this Edge edge, RiverNode parent)
         {
-            var node = new Node();
-            node.parent = parent;
-            node.distance = parent != null ? parent.distance + 1 : 0;
-            node.edge = edge;
-            return node;
+            return new RiverNode(edge, parent);
         }
 
         public static int Height(this Edge edge, Edge previousEdge)
@@ -41,31 +37,69 @@ namespace RiverSearch
         }
     }
 
-    public class Node
+    public class RiverNode
     {
         public Edge edge;
         public int distance = 0;
-        public Node parent;
+        public RiverNode parent;
         public bool visited = false;
 
-        public bool IsSame(Node node)
+        public bool connectedToWater;
+        public River connectedRiver;
+
+        public RiverNode(Edge edge, RiverNode parent)
+        {
+            this.parent = parent;
+            this.distance = parent != null ? parent.distance + 1 : 0;
+            this.edge = edge;
+            connectedToWater = IsConnectedToWater();
+            connectedRiver = FindConnectedRivers();
+        }
+
+        public bool IsSame(RiverNode node)
         {
             return node.edge.L == edge.L && node.edge.R == edge.R;
         }
 
-        public bool IsTarget()
+        private bool IsConnectedToWater()
         {
             if (edge.Left != null)
-            {
                 if (edge.Left.Water == true)
                     return true;
-                if (edge.Left.Rivers.Find((r) => r.Edge.IsConnecting(edge)) != null)
-                    return true;
-            }
+
             if (edge.Right != null)
-            {
                 if (edge.Right.Water == true)
                     return true;
+            return false;
+        }
+
+        private River FindConnectedRivers()
+        {
+            River river = null;
+
+            if (edge.Left != null)
+                river = edge.Left.Rivers.Find((r) => r.Edge.IsConnecting(edge));
+
+            if (river != null)
+                return river;
+
+            if (edge.Right != null)
+                river = edge.Right.Rivers.Find((r) => r.Edge.IsConnecting(edge));
+
+            return river;
+        }
+
+        public bool IsTarget()
+        {
+            if (connectedToWater)
+                return true;
+
+            if (connectedRiver != null)
+            {
+                if (connectedRiver.Top == null)
+                    return false;
+
+                return true;
             }
             return false;
         }
@@ -85,13 +119,13 @@ namespace RiverSearch
 
     public class RiverSearch
     {
-        public Node Start;
-        private HashSet<Node> nodes;
+        public RiverNode Start;
+        private HashSet<RiverNode> nodes;
 
-        public List<Node> GetNodes()
+        public List<RiverNode> GetNodes()
         {
-            nodes = new HashSet<Node>();
-            var priorityQueue = new PrioQueue.PriorityQueue<Node, int>();
+            nodes = new HashSet<RiverNode>();
+            var priorityQueue = new PrioQueue.PriorityQueue<RiverNode, int>();
             priorityQueue.Enqueue(Start, 0);
 
             while (!priorityQueue.IsEmpty())
@@ -116,11 +150,11 @@ namespace RiverSearch
             return nodes.ToList();
         }
 
-        private List<Node> FindAdjecentNodes(Node node)
+        private List<RiverNode> FindAdjecentNodes(RiverNode node)
         {
-            var possibleNodes = new List<Node>();
+            var possibleNodes = new List<RiverNode>();
 
-            if (node.IsTarget())
+            if (node.connectedToWater || node.connectedRiver != null)
                 return possibleNodes;
 
             if (node.parent == null)
@@ -136,7 +170,7 @@ namespace RiverSearch
                     possibleNodes.AddRange(node.edge.LEdges().Select((edge) => edge.ToNode(node)));
             }
 
-            var nodeNodes = new List<Node>();
+            var nodeNodes = new List<RiverNode>();
             foreach (var possibleNode in possibleNodes)
             {
                 nodeNodes.Add(possibleNode);
@@ -145,7 +179,7 @@ namespace RiverSearch
             return nodeNodes;
         }
 
-        private Node FindNode(Node node)
+        private RiverNode FindNode(RiverNode node)
         {
             foreach (var n in nodes)
                 if (n.IsSame(node))
@@ -175,12 +209,45 @@ namespace WorldGenerator
 
             for (int i = 0; i < Settings.Count; i++)
             {
-                var sortedRegions = regions.FindAll(r => r.Rivers.Count == 0 && !r.Water && !r.Coast)
-                    .OrderByDescending((region) => (float)region.Height / 2 + random.NextDouble() * 5 - 999 * region.Rivers.Count);
+                var sortedRegions = regions
+                    .FindAll(r => CanGenerateRiver(r))
+                    .OrderByDescending(r => HowMuchRiverIsNeeded(r, random));
 
                 if (sortedRegions.Count() > 0)
                     GenerateRiver(sortedRegions.First(), 0);
             }
+        }
+
+        private bool CanGenerateRiver(Region r)
+        {
+            if (r.Rivers.Count != 0 || r.Water || r.Coast || r.Height <= 1)
+                return false;
+            else
+            {
+                foreach (var neighbour in r.Neighbors)
+                {
+                    if (neighbour.Rivers.Count == 0)
+                        continue;
+
+                    foreach (var river in neighbour.Rivers)
+                    {
+                        var edges = river.Edge.LEdges();
+                        edges.AddRange(river.Edge.REdges());
+
+                        foreach (var regionEdge in r.Edges)
+                            if (edges.Contains(regionEdge))
+                                return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private double HowMuchRiverIsNeeded(Region r, System.Random random)
+        {
+            var value = r.Height - random.Next(0, 2);
+
+            return value;
         }
 
         private void GenerateRiver(Region region, int riverId)
@@ -192,22 +259,40 @@ namespace WorldGenerator
 
             var nodes = riverSearch.GetNodes();
 
-            var ends = nodes.FindAll((item) => item.IsTarget()).OrderBy((item) => (float)Math.Abs(item.distance - 5) + random.NextDouble() * 2);
+            var ends = nodes
+                .FindAll((item) => item.IsTarget())
+                .OrderBy((item) =>
+                {
+                    double weight = item.distance;
+
+                    if (item.connectedToWater)
+                        weight -= random.NextDouble() * 16;
+
+                    if (item.distance < 4)
+                        weight += 100;
+
+                    weight -= (random.NextDouble() * 2 - 1) * 5;
+
+                    return weight;
+                });
+
             if (ends.Count() == 0)
                 return;
 
             var node = ends.First();
 
             //skip if connected to water
-            if ((node.edge.Left.Water || node.edge.Right.Water == true) && node.parent != null)
+            if (node.connectedToWater && node.parent != null)
                 node = node.parent;
 
+            River previousRiver = null;
             while (node != null)
             {
+                // remove last when connected to water
                 if (node.parent == null)
-                    if (node.edge.Left.Water || node.edge.Right.Water == true)
+                    if (node.connectedToWater)
                         break;
-
+                // todo add top and bottom for river
                 River river = new River();
                 river.Id = riverId;
                 river.Edge = node.edge;
@@ -215,6 +300,12 @@ namespace WorldGenerator
                 node.edge.Right?.Rivers.Add(river);
 
                 node = node.parent;
+
+                river.Bottom = previousRiver;
+                if (previousRiver != null)
+                    previousRiver.Top = river;
+
+                previousRiver = river;
             }
 
             //foreach (var node in nodes)

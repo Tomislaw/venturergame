@@ -5,7 +5,9 @@ using UnityEngine;
 public class MoonAndSun : MonoBehaviour
 {
     public Vector2 offset;
-    private float timer = 0;
+
+    [Range(0, 1)]
+    public float value = 0;
 
     private void Start()
     {
@@ -15,11 +17,7 @@ public class MoonAndSun : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 100)
-            timer = 0;
-
-        transform.eulerAngles = new Vector3(0, 0, 360f * timer / 100f);
+        transform.eulerAngles = new Vector3(0, 0, 360f * value);
         foreach (Transform child in transform)
         {
             child.eulerAngles = new Vector3(0, 0, 0);

@@ -35,7 +35,10 @@ public class Background : MonoBehaviour
     private SpriteRenderer sr;
     private Texture2D texture;
 
-    private float timer = 0;
+    [Range(0, 1)]
+    public float value = 0;
+
+    private float previousValue = -1;
 
     private void Start()
     {
@@ -48,19 +51,19 @@ public class Background : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
-        UpdateColor();
+        if (previousValue != value)
+        {
+            UpdateColor();
+            previousValue = value;
+        }
+
         ResizeSpriteToScreen();
     }
 
     private void UpdateColor()
     {
-        timer += Time.deltaTime;
-
-        if (timer > 100)
-            timer = 0;
-
-        currentTop = colorsTop.GetColor(timer / 100);
-        currentBottom = colorsBottom.GetColor(timer / 100);
+        currentTop = colorsTop.GetColor(value);
+        currentBottom = colorsBottom.GetColor(value);
 
         texture.SetPixel(0, 1, currentTop);
         texture.SetPixel(0, 0, currentBottom);

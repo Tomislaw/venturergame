@@ -9,7 +9,7 @@ SortingGroup:
   m_GameObject: {fileID: 1434094988918597334}
   m_Enabled: 1
   m_SortingLayerID: -2103064757
-  m_SortingLayer: -1
+  m_SortingLayer: -3
   m_SortingOrder: 0
 --- !u!1001 &6655871374484730976
 PrefabInstance:
@@ -84,6 +84,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2882579317860547082, guid: 4e7e2b3cbc104ca4ca7c1640ec00d7cc,
         type: 3}
+    - target: {fileID: 6392647998499528766, guid: 8726faaf48c424b49989ea1557cd9511,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2103064757
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392647998499528766, guid: 8726faaf48c424b49989ea1557cd9511,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: -3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8726faaf48c424b49989ea1557cd9511, type: 3}
 --- !u!1 &1434094988918597334 stripped

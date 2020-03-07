@@ -8,7 +8,10 @@ public class LightColorOscilator : MonoBehaviour
     public ColorOscilator colorOscilator;
     public Light2D light;
 
-    private float timer = 0;
+    [Range(0, 1)]
+    public float value = 0;
+
+    private float previousValue = -1;
 
     private void Start()
     {
@@ -17,11 +20,11 @@ public class LightColorOscilator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (timer > 100)
-            timer = 0;
-
-        light.color = colorOscilator.GetColor(timer / 100f);
-        light.intensity = light.color.a;
+        if (previousValue != value)
+        {
+            light.color = colorOscilator.GetColor(value);
+            light.intensity = light.color.a;
+            previousValue = value * 1.2f;
+        }
     }
 }

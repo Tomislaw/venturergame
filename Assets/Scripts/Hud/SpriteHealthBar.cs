@@ -72,7 +72,7 @@ public class SpriteHealthBar : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Range(0, 1)]
-    public float visible = 1;
+    public float healthRange = 1;
 
     public int pixelsPerUnit = 32;
 
@@ -119,6 +119,6 @@ public class SpriteHealthBar : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        maskObj.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * visible) * pixelsPerUnit;
+        maskObj.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange) * pixelsPerUnit;
     }
 }

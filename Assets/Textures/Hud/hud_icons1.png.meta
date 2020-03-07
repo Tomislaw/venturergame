@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: 5ea2f32f1cfc50a47afb2c5f0b46c83e
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1267137733087306393
+    second: hud_border1a
+  - first:
+      213: 1003081995142233751
+    second: hud_border1b
+  - first:
+      213: 7972269761770957637
+    second: hud_border1c
+  - first:
+      213: -4407348305539196300
+    second: hud_icons1_0
+  - first:
+      213: -5719222078542216845
+    second: hud_border1d
+  - first:
+      213: 3210453448878315128
+    second: hud_border1e
+  - first:
+      213: -3952845399769862092
+    second: hud_border1f
+  - first:
+      213: -6475642736987156924
+    second: hud_border1g
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -108,7 +132,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: hud_border1a
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 124
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86170ec823dbf2d44b0a35ca3a0f5c12
+      internalID: 1267137733087306393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1b
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 124
+        width: 2
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60fdceb0d57b4ef4d91e80db665a7bd2
+      internalID: 1003081995142233751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1c
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 124
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8dfc956f1701f34a85e259052276865
+      internalID: 7972269761770957637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_icons1_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 122
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c569fbec91c1f0542beaa1dc660cfe30
+      internalID: -4407348305539196300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1d
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 118
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b33783e5e9c78b4c8b998164838d99f
+      internalID: -5719222078542216845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1e
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 118
+        width: 2
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a905e4775bdefb74f86876f8defe7f0e
+      internalID: 3210453448878315128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1f
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 118
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c8a75fad6100ad40ad6ff9ddf926991
+      internalID: -3952845399769862092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hud_border1g
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 122
+        width: 4
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17e137e81917a5547b8a8efbffcb5e76
+      internalID: -6475642736987156924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

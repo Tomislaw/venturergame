@@ -62,6 +62,21 @@ TextureImporter:
   - first:
       213: 2261709625243097292
     second: deer_buck_19
+  - first:
+      213: -521862082264857067
+    second: deer_buck_20
+  - first:
+      213: -6653223481746308812
+    second: deer_buck_21
+  - first:
+      213: -3212946834179602812
+    second: deer_buck_22
+  - first:
+      213: 49966228409320889
+    second: deer_buck_23
+  - first:
+      213: 3774404716176923593
+    second: deer_buck_24
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -174,7 +189,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 96
+        y: 128
         width: 32
         height: 32
       alignment: 7
@@ -184,7 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 015fd270133d70e4ab7c1c40af02f48f
+      spriteID: ef3b32265c3754e4d8ed12df6120093f
       internalID: 8280876332066324195
       vertices: []
       indices: 
@@ -195,7 +210,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 96
+        y: 128
         width: 32
         height: 32
       alignment: 7
@@ -205,7 +220,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01bb33128e95ca54c87eaa07dd4d6f93
+      spriteID: 6502cf1003a5ba74996f3dfd818a7d20
       internalID: 7051095433276424972
       vertices: []
       indices: 
@@ -216,7 +231,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 96
+        y: 128
         width: 32
         height: 32
       alignment: 7
@@ -226,7 +241,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81f22806b4c0fde40b852cf5b5dd0ad5
+      spriteID: 3199d8a20fdf9a64780b4b0475fbe362
       internalID: -90558085556564438
       vertices: []
       indices: 
@@ -237,7 +252,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 96
+        y: 128
         width: 32
         height: 32
       alignment: 7
@@ -247,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ceba8cfe8697a742b800ca796e17d8d
+      spriteID: a436db677c2482e42b86f0e704b22aec
       internalID: 3351766573916575521
       vertices: []
       indices: 
@@ -258,7 +273,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 96
+        y: 128
         width: 32
         height: 32
       alignment: 7
@@ -268,7 +283,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41ad65a05a2ca3041bc9b5deb6fb5ae2
+      spriteID: 7f38ed28a81da3d4eb0c5b794544faf5
       internalID: -5504295042101311363
       vertices: []
       indices: 
@@ -279,7 +294,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 7
@@ -289,7 +304,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5cb144870c137e458dff56a899e0c63
+      spriteID: 337abca4b91f66a439ba8c73316555ea
       internalID: 303748362412958005
       vertices: []
       indices: 
@@ -300,7 +315,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 7
@@ -310,7 +325,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d885894ecc10b0743a1b29fc9d62f8f8
+      spriteID: 704f947bed308ed468dcb56148d8e891
       internalID: -365114093524431859
       vertices: []
       indices: 
@@ -321,7 +336,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 7
@@ -331,7 +346,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 231e9c2e049bfb847b66faacb528364f
+      spriteID: f43d68addd84cf24e9f411c07aad1ebe
       internalID: -7954549912166022441
       vertices: []
       indices: 
@@ -342,7 +357,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 7
@@ -352,7 +367,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dea181a86d73ba43a04a53ad4bfa077
+      spriteID: f8db03432ade5af41b9e7ae713af5a84
       internalID: 6069409674078529740
       vertices: []
       indices: 
@@ -363,7 +378,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 7
@@ -373,7 +388,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f2e1925d5d40254e967c7a49c5ba5e6
+      spriteID: 1c75904edc607364c8b573e4b1ac732c
       internalID: 4009952808173690520
       vertices: []
       indices: 
@@ -384,6 +399,111 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f9e1b13c5cd468b4d8c00f6cb650a151
+      internalID: -1726714695935617397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deer_buck_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0d2f9c55c636bc40b049ab4ac592a95
+      internalID: 4645475785486656503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deer_buck_12
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb70360627323904abc4de1bd25c9c1e
+      internalID: -3047851057804863937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deer_buck_13
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2627abbbc4bfa5d4c9a03c7a3b72d27a
+      internalID: 3301912139855760018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deer_buck_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6358368329ef03c4d9463fe7ac3fb0f5
+      internalID: 3804032388637584506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deer_buck_15
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -394,14 +514,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d03b7f183a1bd56448337a964486c071
-      internalID: -1726714695935617397
+      spriteID: e89980ceece62b44ebe4fcc6dccf009b
+      internalID: 5403277470857789546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_11
+      name: deer_buck_16
       rect:
         serializedVersion: 2
         x: 32
@@ -415,14 +535,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 358b8bffa0f03c54894d6379195649d7
-      internalID: 4645475785486656503
+      spriteID: 826c2d7177f9ac54c94b9bf86a9f2d21
+      internalID: 8902398117612000424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_12
+      name: deer_buck_17
       rect:
         serializedVersion: 2
         x: 64
@@ -436,14 +556,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18bb89aed93f044478f7ef99dfbc1a39
-      internalID: -3047851057804863937
+      spriteID: 20fb03594c252f848801ba346655d31d
+      internalID: -6039204461066127590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_13
+      name: deer_buck_18
       rect:
         serializedVersion: 2
         x: 96
@@ -457,14 +577,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43d0bb880aae8154891786c639488bdd
-      internalID: 3301912139855760018
+      spriteID: 1c51190307b18b14b85667175215fbac
+      internalID: 1875433889188855518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_14
+      name: deer_buck_19
       rect:
         serializedVersion: 2
         x: 128
@@ -478,14 +598,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8aec9d382230f654cbb293e76e251542
-      internalID: 3804032388637584506
+      spriteID: df2140acf453f434aab8ae25406fcfa4
+      internalID: 2261709625243097292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_15
+      name: deer_buck_20
       rect:
         serializedVersion: 2
         x: 0
@@ -499,14 +619,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a5f4b9367971ab44b1a6db0867fbbe1
-      internalID: 5403277470857789546
+      spriteID: 6cd109b995f11e9419dd785c8007dcec
+      internalID: -521862082264857067
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_16
+      name: deer_buck_21
       rect:
         serializedVersion: 2
         x: 32
@@ -520,14 +640,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2365cd08590f96f48b163b8bd86246d1
-      internalID: 8902398117612000424
+      spriteID: 35c13fd10c9bcaa41930a06994e4afcf
+      internalID: -6653223481746308812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_17
+      name: deer_buck_22
       rect:
         serializedVersion: 2
         x: 64
@@ -541,14 +661,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99259e57544a11d4a93b603c54875430
-      internalID: -6039204461066127590
+      spriteID: 5829d8b71d0759644b97c701fa25e27f
+      internalID: -3212946834179602812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_18
+      name: deer_buck_23
       rect:
         serializedVersion: 2
         x: 96
@@ -562,14 +682,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d999140efb63eb840938cf4f2c244ade
-      internalID: 1875433889188855518
+      spriteID: 0f6172d0d1b010a49b908ab20c904b3f
+      internalID: 49966228409320889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: deer_buck_19
+      name: deer_buck_24
       rect:
         serializedVersion: 2
         x: 128
@@ -583,8 +703,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f65b4527f106cc6449fab124b5c472b2
-      internalID: 2261709625243097292
+      spriteID: 5d2427d81a2d93b45963c11c338e8aef
+      internalID: 3774404716176923593
       vertices: []
       indices: 
       edges: []

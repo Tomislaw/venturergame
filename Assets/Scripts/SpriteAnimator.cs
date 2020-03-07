@@ -38,15 +38,13 @@ public class SpriteAnimator : MonoBehaviour
 
     public void SetAnimation(string name)
     {
-        if (currentAnimation.name == name)
+        if (currentAnimation != null && currentAnimation.name == name)
         {
             if (!currentAnimation.looped && !IsAnimationFinished)
                 return;
             if (currentAnimation.looped)
                 return;
         }
-
-        Debug.Log(name);
 
         foreach (var a in animations)
         {

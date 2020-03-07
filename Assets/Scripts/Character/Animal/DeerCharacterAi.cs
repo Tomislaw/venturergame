@@ -24,7 +24,7 @@ public class DeerCharacterAi : MonoBehaviour
     public Vector2 grassPos = new Vector2(float.MaxValue, float.MaxValue);
 
     // Wander variables
-    public float timeToWander = 20;
+    public float timeToWander = 5;
 
     public Vector2 positionToWander = new Vector2(float.MaxValue, float.MaxValue);
 
@@ -81,13 +81,15 @@ public class DeerCharacterAi : MonoBehaviour
     private void wander()
     {
         if (positionToWander == new Vector2(float.MaxValue, float.MaxValue))
-            positionToWander = transform.position + new Vector3(Random.Range(-5, 6), 0, 0);
+        {
+            positionToWander = transform.position + new Vector3(Random.Range(-2f, 2f), 0, 0);
+        }
 
         if (Mathf.Abs(positionToWander.x - transform.position.x) < 0.3)
         {
             state = State.Idle;
             animator.SetAnimation("idle");
-            timeToWander = Random.Range(20, 30);
+            timeToWander = Random.Range(5, 10);
             positionToWander = new Vector2(float.MaxValue, float.MaxValue);
         }
         else
@@ -120,7 +122,7 @@ public class DeerCharacterAi : MonoBehaviour
         }
         else
         {
-            if (Mathf.Abs(grassPos.x + 16 - transform.position.x) < 0.3)
+            if (Mathf.Abs(grassPos.x + 0.5f - transform.position.x) < 0.3)
             {
                 eatFood();
                 if (hungry < 0)
@@ -128,7 +130,7 @@ public class DeerCharacterAi : MonoBehaviour
             }
             else
             {
-                goToPosition(grassPos + new Vector2(16, 0));
+                goToPosition(grassPos + new Vector2(0.5f, 0));
             }
         }
     }
@@ -136,12 +138,30 @@ public class DeerCharacterAi : MonoBehaviour
     private void findFood()
     {
         var colliders = Physics2D.OverlapCircleAll(transform.position, 5f);
+
+        GameObject closestGrass = null;
         foreach (var collide in colliders)
         {
             if (collide.GetComponent<ExpensiveGrass>())
             {
-                grassPos = collide.transform.position;
+                if (!closestGrass)
+                    closestGrass = collide.gameObject;
+                else if (
+                    Vector2.Distance(closestGrass.transform.position, transform.position)
+                    > Vector2.Distance(collide.transform.position, transform.position))
+                    closestGrass = collide.gameObject;
             }
+        }
+
+        if (!closestGrass)
+        {
+            hungry = 0;
+            state = State.Idle;
+            return;
+        }
+        else
+        {
+            grassPos = closestGrass.transform.position;
         }
     }
 
@@ -157,12 +177,12 @@ public class DeerCharacterAi : MonoBehaviour
         if (pos.x > transform.position.x)
         {
             controller.moveRight(false);
-            animator.SetAnimation("run");
+            animator.SetAnimation("walk");
         }
         else
         {
             controller.moveLeft(false);
-            animator.SetAnimation("run");
+            animator.SetAnimation("walk");
         }
     }
 

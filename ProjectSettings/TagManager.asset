@@ -41,6 +41,9 @@ TagManager:
   - name: Skybox
     uniqueID: 1898534017
     locked: 0
+  - name: SkyboxForeground
+    uniqueID: 2926460341
+    locked: 0
   - name: Paralax
     uniqueID: 2238685587
     locked: 0
