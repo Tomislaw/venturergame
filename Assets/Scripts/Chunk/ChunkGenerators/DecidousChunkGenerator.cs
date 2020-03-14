@@ -34,6 +34,7 @@ namespace ChunkGenerators
         public static DecidousChunkGenerator Forest = new DecidousChunkGenerator(6, 2, 3, 2, 8);
         public static DecidousChunkGenerator LightForest = new DecidousChunkGenerator(3, 2, 1, 2, 4);
         public static DecidousChunkGenerator Grassland = new DecidousChunkGenerator(1, 1, 1, 3, 0);
+        public static DecidousChunkGenerator NoTrees = new DecidousChunkGenerator(0, 1, 2, 4, 0);
 
         public List<ChunkDecoratorData> GenerateForest(int seed = int.MinValue)
         {
@@ -46,7 +47,7 @@ namespace ChunkGenerators
 
             var rng = new System.Random(seed);
 
-            float grassToRoadRatioLeft = 0f;
+            float grassToRoadRatioLeft = 1f;
             float grassToRoadRatioRight = 1f;
 
             bool[] grassList = new bool[Chunk.CHUNK_SIZE];

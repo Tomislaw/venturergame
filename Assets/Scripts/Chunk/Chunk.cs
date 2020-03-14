@@ -24,25 +24,15 @@ public class Chunk : MonoBehaviour
             items = DecidousChunkGenerator.Forest.GenerateForest();
         else if (style == 1)
             items = DecidousChunkGenerator.LightForest.GenerateForest();
+        else if (style == 2)
+            items = DecidousChunkGenerator.Grassland.GenerateForest();
         else
-            items = DecidousChunkGenerator.LightForest.GenerateForest();
-
+            items = DecidousChunkGenerator.NoTrees.GenerateForest();
         LoadChunk();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            UnloadChunk();
-            if (style == 0)
-                items = DecidousChunkGenerator.Forest.GenerateForest();
-            else if (style == 1)
-                items = DecidousChunkGenerator.LightForest.GenerateForest();
-            else
-                items = DecidousChunkGenerator.Grassland.GenerateForest();
-            LoadChunk();
-        }
     }
 
     public void LoadChunk()

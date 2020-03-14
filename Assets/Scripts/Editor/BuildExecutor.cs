@@ -6,7 +6,7 @@ namespace Pipeline
 {
     public class BuildExecutor
     {
-        public static string[] scenes = { "Assets/Scenes/SampleScene.unity" };
+        public static string[] scenes = { "Assets/Scenes/Game.unity" };
         public static string name = "venturer";
 
         private static int Build(string buildName, BuildTarget target)

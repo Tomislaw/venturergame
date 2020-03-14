@@ -49,6 +49,11 @@ public class ExpensiveGrassRenderer : MonoBehaviour
         Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
     }
 
+    private void OnRenderObject()
+    {
+        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
+    }
+
     private void Draw()
     {
         texture.SetAllPixels(new Color32(0, 0, 0, 0));
