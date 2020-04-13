@@ -153,7 +153,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -222,17 +222,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 75
-        width: 75
-        height: 75
-      alignment: 9
+        y: 64
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb96772ad5d40f041b88666904628f86
+      spriteID: 513df40ba466e1f478fdb89c17a6abf3
       internalID: 21300000
       vertices: []
       indices: 
@@ -242,18 +242,18 @@ TextureImporter:
       name: LightBandit_1
       rect:
         serializedVersion: 2
-        x: 75
-        y: 75
-        width: 75
-        height: 75
-      alignment: 9
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e933985a2b48fbc4d887417f5c3552c9
+      spriteID: d6e5b3277082dff4fb1a6538765ae3a8
       internalID: 21300002
       vertices: []
       indices: 
@@ -263,18 +263,18 @@ TextureImporter:
       name: LightBandit_2
       rect:
         serializedVersion: 2
-        x: 150
-        y: 75
-        width: 75
-        height: 75
-      alignment: 9
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7af24eca3ee952e40991f58423f2bf92
+      spriteID: e1155c65ea95556429451a22bb78cd8f
       internalID: 21300004
       vertices: []
       indices: 
@@ -284,18 +284,18 @@ TextureImporter:
       name: LightBandit_3
       rect:
         serializedVersion: 2
-        x: 225
-        y: 75
-        width: 75
-        height: 75
-      alignment: 9
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a88934559ae2874fbd23d00f887cecd
+      spriteID: b685952b392e3d74d94be786d46af906
       internalID: 21300006
       vertices: []
       indices: 
@@ -307,16 +307,16 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 75
-        height: 75
-      alignment: 9
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10d44c4820e28ff458c4d3cd02f7d66f
+      spriteID: 2020a45c641ec4446976ae5bb8a10c7c
       internalID: 21300008
       vertices: []
       indices: 
@@ -326,18 +326,18 @@ TextureImporter:
       name: LightBandit_5
       rect:
         serializedVersion: 2
-        x: 75
+        x: 64
         y: 0
-        width: 75
-        height: 75
-      alignment: 9
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f44326f90ba70a54b89867599e59dce0
+      spriteID: a8b1f55d8d12ef3488f4e618387ea323
       internalID: 21300010
       vertices: []
       indices: 
@@ -347,18 +347,18 @@ TextureImporter:
       name: LightBandit_6
       rect:
         serializedVersion: 2
-        x: 150
+        x: 128
         y: 0
-        width: 75
-        height: 75
-      alignment: 9
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc4a9a00c41609b498049cd69b81a1e4
+      spriteID: ab89d843f67612649afd650318323fc1
       internalID: 21300012
       vertices: []
       indices: 
@@ -368,18 +368,18 @@ TextureImporter:
       name: LightBandit_7
       rect:
         serializedVersion: 2
-        x: 225
+        x: 192
         y: 0
-        width: 75
-        height: 75
-      alignment: 9
+        width: 64
+        height: 64
+      alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4bea4ea0dabb2b4e8846f33e992ec8d
+      spriteID: a9bdffc5335062b41aae20f36102c962
       internalID: 21300014
       vertices: []
       indices: 

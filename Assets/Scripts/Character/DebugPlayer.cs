@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-[RequireComponent(typeof(SpriteAnimator))]
+[RequireComponent(typeof(HumanCharacter))]
 public class DebugPlayer : MonoBehaviour
 {
     public bool walking = false;
@@ -19,13 +19,13 @@ public class DebugPlayer : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             GetComponent<CharacterController>().moveLeft(true);
-            GetComponent<SpriteAnimator>().SetAnimation("run");
+            GetComponent<HumanCharacter>().SetAnimation("run");
             PushGrass(-20);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             GetComponent<CharacterController>().moveRight(true);
-            GetComponent<SpriteAnimator>().SetAnimation("run");
+            GetComponent<HumanCharacter>().SetAnimation("run");
             PushGrass(20);
         }
         else if (Input.GetKey(KeyCode.S))
