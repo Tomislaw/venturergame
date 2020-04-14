@@ -84,6 +84,8 @@ public class HumanCharacter : MonoBehaviour
     }
 }
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(HumanCharacter)), CanEditMultipleObjects]
 internal class HumanCharacterEditor : Editor
 {
@@ -118,3 +120,5 @@ internal class HumanCharacterEditor : Editor
         EditorGUILayout.EndHorizontal();
     }
 }
+
+#endif
