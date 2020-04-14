@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class InventoryItem : MonoBehaviour
+public class ItemInv2 : MonoBehaviour
 {
     [System.Serializable]
     public class SpritePair

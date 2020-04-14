@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class SpriteAnimation
@@ -14,6 +16,40 @@ public class SpriteAnimation
 [RequireComponent(typeof(SpriteRenderer))]
 public class SpriteAnimator : MonoBehaviour
 {
+    public Sprite _debugReplaceSprites;
+
+#if (UNITY_EDITOR)
+
+    private void OnValidate()
+    {
+        if (_debugReplaceSprites != null)
+        {
+            var name = _debugReplaceSprites.name;
+            name = name.Substring(0, name.LastIndexOf('_'));
+            var path = AssetDatabase.GetAssetPath(_debugReplaceSprites);
+
+            Sprite[] objs = AssetDatabase.LoadAllAssetsAtPath(path).OfType<Sprite>().ToArray();
+
+            foreach (var a in animations)
+            {
+                for (int i = 0; i < a.frames.Count; i++)
+                {
+                    var findSpriteName = name + a.frames[i].name.Substring(a.frames[i].name.LastIndexOf('_'));
+                    var sprite = objs.FirstOrDefault(it => it.name == findSpriteName);
+                    if (sprite != null)
+                        a.frames[i] = sprite;
+                }
+            }
+
+            var mainSprite = objs.FirstOrDefault(it => it.name == name + "_0");
+            if (mainSprite != null)
+                GetComponent<SpriteRenderer>().sprite = mainSprite;
+
+            _debugReplaceSprites = null;
+        }
+    }
+
+#endif
     public List<SpriteAnimation> animations;
 
     private float timeForAnimation;

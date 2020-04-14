@@ -13,8 +13,6 @@ public class CharacterController : MonoBehaviour
 
     private int moveType = 0;
 
-    private bool isMoving = false;
-
     public bool IsWalking
     {
         get => moveType == 1;
@@ -46,16 +44,12 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     private void LateUpdate()
     {
-        if (moveType == 0)
-            stop();
-
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-        moveType = 0;
     }
 
     public void moveLeft(bool isRunning = false)
     {
-        moveType = IsRunning ? 2 : 1;
+        moveType = isRunning ? 2 : 1;
         FaceLeft = true;
 
         if (speed > 0)
@@ -71,7 +65,7 @@ public class CharacterController : MonoBehaviour
 
     public void moveRight(bool isRunning = false)
     {
-        moveType = IsRunning ? 2 : 1;
+        moveType = isRunning ? 2 : 1;
         FaceLeft = false;
 
         if (speed < 0)

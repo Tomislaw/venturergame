@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -661161318453619493, guid: 058db2328dd18cb45bdfea1bd11adf90,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7038b1e44e734f83e8f8fa48365a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugReplaceSprites: {fileID: 0}
   animations:
   - name: idle
     frames:
@@ -105,8 +106,8 @@ MonoBehaviour:
     - {fileID: -5628002748364908736, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -4745918356201171699, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -568742236917821434, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
-    looped: 0
+    animationTime: 2
+    looped: 1
   - name: walk
     frames:
     - {fileID: -2552796368359378067, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
@@ -117,8 +118,8 @@ MonoBehaviour:
     - {fileID: -4086710518304887204, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -7236760542793436868, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -5672523578187799567, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
-    looped: 0
+    animationTime: 1.3
+    looped: 1
   - name: run
     frames:
     - {fileID: -9063524839938095502, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
@@ -129,21 +130,21 @@ MonoBehaviour:
     - {fileID: 5517468498043780610, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 256532076085256086, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -2851512165089756916, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
-    looped: 0
+    animationTime: 0.8
+    looped: 1
   - name: block1
     frames:
     - {fileID: 7091378328870927394, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -364916828681813417, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 8338797974586198782, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
+    animationTime: 0.15
     looped: 0
   - name: block2
     frames:
     - {fileID: 2016607567288886183, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -2940943887874862401, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 245534020577172425, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
+    animationTime: 0.15
     looped: 0
   - name: attack1
     frames:
@@ -151,7 +152,7 @@ MonoBehaviour:
     - {fileID: -3029142043723353452, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 3594857170756862232, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -2425566464594294016, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
+    animationTime: 0.3
     looped: 0
   - name: attack2
     frames:
@@ -159,7 +160,7 @@ MonoBehaviour:
     - {fileID: -4017598359115786081, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 5476610965817459861, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -5937947077126571317, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
+    animationTime: 0.3
     looped: 0
   - name: death
     frames:
@@ -170,7 +171,7 @@ MonoBehaviour:
     - {fileID: 4549015174199942181, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -8679703161674247116, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: -7128013364338415968, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
+    animationTime: 0.7
     looped: 0
   - name: runww
     frames:
@@ -182,5 +183,5 @@ MonoBehaviour:
     - {fileID: -2429138681161162242, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 786935997221025857, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
     - {fileID: 3938683001839077403, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    animationTime: 0
-    looped: 0
+    animationTime: 0.8
+    looped: 1

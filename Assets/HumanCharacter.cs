@@ -1,121 +1,120 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class HumanCharacter : MonoBehaviour
 {
-    public List<SpriteAnimator> femaleHeads;
-    public List<SpriteAnimator> maleHeads;
-    public List<SpriteAnimator> femaleBodies;
-    public List<SpriteAnimator> maleBodies;
-
     public bool male = false;
-    public int body = 0;
-    public int head = 0;
 
-    private SpriteAnimator headSprite;
-    private SpriteAnimator bodySprite;
+    private Dictionary<string, SpriteAnimator> sprites = new Dictionary<string, SpriteAnimator>();
 
-    private SpriteAnimator helmet;
-    private SpriteAnimator armor;
-    private SpriteAnimator pants;
-    private SpriteAnimator boots;
-
-    public void ReloadCharacterSprites()
+    public void Equip(Equipment equipment)
     {
-        string headAnimation = "idle";
-        string bodyAnimation = "idle";
+        Unequip(equipment.type);
 
-        Transform _head = transform.Find("head");
-        Transform _body = transform.Find("body");
-
-        if (_head != null)
+        GameObject animator = male ? equipment.maleSpriteSheet : equipment.femaleSpriteSheet;
+        if (animator != null && animator.GetComponent<SpriteAnimator>() != null)
         {
-            headAnimation = _head.GetComponent<SpriteAnimator>().GetAnimation().name;
-
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.delayCall += () =>
-                {
-                    DestroyImmediate(_head.gameObject);
-                };
-            else
-                Destroy(_head.gameObject);
+            var item = Instantiate(animator);
+            item.name = equipment.type.ToString().ToLower();
+            item.transform.parent = transform;
+            item.transform.localPosition = new Vector2();
+            sprites.Add(item.name, item.GetComponent<SpriteAnimator>());
         }
-        if (_body != null)
+    }
+
+    public void Unequip(Equipment.Type type)
+    {
+        var name = type.ToString();
+
+        sprites.Remove(name);
+        Transform item = transform.Find(name);
+        if (item != null)
         {
-            bodyAnimation = _body.GetComponent<SpriteAnimator>().GetAnimation().name;
-
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.delayCall += () =>
-                {
-                    DestroyImmediate(_body.gameObject);
-                };
-            else
-                Destroy(_body.gameObject);
+#if UNITY_EDITOR
+            DestroyImmediate(item.gameObject);
+#else
+            Destroy(item.gameObject);
+#endif
         }
-
-        List<SpriteAnimator> heads = femaleHeads;
-        List<SpriteAnimator> bodies = femaleBodies;
-        if (male)
-        {
-            heads = maleHeads;
-            bodies = maleBodies;
-        }
-
-        if (body < bodies.Count)
-        {
-            SpriteAnimator b = Instantiate(bodies[body]);
-            b.name = "body";
-            b.transform.parent = transform;
-            b.transform.localPosition = new Vector2();
-            bodySprite = b;
-        }
-
-        if (head < heads.Count)
-        {
-            SpriteAnimator h = Instantiate(heads[body]);
-            h.name = "head";
-            h.transform.parent = transform;
-            h.transform.localPosition = new Vector2();
-            headSprite = h;
-        }
-
-        if (headSprite != null)
-            headSprite.SetAnimation(headAnimation);
-        if (bodySprite != null)
-            bodySprite.SetAnimation(bodyAnimation);
     }
 
     public void SetAnimation(string animation)
     {
-        if (headSprite != null)
-            headSprite.SetAnimation(animation);
-        if (bodySprite != null)
-            bodySprite.SetAnimation(animation);
-
-        if (helmet != null)
-            helmet.SetAnimation(animation);
-        if (armor != null)
-            armor.SetAnimation(animation);
-        if (pants != null)
-            pants.SetAnimation(animation);
-        if (boots != null)
-            boots.SetAnimation(animation);
+        foreach (var item in sprites)
+        {
+            item.Value.SetAnimation(animation);
+        }
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        ReloadCharacterSprites();
-    }
-
-    private void OnValidate()
-    {
-        ReloadCharacterSprites();
+        var components = GetComponentsInChildren<SpriteAnimator>();
+        foreach (var c in components)
+            sprites.Add(c.name, c);
     }
 
     // Update is called once per frame
     private void Update()
     {
+        var controller = GetComponent<CharacterController>();
+
+        if (controller.IsRunning)
+            SetAnimation("runww");
+        else if (controller.IsWalking)
+            SetAnimation("walk");
+        // else
+        //    SetAnimation("idle");
+
+        if (Input.GetKey(KeyCode.Keypad0))
+            SetAnimation("death");
+        if (Input.GetKey(KeyCode.Keypad1))
+            SetAnimation("attack1");
+        if (Input.GetKey(KeyCode.Keypad2))
+            SetAnimation("attack2");
+        if (Input.GetKey(KeyCode.Keypad3))
+            SetAnimation("block1");
+        if (Input.GetKey(KeyCode.Keypad4))
+            SetAnimation("block2");
+        if (Input.GetKey(KeyCode.Keypad5))
+            SetAnimation("run");
+    }
+}
+
+[CustomEditor(typeof(HumanCharacter)), CanEditMultipleObjects]
+internal class HumanCharacterEditor : Editor
+{
+    private Equipment.Type type;
+    private HumanCharacter gameObject;
+
+    private Equipment equipment;
+
+    public void OnEnable()
+    {
+        gameObject = (serializedObject.targetObject as HumanCharacter);
+    }
+
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        EditorGUILayout.Space();
+        EditorGUILayout.LabelField("Custom editor");
+
+        EditorGUILayout.BeginHorizontal();
+        type = (Equipment.Type)EditorGUILayout.EnumPopup("InventorySlot", type);
+        if (GUILayout.Button("Unequip"))
+            gameObject.Unequip(type);
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.Space();
+        EditorGUILayout.BeginHorizontal();
+        equipment = EditorGUILayout.ObjectField("Equipment", equipment, typeof(Equipment), true) as Equipment;
+        if (GUILayout.Button("Equip"))
+            gameObject.Equip(equipment);
+        EditorGUILayout.EndHorizontal();
     }
 }

@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(HumanCharacter))]
 public class DebugPlayer : MonoBehaviour
 {
-    public bool walking = false;
-
     // Start is called before the first frame update
     private void Start()
     {
@@ -18,27 +16,17 @@ public class DebugPlayer : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            GetComponent<CharacterController>().moveLeft(true);
-            GetComponent<HumanCharacter>().SetAnimation("run");
+            GetComponent<CharacterController>().moveLeft(Input.GetKey(KeyCode.LeftShift));
             PushGrass(-20);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            GetComponent<CharacterController>().moveRight(true);
-            GetComponent<HumanCharacter>().SetAnimation("run");
+            GetComponent<CharacterController>().moveRight(Input.GetKey(KeyCode.LeftShift));
             PushGrass(20);
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            GetComponent<SpriteAnimator>().SetAnimation("sit");
-        }
-        else if (Input.GetKey(KeyCode.W))
-        {
-            GetComponent<SpriteAnimator>().SetAnimation("stand");
         }
         else
         {
-            GetComponent<SpriteAnimator>().SetAnimation("idle");
+            GetComponent<CharacterController>().stop();
         }
     }
 

@@ -1,166 +1,142 @@
 fileFormatVersion: 2
-guid: 5d95d2d05b02781419147536fc508faf
+guid: 6119e8863e92fb7449b58f8247a23525
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8747081093302420690
-    second: f_head1_0
+      213: -5780265963127293718
+    second: m_sword2_0
   - first:
-      213: 2552563381620418819
-    second: f_head1_1
+      213: -6334840894359139676
+    second: m_sword2_1
   - first:
-      213: -694194689825495228
-    second: f_head1_2
+      213: 3237514100642006583
+    second: m_sword2_2
   - first:
-      213: 1536615469401061301
-    second: f_head1_3
+      213: -56071888545587404
+    second: m_sword2_3
   - first:
-      213: -8065759007380058008
-    second: f_head1_4
+      213: -7675408838629317749
+    second: m_sword2_4
   - first:
-      213: -5583086745808467676
-    second: f_head1_5
+      213: -9007702915710289531
+    second: m_sword2_5
   - first:
-      213: -5206132514782667935
-    second: f_head1_6
+      213: 8437324532742237708
+    second: m_sword2_6
   - first:
-      213: -3395366994997333162
-    second: f_head1_7
+      213: -8075107927490125284
+    second: m_sword2_7
   - first:
-      213: -3817610130547281594
-    second: f_head1_8
+      213: -5633913500344369891
+    second: m_sword2_8
   - first:
-      213: -3212747943297970543
-    second: f_head1_9
+      213: 7761169361095054124
+    second: m_sword2_9
   - first:
-      213: -744367032451524594
-    second: f_head1_10
+      213: -7645185363142899423
+    second: m_sword2_10
   - first:
-      213: -8930703631911102817
-    second: f_head1_11
+      213: 1149605513955818664
+    second: m_sword2_11
   - first:
-      213: 3307579246626307599
-    second: f_head1_12
+      213: 3898758114662508060
+    second: m_sword2_12
   - first:
-      213: -1427653659109754431
-    second: f_head1_13
+      213: -6315459408248074768
+    second: m_sword2_13
   - first:
-      213: 3345894744837324236
-    second: f_head1_14
+      213: -8071347718268569212
+    second: m_sword2_14
   - first:
-      213: -8413660605402462219
-    second: f_head1_15
+      213: -8992491999182035664
+    second: m_sword2_15
   - first:
-      213: 5691567945104942247
-    second: f_head1_16
+      213: 7325670077754390322
+    second: m_sword2_16
   - first:
-      213: 8022108724810477571
-    second: f_head1_17
+      213: 9058403041142549959
+    second: m_sword2_17
   - first:
-      213: 6027554528772295296
-    second: f_head1_18
+      213: 9060871240472992488
+    second: m_sword2_18
   - first:
-      213: 2035862585516587549
-    second: f_head1_19
+      213: -756649035689726360
+    second: m_sword2_19
   - first:
-      213: 1608147594731001862
-    second: f_head1_20
+      213: 1757793822060581097
+    second: m_sword2_20
   - first:
-      213: 6872793362381534681
-    second: f_head1_21
+      213: 5662460046386730181
+    second: m_sword2_21
   - first:
-      213: -8078087457255812699
-    second: f_head1_22
+      213: -4361526863394858288
+    second: m_sword2_22
   - first:
-      213: -8910692033857293212
-    second: f_head1_23
+      213: 875394914540562213
+    second: m_sword2_23
   - first:
-      213: 4444100197312239217
-    second: f_head1_24
+      213: -7999222826244412432
+    second: m_sword2_24
   - first:
-      213: 8898162981823330984
-    second: f_head1_25
+      213: 9209286268466967631
+    second: m_sword2_25
   - first:
-      213: -5421223979357726288
-    second: f_head1_26
+      213: 5065210391388832936
+    second: m_sword2_26
   - first:
-      213: 2891733938246834074
-    second: f_head1_27
+      213: 8503530949709679078
+    second: m_sword2_27
   - first:
-      213: -3037253704235726188
-    second: f_head1_28
+      213: 936664745817280299
+    second: m_sword2_28
   - first:
-      213: 4333260278062548369
-    second: f_head1_29
+      213: 9052031135988872364
+    second: m_sword2_29
   - first:
-      213: 830079838490681254
-    second: f_head1_30
+      213: -5176697526242423163
+    second: m_sword2_30
   - first:
-      213: 8868441735341671935
-    second: f_head1_31
+      213: -514804073856041378
+    second: m_sword2_31
   - first:
-      213: -2892039599802348714
-    second: f_head1_32
+      213: 9102799545215793175
+    second: m_sword2_32
   - first:
-      213: 87498102894756311
-    second: f_head1_33
+      213: 6251350520710279452
+    second: m_sword2_33
   - first:
-      213: -2801002179800310748
-    second: f_head1_34
+      213: 6665830256061024863
+    second: m_sword2_34
   - first:
-      213: 1878579910887130447
-    second: f_head1_35
+      213: 3378395025741381405
+    second: m_sword2_35
   - first:
-      213: 6395914933099816969
-    second: f_head1_36
+      213: -1170693940953756343
+    second: m_sword2_36
   - first:
-      213: 267875841756252607
-    second: f_head1_37
+      213: 3531651512884977447
+    second: m_sword2_37
   - first:
-      213: 5606416964461276449
-    second: f_head1_38
+      213: -4207964286981512821
+    second: m_sword2_38
   - first:
-      213: -3836596003754739843
-    second: f_head1_39
+      213: -3357509123511608341
+    second: m_sword2_39
   - first:
-      213: 1918969991193181969
-    second: f_head1_40
+      213: 2514262040887506497
+    second: m_sword2_40
   - first:
-      213: -1033202731407332283
-    second: f_head1_41
+      213: 4113376731080169358
+    second: m_sword2_41
   - first:
-      213: -2976417780915037940
-    second: f_head1_42
+      213: 7248673865593986636
+    second: m_sword2_42
   - first:
-      213: -6615658028109896595
-    second: f_head1_43
+      213: -252749995186660335
+    second: m_sword2_43
   - first:
-      213: 5474176211509174080
-    second: f_head1_44
-  - first:
-      213: -7959123281155371925
-    second: f_head1_45
-  - first:
-      213: -4339875014375772268
-    second: f_head1_46
-  - first:
-      213: -6972823185148556906
-    second: f_head1_47
-  - first:
-      213: 2436004445637272277
-    second: f_head1_48
-  - first:
-      213: 5158969208587207270
-    second: f_head1_49
-  - first:
-      213: -8725901407507745156
-    second: f_head1_50
-  - first:
-      213: -3884774293261316284
-    second: f_head1_51
-  - first:
-      213: 5930648073080136907
-    second: f_head1_52
+      213: -5377028253376431558
+    second: m_sword2_44
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -221,7 +197,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -233,7 +209,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -245,7 +221,7 @@ TextureImporter:
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -257,7 +233,7 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -269,7 +245,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: f_head1_0
+      name: m_sword2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -283,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aefc4e10586723e4a8fcf3082dd2b143
-      internalID: -8747081093302420690
+      spriteID: 037d217cd2122444ab19dd79b1247e26
+      internalID: -5780265963127293718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_1
+      name: m_sword2_1
       rect:
         serializedVersion: 2
         x: 96
@@ -304,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45dbc14106ef04245b322c9db45a684b
-      internalID: 2552563381620418819
+      spriteID: 26e668278f88c7b43b19563af9353986
+      internalID: -6334840894359139676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_2
+      name: m_sword2_2
       rect:
         serializedVersion: 2
         x: 192
@@ -325,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 993d0d878322e854c9132252676ba39c
-      internalID: -694194689825495228
+      spriteID: 8a450b70a975f5c45a37ba19ee954d9c
+      internalID: 3237514100642006583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_3
+      name: m_sword2_3
       rect:
         serializedVersion: 2
         x: 288
@@ -346,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24e8f8ce4f02b1741918a34581bdc296
-      internalID: 1536615469401061301
+      spriteID: 8a11a8909079e1848b2a694935cb51fd
+      internalID: -56071888545587404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_4
+      name: m_sword2_4
       rect:
         serializedVersion: 2
         x: 384
@@ -367,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb4aceff368881b4b81ade67c0d263d7
-      internalID: -8065759007380058008
+      spriteID: b149bb4c3cdda164ab19365f6319f3fb
+      internalID: -7675408838629317749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_5
+      name: m_sword2_5
       rect:
         serializedVersion: 2
         x: 480
@@ -388,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d27b3192f4cddc41a8bd2d3222a90dd
-      internalID: -5583086745808467676
+      spriteID: 758acff571fcefc49bca06c319f9d748
+      internalID: -9007702915710289531
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_6
+      name: m_sword2_6
       rect:
         serializedVersion: 2
         x: 576
@@ -409,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9ec901836172fd41ac02d62b20a0cc0
-      internalID: -5206132514782667935
+      spriteID: 729a5db410988c248b7556f0004bee0b
+      internalID: 8437324532742237708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_7
+      name: m_sword2_7
       rect:
         serializedVersion: 2
         x: 672
@@ -430,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8486d59f63a3f64bb18e422ceb22b42
-      internalID: -3395366994997333162
+      spriteID: 3e6d4dc130800204dbc037d0873b4d63
+      internalID: -8075107927490125284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_8
+      name: m_sword2_8
       rect:
         serializedVersion: 2
         x: 0
@@ -451,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba2170b2ee81c5c47a327167964fb963
-      internalID: -3817610130547281594
+      spriteID: 8966ed6391317c64ab0870c11c4ae88c
+      internalID: -5633913500344369891
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_9
+      name: m_sword2_9
       rect:
         serializedVersion: 2
         x: 96
@@ -472,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb56ec8eace2ebc49a674842f7cc0143
-      internalID: -3212747943297970543
+      spriteID: 945e5ad12655af04db8fe8c4e62f4d04
+      internalID: 7761169361095054124
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_10
+      name: m_sword2_10
       rect:
         serializedVersion: 2
         x: 192
@@ -493,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bba3c7e9c53467645a4ed05ee7b3f2b9
-      internalID: -744367032451524594
+      spriteID: 132f4a81f91d3a44d9935fb85635733b
+      internalID: -7645185363142899423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_11
+      name: m_sword2_11
       rect:
         serializedVersion: 2
         x: 288
@@ -514,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06bd8139042a6fb4eac2fea38772768a
-      internalID: -8930703631911102817
+      spriteID: 37b16415c0869084cb4276069a866cc1
+      internalID: 1149605513955818664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_12
+      name: m_sword2_12
       rect:
         serializedVersion: 2
         x: 384
@@ -535,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b9ef97fad181864eb57f3a23027481d
-      internalID: 3307579246626307599
+      spriteID: fc75595d5a45ba04c8d2da324f2daaa8
+      internalID: 3898758114662508060
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_13
+      name: m_sword2_13
       rect:
         serializedVersion: 2
         x: 480
@@ -556,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed8eab62a48d6cd46ac47c962d440980
-      internalID: -1427653659109754431
+      spriteID: 9d275c0376fd7c44797c96e0fd7b02ec
+      internalID: -6315459408248074768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_14
+      name: m_sword2_14
       rect:
         serializedVersion: 2
         x: 576
@@ -577,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8093770efc98d264c9cc5f4ee67d9d8d
-      internalID: 3345894744837324236
+      spriteID: 93db20d7e647fe44b91417761dfff758
+      internalID: -8071347718268569212
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_15
+      name: m_sword2_15
       rect:
         serializedVersion: 2
         x: 672
@@ -598,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31d0ab364e8d8b84da0e6352536ecf8b
-      internalID: -8413660605402462219
+      spriteID: e488e5270e5d14f4cac9ea547a655659
+      internalID: -8992491999182035664
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_16
+      name: m_sword2_16
       rect:
         serializedVersion: 2
         x: 0
@@ -619,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da67993b03f66a54d9b9b2e44d1d0f1e
-      internalID: 5691567945104942247
+      spriteID: f158e4bd77d864c4e81a23b62d79db84
+      internalID: 7325670077754390322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_17
+      name: m_sword2_17
       rect:
         serializedVersion: 2
         x: 96
@@ -640,14 +616,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80c0eaba87c3d504f8abec5630b0d223
-      internalID: 8022108724810477571
+      spriteID: a636273a6f738bc4aa5f21571c500fdc
+      internalID: 9058403041142549959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_18
+      name: m_sword2_18
       rect:
         serializedVersion: 2
         x: 192
@@ -661,14 +637,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc231fce022fbe8448ce0cc340cf6570
-      internalID: 6027554528772295296
+      spriteID: b557294c03fafe44f902ee5eb0ab5ed8
+      internalID: 9060871240472992488
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_19
+      name: m_sword2_19
       rect:
         serializedVersion: 2
         x: 288
@@ -682,14 +658,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac046aaf0baedf14795e78f112c4e707
-      internalID: 2035862585516587549
+      spriteID: c928aa85dff4f264ba4985cbaa8edd65
+      internalID: -756649035689726360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_20
+      name: m_sword2_20
       rect:
         serializedVersion: 2
         x: 384
@@ -703,14 +679,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8a7649eaa011533448d8c8c450021d56
-      internalID: 1608147594731001862
+      spriteID: d01803a0df0d0a741ba715268144f91e
+      internalID: 1757793822060581097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_21
+      name: m_sword2_21
       rect:
         serializedVersion: 2
         x: 480
@@ -724,14 +700,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 643817d5bc83fce43be023a56eba0557
-      internalID: 6872793362381534681
+      spriteID: f509ff5b427c8dd4abeafce9bebc5f59
+      internalID: 5662460046386730181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_22
+      name: m_sword2_22
       rect:
         serializedVersion: 2
         x: 576
@@ -745,14 +721,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 834289f84bcf766469f5984963fba52b
-      internalID: -8078087457255812699
+      spriteID: cc26b60d06202d64fae0883b2630f207
+      internalID: -4361526863394858288
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_23
+      name: m_sword2_23
       rect:
         serializedVersion: 2
         x: 672
@@ -766,14 +742,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8307a2db68f4c364b97114c50a5cc72f
-      internalID: -8910692033857293212
+      spriteID: 68f2299fc1996d042a38077e36bb7279
+      internalID: 875394914540562213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_24
+      name: m_sword2_24
       rect:
         serializedVersion: 2
         x: 0
@@ -787,14 +763,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a486df472f31334ca55dad6cfe8fa84
-      internalID: 4444100197312239217
+      spriteID: 55e224fd3f34b7446b55ee9713e86f24
+      internalID: -7999222826244412432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_25
+      name: m_sword2_25
       rect:
         serializedVersion: 2
         x: 96
@@ -808,14 +784,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5cd62d45edf8854ab49b456069c87f9
-      internalID: 8898162981823330984
+      spriteID: 25d4cdbf9d8830441a3e5e7f2bf56841
+      internalID: 9209286268466967631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_26
+      name: m_sword2_26
       rect:
         serializedVersion: 2
         x: 192
@@ -829,14 +805,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de25648dc17507940b28ca25efe9fa75
-      internalID: -5421223979357726288
+      spriteID: e26f69329c37c4244bafdf1fb4c59e9a
+      internalID: 5065210391388832936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_27
+      name: m_sword2_27
       rect:
         serializedVersion: 2
         x: 384
@@ -850,14 +826,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe08fcb80f13ff744a98303c171dfbb8
-      internalID: 2891733938246834074
+      spriteID: efc478cf60a20cc42bb5579951f36ddd
+      internalID: 8503530949709679078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_28
+      name: m_sword2_28
       rect:
         serializedVersion: 2
         x: 480
@@ -871,14 +847,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 888739842121e6d4fa173bb4ce3f3833
-      internalID: -3037253704235726188
+      spriteID: bfd0e0e11d8842a4b8f5adc23e00563d
+      internalID: 936664745817280299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_29
+      name: m_sword2_29
       rect:
         serializedVersion: 2
         x: 576
@@ -892,14 +868,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed364d3c3b6364147a4039ed8c073ea9
-      internalID: 4333260278062548369
+      spriteID: 32b6ba5a795ea6c418b280056d3e9055
+      internalID: 9052031135988872364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_30
+      name: m_sword2_30
       rect:
         serializedVersion: 2
         x: 0
@@ -913,14 +889,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b29c8fa12b1bd9e4699cf949325f0d51
-      internalID: 830079838490681254
+      spriteID: 329b170b92feeb74791a9cd8592ffdf6
+      internalID: -5176697526242423163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_31
+      name: m_sword2_31
       rect:
         serializedVersion: 2
         x: 96
@@ -934,14 +910,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c3844a8db95c3f4c99290f6ada833d7
-      internalID: 8868441735341671935
+      spriteID: eda6e18af2895b6468c4e41d246a25ce
+      internalID: -514804073856041378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_32
+      name: m_sword2_32
       rect:
         serializedVersion: 2
         x: 192
@@ -955,14 +931,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f0cd43dce47fd546be535f5b309cffa
-      internalID: -2892039599802348714
+      spriteID: b0533650d341cc8409f4e5806b169451
+      internalID: 9102799545215793175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_33
+      name: m_sword2_33
       rect:
         serializedVersion: 2
         x: 288
@@ -976,14 +952,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf865cb127cc925488ab49b1efb8894d
-      internalID: 87498102894756311
+      spriteID: 48142767503e7124494cf6a3ef8a281c
+      internalID: 6251350520710279452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_34
+      name: m_sword2_34
       rect:
         serializedVersion: 2
         x: 384
@@ -997,14 +973,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 508e9095d4fee074ab85dca4d5f748c6
-      internalID: -2801002179800310748
+      spriteID: 5c09b36d00f5a3f42bc989e8d4c121fd
+      internalID: 6665830256061024863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_35
+      name: m_sword2_35
       rect:
         serializedVersion: 2
         x: 480
@@ -1018,14 +994,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 273539f7ecb13c64ba18351543add6eb
-      internalID: 1878579910887130447
+      spriteID: 9f1591223fb47404ba6556dd4543d6cb
+      internalID: 3378395025741381405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_36
+      name: m_sword2_36
       rect:
         serializedVersion: 2
         x: 576
@@ -1039,14 +1015,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b219a093e44309e4ba652e7492d2c2af
-      internalID: 6395914933099816969
+      spriteID: 807fe32af503a894281c5a8c125954c6
+      internalID: -1170693940953756343
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_37
+      name: m_sword2_37
       rect:
         serializedVersion: 2
         x: 672
@@ -1060,14 +1036,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bace4a47cdfcfbb47bd3ded660d69f0b
-      internalID: 267875841756252607
+      spriteID: 0137bdafd00133844b2ca6f5aee9c2b9
+      internalID: 3531651512884977447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_38
+      name: m_sword2_38
       rect:
         serializedVersion: 2
         x: 0
@@ -1081,14 +1057,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e572e16e979900e4a8810621a1226cb2
-      internalID: 5606416964461276449
+      spriteID: 255aef37f1aa1be41aac65205c4ec694
+      internalID: -4207964286981512821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_39
+      name: m_sword2_39
       rect:
         serializedVersion: 2
         x: 96
@@ -1102,14 +1078,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 870e3f265af94e94cbdd2f23b3d80ad9
-      internalID: -3836596003754739843
+      spriteID: e0ff396b5c014bb449bd1fb9d8dc80ca
+      internalID: -3357509123511608341
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_40
+      name: m_sword2_40
       rect:
         serializedVersion: 2
         x: 192
@@ -1123,14 +1099,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70818a77fcec65f42aa38eeccce5d6f8
-      internalID: 1918969991193181969
+      spriteID: ca7817ec8907ce147bc121c7d10c2941
+      internalID: 2514262040887506497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_41
+      name: m_sword2_41
       rect:
         serializedVersion: 2
         x: 288
@@ -1144,14 +1120,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d180fa93406d2e24abd097993cf89fb3
-      internalID: -1033202731407332283
+      spriteID: a74f9dfcd96d21b4f923cb5d79062b04
+      internalID: 4113376731080169358
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_42
+      name: m_sword2_42
       rect:
         serializedVersion: 2
         x: 384
@@ -1165,14 +1141,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0580b2cbbc2704b4884f0ef655e1b13b
-      internalID: -2976417780915037940
+      spriteID: baf5a94fe22d70942974f2b9c43c0df4
+      internalID: 7248673865593986636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_43
+      name: m_sword2_43
       rect:
         serializedVersion: 2
         x: 480
@@ -1186,14 +1162,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb4c03dcd6161f549be1d0fad58c04f8
-      internalID: -6615658028109896595
+      spriteID: 61233f66e55a26b4dbebea9c105704a4
+      internalID: -252749995186660335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: f_head1_44
+      name: m_sword2_44
       rect:
         serializedVersion: 2
         x: 576
@@ -1207,176 +1183,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50877a65ec2258540b35ce31f7bb9928
-      internalID: 5474176211509174080
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_45
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de893c36429539d449946b515a558ba6
-      internalID: -7959123281155371925
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_46
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d2d7b62ebad1864aaa714c38faf5cbf
-      internalID: -4339875014375772268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_47
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce5d107876b90f347b25a722925735eb
-      internalID: -6972823185148556906
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_48
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba1a9a536de17af47a0fbcf99095c453
-      internalID: 2436004445637272277
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_49
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97c764d7bbb5c134399fd8802b3ee190
-      internalID: 5158969208587207270
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_50
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6ce123cd7db11642a4310355ac0e0f6
-      internalID: -8725901407507745156
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_51
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3127a46cbd8cbbf4194f0a22982d5149
-      internalID: -3884774293261316284
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: f_head1_52
-      rect:
-        serializedVersion: 2
-        x: 672
-        y: 96
-        width: 96
-        height: 96
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a8a565c1fb8fee41a3b9283eefae5de
-      internalID: 5930648073080136907
+      spriteID: cf458c6a1e1f9d54eb7a32de36300028
+      internalID: -5377028253376431558
       vertices: []
       indices: 
       edges: []
