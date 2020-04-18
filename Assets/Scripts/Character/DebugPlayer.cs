@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterMovementController))]
 [RequireComponent(typeof(HumanCharacter))]
 public class DebugPlayer : MonoBehaviour
 {
@@ -14,19 +14,27 @@ public class DebugPlayer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Space))
         {
-            GetComponent<CharacterController>().moveLeft(Input.GetKey(KeyCode.LeftShift));
+            GetComponent<CharacterBasicAttackController>().Attack();
+        }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            GetComponent<CharacterBlockComponent>().StartBlocking();
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            GetComponent<CharacterMovementController>().MoveLeft(Input.GetKey(KeyCode.LeftShift));
             PushGrass(-20);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            GetComponent<CharacterController>().moveRight(Input.GetKey(KeyCode.LeftShift));
+            GetComponent<CharacterMovementController>().MoveRight(Input.GetKey(KeyCode.LeftShift));
             PushGrass(20);
         }
         else
         {
-            GetComponent<CharacterController>().stop();
+            GetComponent<CharacterMovementController>().Stop();
         }
     }
 

@@ -9,7 +9,7 @@ public class DeerCharacterAi : MonoBehaviour
         Idle, Sleeping, Alerted, LookingForFood, Wander
     }
 
-    public CharacterController controller;
+    public CharacterMovementController controller;
     public SpriteAnimator animator;
 
     public State state = State.Idle;
@@ -176,12 +176,12 @@ public class DeerCharacterAi : MonoBehaviour
     {
         if (pos.x > transform.position.x)
         {
-            controller.moveRight(false);
+            controller.MoveRight(false);
             animator.SetAnimation("walk");
         }
         else
         {
-            controller.moveLeft(false);
+            controller.MoveLeft(false);
             animator.SetAnimation("walk");
         }
     }

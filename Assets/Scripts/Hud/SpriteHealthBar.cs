@@ -32,7 +32,9 @@ public class SpriteHealthBar : MonoBehaviour
     }
 
     private GameObject maskObj;
+    private GameObject maskObj2;
     private GameObject foregroundObj;
+    private GameObject betweenObj;
     private GameObject backgroundObj;
 
     public Sprite enemy;
@@ -74,7 +76,11 @@ public class SpriteHealthBar : MonoBehaviour
     [Range(0, 1)]
     public float healthRange = 1;
 
+    private float previousHealthRange = 0;
+
     public int pixelsPerUnit = 32;
+
+    private IEnumerator animationCoroutine;
 
     private void Start()
     {
@@ -89,6 +95,8 @@ public class SpriteHealthBar : MonoBehaviour
             spriteRenderer.sortingOrder = 1;
             HealthbarType = _type;
             foregroundObj.transform.localPosition = new Vector3();
+            var sg = foregroundObj.AddComponent<SortingGroup>();
+            sg.sortingOrder = 2;
         }
         if (!backgroundObj)
         {
@@ -104,11 +112,39 @@ public class SpriteHealthBar : MonoBehaviour
         {
             maskObj = new GameObject();
             maskObj.AddComponent<SpriteHealthBarMask>().pixelsPerUnit = pixelsPerUnit;
-            maskObj.transform.parent = transform;
+            maskObj.transform.parent = foregroundObj.transform;
             maskObj.name = this.name + "_mask";
+            maskObj.transform.localPosition = new Vector2(-spriteRenderer.bounds.size.x / 2f, -spriteRenderer.bounds.size.y / 2f);
+        }
+        if (!betweenObj)
+        {
+            betweenObj = new GameObject();
+            betweenObj.transform.parent = transform;
+            betweenObj.name = this.name + "_between";
+            var bsr = betweenObj.AddComponent<SpriteRenderer>();
+            bsr.sprite = background;
+            bsr.material = new Material(material);
+            bsr.material.shader = Shader.Find("GUI/Text Shader");
+            bsr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            bsr.color = new Color(1, 1, 1, 0.6f);
+            betweenObj.transform.localPosition = new Vector3(0, 0, -0.2f);
+            var sg = betweenObj.AddComponent<SortingGroup>();
+            sg.sortingOrder = 1;
+        }
+        if (!maskObj2)
+        {
+            maskObj2 = new GameObject();
+            maskObj2.AddComponent<SpriteHealthBarMask>().pixelsPerUnit = pixelsPerUnit;
+            maskObj2.transform.parent = betweenObj.transform;
+            maskObj2.name = this.name + "_mask";
+            maskObj2.transform.localPosition = new Vector2(-spriteRenderer.bounds.size.x / 2f, -spriteRenderer.bounds.size.y / 2f);
+            maskObj2.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange / 2) * pixelsPerUnit;
         }
         spriteRenderer = foregroundObj.GetComponent<SpriteRenderer>();
-        maskObj.transform.localPosition = new Vector2(-spriteRenderer.bounds.size.x / 2f, -spriteRenderer.bounds.size.y / 2f);
+
+        previousHealthRange = healthRange;
+        maskObj.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange) * pixelsPerUnit;
+        maskObj2.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange) * pixelsPerUnit;
     }
 
     private void OnValidate()
@@ -119,6 +155,27 @@ public class SpriteHealthBar : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        maskObj.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange) * pixelsPerUnit;
+        if (previousHealthRange != healthRange)
+        {
+            maskObj.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * healthRange) * pixelsPerUnit;
+            if (animationCoroutine != null)
+                StopCoroutine(animationCoroutine);
+            StartCoroutine(AnimateValueChange(previousHealthRange, healthRange, 0.3f));
+            previousHealthRange = healthRange;
+        }
+    }
+
+    private IEnumerator AnimateValueChange(float start, float end, float time)
+    {
+        float timeLeft = time;
+        while (timeLeft > 0)
+        {
+            var value = LeanTween.easeInOutCubic(spriteRenderer.bounds.size.y * start, spriteRenderer.bounds.size.y * end, 1 - timeLeft / time);
+            maskObj2.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, value) * pixelsPerUnit;
+            timeLeft -= Time.deltaTime;
+            yield return 0;
+        }
+        maskObj2.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * end) * pixelsPerUnit;
+        yield return 0;
     }
 }

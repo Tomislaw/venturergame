@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class CharacterMovementController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float walkSpeed = 1;
@@ -47,13 +47,13 @@ public class CharacterController : MonoBehaviour
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
     }
 
-    public void moveLeft(bool isRunning = false)
+    public void MoveLeft(bool isRunning = false)
     {
         moveType = isRunning ? 2 : 1;
         FaceLeft = true;
 
         if (speed > 0)
-            stop();
+            Stop();
 
         speed -= acceleration * Time.deltaTime;
 
@@ -63,13 +63,13 @@ public class CharacterController : MonoBehaviour
             speed = -maxSpeed;
     }
 
-    public void moveRight(bool isRunning = false)
+    public void MoveRight(bool isRunning = false)
     {
         moveType = isRunning ? 2 : 1;
         FaceLeft = false;
 
         if (speed < 0)
-            stop();
+            Stop();
 
         speed += acceleration * Time.deltaTime;
 
@@ -79,7 +79,7 @@ public class CharacterController : MonoBehaviour
             speed = maxSpeed;
     }
 
-    public void stop()
+    public void Stop()
     {
         moveType = 0;
         speed = 0;

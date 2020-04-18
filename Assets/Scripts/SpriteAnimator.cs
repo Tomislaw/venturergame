@@ -51,14 +51,20 @@ public class SpriteAnimator : MonoBehaviour
 
 #endif
     public List<SpriteAnimation> animations;
+    private SpriteAnimation currentAnimation;
 
     private float timeForAnimation;
-    private SpriteAnimation currentAnimation;
     private int animationFrame = 0;
-    private SpriteRenderer sr;
+    public SpriteRenderer spriteRenderer { get; private set; } = null;
 
     public bool IsAnimationFinished { get => animationFrame == currentAnimation.frames.Count - 1 || currentAnimation.looped; }
     public bool IsAnimationLooped { get => currentAnimation.looped; }
+
+    public void Sync(SpriteAnimator other)
+    {
+        animationFrame = other.animationFrame;
+        timeForAnimation = other.timeForAnimation;
+    }
 
     public void SetAnimation(int id)
     {
@@ -82,6 +88,7 @@ public class SpriteAnimator : MonoBehaviour
                 return;
         }
 
+        currentAnimation = null;
         foreach (var a in animations)
         {
             if (a.name != name)
@@ -101,7 +108,7 @@ public class SpriteAnimator : MonoBehaviour
 
     private void Start()
     {
-        this.sr = GetComponent<SpriteRenderer>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
         if (animations.Count > 0)
         {
             currentAnimation = animations[0];
@@ -111,35 +118,44 @@ public class SpriteAnimator : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (currentAnimation != null)
+        if (currentAnimation == null)
         {
-            if (timeForAnimation < 0)
-            {
-                if (currentAnimation.looped)
-                {
-                    timeForAnimation = currentAnimation.animationTime;
-                }
-                else
-                {
-                    if (animationFrame != currentAnimation.frames.Count - 1)
-                    {
-                        animationFrame = currentAnimation.frames.Count - 1;
-                        sr.sprite = currentAnimation.frames[animationFrame];
-                    }
-
-                    return;
-                }
-            }
-
-            int id = (int)Mathf.Lerp(currentAnimation.frames.Count - 1, 0, timeForAnimation / currentAnimation.animationTime);
-
-            if (id != animationFrame)
-            {
-                if (sr.sprite != currentAnimation.frames[id])
-                    sr.sprite = currentAnimation.frames[id];
-                animationFrame = id;
-            }
-            timeForAnimation -= Time.deltaTime;
+            spriteRenderer.sprite = null;
+            return;
         }
+
+        if (currentAnimation.frames.Count == 0)
+        {
+            spriteRenderer.sprite = null;
+            return;
+        }
+
+        if (timeForAnimation < 0)
+        {
+            if (currentAnimation.looped)
+            {
+                timeForAnimation = currentAnimation.animationTime;
+            }
+            else
+            {
+                if (animationFrame != currentAnimation.frames.Count - 1)
+                {
+                    animationFrame = currentAnimation.frames.Count - 1;
+                    spriteRenderer.sprite = currentAnimation.frames[animationFrame];
+                }
+
+                return;
+            }
+        }
+
+        int id = (int)Mathf.Lerp(currentAnimation.frames.Count - 1, 0, timeForAnimation / currentAnimation.animationTime);
+
+        if (id != animationFrame)
+        {
+            if (spriteRenderer.sprite != currentAnimation.frames[id])
+                spriteRenderer.sprite = currentAnimation.frames[id];
+            animationFrame = id;
+        }
+        timeForAnimation -= Time.deltaTime;
     }
 }

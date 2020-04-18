@@ -174,14 +174,6 @@ MonoBehaviour:
     animationTime: 0.7
     looped: 0
   - name: runww
-    frames:
-    - {fileID: -8910958652187638023, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: -1266318461770180150, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: -482001165892103958, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: 4349185672632666909, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: 1428177427660563911, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: -2429138681161162242, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: 786935997221025857, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
-    - {fileID: 3938683001839077403, guid: 058db2328dd18cb45bdfea1bd11adf90, type: 3}
+    frames: []
     animationTime: 0.8
     looped: 1
