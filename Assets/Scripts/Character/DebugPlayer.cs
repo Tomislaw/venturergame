@@ -34,7 +34,7 @@ public class DebugPlayer : MonoBehaviour
         }
         else
         {
-            GetComponent<CharacterMovementController>().Stop();
+            // GetComponent<CharacterMovementController>().Stop();
         }
     }
 

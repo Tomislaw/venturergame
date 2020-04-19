@@ -12,6 +12,7 @@ public class CharacterMovementController : MonoBehaviour
     private float speed = 0;
 
     private int moveType = 0;
+    private bool moveRequested = false;
 
     public bool IsWalking
     {
@@ -45,15 +46,32 @@ public class CharacterMovementController : MonoBehaviour
     private void LateUpdate()
     {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
+        if (!moveRequested)
+            Stop();
+        moveRequested = false;
+    }
+
+    public bool MoveToPosition(float position, bool isRunning = false, float margin = 0.5f)
+    {
+        if (transform.position.x.IsBetweenRange(position - margin, position + margin))
+            return true;
+
+        if (transform.position.x > position)
+            MoveLeft(isRunning);
+        else
+            MoveRight(isRunning);
+
+        return false;
     }
 
     public void MoveLeft(bool isRunning = false)
     {
-        moveType = isRunning ? 2 : 1;
-        FaceLeft = true;
-
         if (speed > 0)
             Stop();
+
+        moveRequested = true;
+        moveType = isRunning ? 2 : 1;
+        FaceLeft = true;
 
         speed -= acceleration * Time.deltaTime;
 
@@ -65,11 +83,12 @@ public class CharacterMovementController : MonoBehaviour
 
     public void MoveRight(bool isRunning = false)
     {
-        moveType = isRunning ? 2 : 1;
-        FaceLeft = false;
-
         if (speed < 0)
             Stop();
+
+        moveRequested = true;
+        moveType = isRunning ? 2 : 1;
+        FaceLeft = false;
 
         speed += acceleration * Time.deltaTime;
 

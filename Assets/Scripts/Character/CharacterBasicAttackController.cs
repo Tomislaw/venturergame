@@ -52,7 +52,7 @@ public class CharacterBasicAttackController : MonoBehaviour
                     continue;
                 if (!movementController.FaceLeft && collider.transform.position.x < transform.position.x)
                     continue;
-                damageable.Damage(gameObject, 1);
+                damageable.Damage(gameObject, 4);
             }
         }
     }

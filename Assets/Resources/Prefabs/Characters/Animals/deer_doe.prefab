@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 793169846461444880}
   - component: {fileID: 793169846461444882}
   - component: {fileID: 4001704649838424466}
+  - component: {fileID: 156751682717703652}
   m_Layer: 0
   m_Name: deer_doe
   m_TagString: Untagged
@@ -98,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7038b1e44e734f83e8f8fa48365a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugReplaceSprites: {fileID: 0}
   animations:
   - name: idle
     frames:
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1.25
-  runSpeed: 3
+  runSpeed: 2.75
   acceleration: 25
 --- !u!114 &793169846461444882
 MonoBehaviour:
@@ -216,14 +218,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 793169846461444880}
-  animator: {fileID: 793169846461444881}
+  character: {fileID: 156751682717703652}
   state: 0
-  hungry: 0
-  timeToChangeIdle: 7
-  grassPos: {x: 3.4028235e+38, y: 3.4028235e+38}
-  timeToWander: 20
-  positionToWander: {x: 3.4028235e+38, y: 3.4028235e+38}
-  sleppines: 0
+  timeToGetHungry: 30
+  timeToChangeIdle: 5
+  timeToWander: 10
+  alertedTime: 5
 --- !u!114 &4001704649838424466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,9 +236,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa62f84ee5c2b34bb762c610a99d9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGroup: 0
   health: 10
   maxHealth: 10
   healthbar: {fileID: 8355905312322862906}
+--- !u!114 &156751682717703652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793169846461444884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc232a3894ce3014ab52418c203819e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &9095816152636011438
 PrefabInstance:
   m_ObjectHideFlags: 0

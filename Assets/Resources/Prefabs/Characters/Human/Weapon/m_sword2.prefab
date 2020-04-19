@@ -137,14 +137,14 @@ MonoBehaviour:
     - {fileID: -7999222826244412432, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
     - {fileID: 9209286268466967631, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
     - {fileID: 5065210391388832936, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
-    animationTime: 0.15
+    animationTime: 0.07
     looped: 0
   - name: block2
     frames:
     - {fileID: 8503530949709679078, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
     - {fileID: 936664745817280299, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
     - {fileID: 9052031135988872364, guid: 6119e8863e92fb7449b58f8247a23525, type: 3}
-    animationTime: 0.15
+    animationTime: 0.07
     looped: 0
   - name: attack1
     frames:

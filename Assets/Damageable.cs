@@ -42,6 +42,8 @@ public class Damageable : MonoBehaviour
 
     public void Damage(GameObject who, int damage)
     {
+        if (IsDead)
+            return;
         health -= damage;
         HealthChange = health - damage;
     }
