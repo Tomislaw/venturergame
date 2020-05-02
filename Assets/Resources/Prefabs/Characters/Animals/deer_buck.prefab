@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 119458986502900648}
   - component: {fileID: 119458986502900654}
   - component: {fileID: -2937833281184669878}
+  - component: {fileID: -8470989287803982510}
+  - component: {fileID: -212043946774059533}
   m_Layer: 0
   m_Name: deer_buck
   m_TagString: Untagged
@@ -74,8 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: -1746336397
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8280876332066324195, guid: ae27cafe34ac7484eb2a62e6fdaf4f97,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &119458986502900651
@@ -98,96 +99,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c7038b1e44e734f83e8f8fa48365a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  texture: {fileID: 2800000, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
+  pixelsPerUnit: 32
   animations:
-  - name: idle
-    frames:
-    - {fileID: 8280876332066324195, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -90558085556564438, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 5546794951791231981, guid: 7a5e142394ccf5c4eb48cedc0e054b43, type: 3}
-    animationTime: 1.4
-    looped: 1
-  - name: idle1
-    frames:
-    - {fileID: 8280876332066324195, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 7051095433276424972, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -90558085556564438, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3351766573916575521, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 1.6
-    looped: 0
-  - name: idle2
-    frames:
-    - {fileID: 8280876332066324195, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -90558085556564438, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3351766573916575521, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -5504295042101311363, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -5504295042101311363, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -5504295042101311363, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3351766573916575521, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -90558085556564438, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 2.6
-    looped: 0
-  - name: eat
-    frames:
-    - {fileID: 8280876332066324195, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -90558085556564438, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3351766573916575521, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -5504295042101311363, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 303748362412958005, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -365114093524431859, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -7954549912166022441, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -365114093524431859, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 303748362412958005, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 4
-    looped: 0
-  - name: run
-    frames:
-    - {fileID: 3301912139855760018, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3804032388637584506, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -1726714695935617397, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 4645475785486656503, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -3047851057804863937, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 0.6
-    looped: 1
-  - name: death
-    frames:
-    - {fileID: 5403277470857789546, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 8902398117612000424, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -6039204461066127590, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 1875433889188855518, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 2261709625243097292, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 0.3
-    looped: 0
-  - name: sit
-    frames:
-    - {fileID: 5403277470857789546, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 8902398117612000424, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -6039204461066127590, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 1875433889188855518, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 0.5
-    looped: 0
-  - name: stand
-    frames:
-    - {fileID: -6039204461066127590, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 8902398117612000424, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 5403277470857789546, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 303748362412958005, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 0.3
-    looped: 0
-  - name: walk
-    frames:
-    - {fileID: -521862082264857067, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -6653223481746308812, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: -3212946834179602812, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 49966228409320889, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    - {fileID: 3774404716176923593, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
-    animationTime: 1
-    looped: 1
+  - {fileID: 11400000, guid: 544352f97bf627b4bb603de701fe208b, type: 2}
+  - {fileID: 11400000, guid: eb905fb0dca3f4641ad4810f7bbc2534, type: 2}
+  - {fileID: 11400000, guid: 717267db3f819f643a401a41edc6fb4c, type: 2}
+  - {fileID: 11400000, guid: 31510641d9077044c841fa6438b10ee8, type: 2}
+  - {fileID: 11400000, guid: 0053c235a732c9b41b6a6f2f80a22828, type: 2}
+  - {fileID: 11400000, guid: 4068555cad97da14cb8219b6d78806ae, type: 2}
+  - {fileID: 11400000, guid: 907b42281ff6bce4d8a29739021790d6, type: 2}
+  - {fileID: 11400000, guid: 59052efbaafb7144f9596a0a3b5c6359, type: 2}
+  _currentAnimation: idle
 --- !u!114 &119458986502900648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,14 +139,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 119458986502900648}
-  animator: {fileID: 119458986502900651}
+  character: {fileID: -8470989287803982510}
   state: 0
-  hungry: 0
+  timeToGetHungry: 30
   timeToChangeIdle: 7
-  grassPos: {x: 3.4028235e+38, y: 3.4028235e+38}
   timeToWander: 20
-  positionToWander: {x: 3.4028235e+38, y: 3.4028235e+38}
-  sleppines: 0
+  alertedTime: 15
 --- !u!114 &-2937833281184669878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,9 +157,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa62f84ee5c2b34bb762c610a99d9cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGroup: 0
   health: 10
   maxHealth: 10
   healthbar: {fileID: 5840779790656003273}
+--- !u!114 &-8470989287803982510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc232a3894ce3014ab52418c203819e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &-212043946774059533
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.3}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 0.75}
+  m_EdgeRadius: 0
 --- !u!1001 &6684020534876328029
 PrefabInstance:
   m_ObjectHideFlags: 0

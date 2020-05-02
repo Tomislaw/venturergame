@@ -49,13 +49,13 @@ public class CharacterInventoryController : MonoBehaviour
       || (type == Equipment.Type.TwoHanded && (it.type == Equipment.Type.MainHand || it.type == Equipment.Type.OffHand)));
     }
 
-    public bool Equip(InventoryItem inventoryItem)
+    public bool EquipFromInventory(InventoryItem inventoryItem)
     {
         var equipment = inventoryItem.item as Equipment;
         if (equipment == false)
             return false;
 
-        Unequip(equipment.type);
+        UnequipAndPutToInventory(equipment.type);
         SetEquippedItem(equipment);
 
         var human = GetComponent<HumanCharacter>();
@@ -86,14 +86,92 @@ public class CharacterInventoryController : MonoBehaviour
         }
 
         var inventory = GetComponent<Inventory>();
-        if (inventory != null)
+        if (inventory != null && inventory.ContainsItem(inventoryItem))
         {
             inventory.TakeItem(inventoryItem);
         }
         return true;
     }
 
-    public void Unequip(Equipment.Type type)
+    public Equipment Equip(InventoryItem inventoryItem)
+    {
+        var equipment = inventoryItem.item as Equipment;
+        if (equipment == false)
+            return null;
+
+        var current = Unequip(equipment.type);
+        SetEquippedItem(equipment);
+
+        var human = GetComponent<HumanCharacter>();
+        switch (equipment.type)
+        {
+            case Equipment.Type.MainHand:
+            case Equipment.Type.OffHand:
+            case Equipment.Type.Helmet:
+            case Equipment.Type.Armor:
+            case Equipment.Type.Boots:
+            case Equipment.Type.Pants:
+                if (human != null)
+                    human.Equip(equipment);
+                break;
+
+            case Equipment.Type.TwoHanded:
+                if (human != null)
+                {
+                    human.Unequip(Equipment.Type.MainHand);
+                    human.Unequip(Equipment.Type.OffHand);
+                }
+                human.Equip(equipment);
+                break;
+
+            case Equipment.Type.Necklace:
+            case Equipment.Type.Ring:
+                break;
+        }
+
+        return current;
+    }
+
+    public Equipment Unequip(Equipment.Type type)
+    {
+        var human = GetComponent<HumanCharacter>();
+        var item = GetEquippedItem(type);
+
+        if (item == null)
+            return null;
+
+        RemoveEquippedItem(type);
+
+        switch (type)
+        {
+            case Equipment.Type.MainHand:
+            case Equipment.Type.OffHand:
+            case Equipment.Type.Helmet:
+            case Equipment.Type.Armor:
+            case Equipment.Type.Boots:
+            case Equipment.Type.Pants:
+                if (human != null)
+                    human.Unequip(type);
+                break;
+
+            case Equipment.Type.TwoHanded:
+                if (human != null)
+                {
+                    human.Unequip(Equipment.Type.MainHand);
+                    human.Unequip(Equipment.Type.OffHand);
+                }
+                human.Unequip(type);
+                break;
+
+            case Equipment.Type.Necklace:
+            case Equipment.Type.Ring:
+                break;
+        }
+
+        return item;
+    }
+
+    public void UnequipAndPutToInventory(Equipment.Type type)
     {
         var human = GetComponent<HumanCharacter>();
         var item = GetEquippedItem(type);
@@ -175,7 +253,7 @@ internal class CharacterInventoryControllerEditor : Editor
         EditorGUILayout.BeginHorizontal();
         type = (Equipment.Type)EditorGUILayout.EnumPopup("InventorySlot", type);
         if (GUILayout.Button("Unequip"))
-            gameObject.Unequip(type);
+            gameObject.UnequipAndPutToInventory(type);
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
@@ -189,7 +267,7 @@ internal class CharacterInventoryControllerEditor : Editor
             if (eqiupment != null)
             {
                 if (GUILayout.Button(eqiupment.ToString()))
-                    gameObject.Equip(item);
+                    gameObject.EquipFromInventory(item);
             }
         }
         EditorGUILayout.EndScrollView();

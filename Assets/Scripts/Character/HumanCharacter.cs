@@ -8,21 +8,21 @@ public class HumanCharacter : MonoBehaviour
 {
     public bool male = false;
 
-    private Dictionary<string, SpriteAnimator> sprites = new Dictionary<string, SpriteAnimator>();
+    private Dictionary<string, SimpleAnimator> sprites = new Dictionary<string, SimpleAnimator>();
 
     public void Equip(Equipment equipment)
     {
         Unequip(equipment.type);
 
         GameObject animator = male ? equipment.maleSpriteSheet : equipment.femaleSpriteSheet;
-        if (animator != null && animator.GetComponent<SpriteAnimator>() != null)
+        if (animator != null && animator.GetComponent<SimpleAnimator>() != null)
         {
             var item = Instantiate(animator);
             item.name = equipment.type.ToString().ToLower();
             item.transform.parent = transform;
             item.transform.localPosition = new Vector2();
             item.transform.localScale = new Vector3(1, 1, 1);
-            sprites[item.name] = item.GetComponent<SpriteAnimator>();
+            sprites[item.name] = item.GetComponent<SimpleAnimator>();
         }
 
         StartCoroutine(SyncAnimation());
@@ -47,14 +47,14 @@ public class HumanCharacter : MonoBehaviour
     private IEnumerator SyncAnimation()
     {
         yield return null;
-        SpriteAnimator first = null;
+        SimpleAnimator first = null;
         foreach (var item in sprites)
         {
             if (first == null)
                 first = item.Value;
             else
             {
-                item.Value.SetAnimation(first.GetAnimation().name);
+                item.Value.Animation = first.Animation;
                 item.Value.Sync(first);
             }
         }
@@ -64,13 +64,13 @@ public class HumanCharacter : MonoBehaviour
     public void SetAnimation(string animation)
     {
         foreach (var item in sprites)
-            item.Value.SetAnimation(animation);
+            item.Value.Animation = animation;
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        var components = GetComponentsInChildren<SpriteAnimator>();
+        var components = GetComponentsInChildren<SimpleAnimator>();
         foreach (var c in components)
             sprites.Add(c.name, c);
     }

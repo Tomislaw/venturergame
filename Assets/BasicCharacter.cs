@@ -17,7 +17,7 @@ public class BasicCharacter : MonoBehaviour
 
     private void Update()
     {
-        var animator = GetComponent<SpriteAnimator>();
+        var animator = GetComponent<SimpleAnimator>();
         if (animator == null)
             return;
 
@@ -29,7 +29,7 @@ public class BasicCharacter : MonoBehaviour
                 if (previousDeathState == false)
                 {
                     previousDeathState = true;
-                    animator.SetAnimation("death");
+                    animator.Animation = "death";
                 }
                 return;
             }
@@ -41,40 +41,45 @@ public class BasicCharacter : MonoBehaviour
 
         if (movement.IsWalking)
         {
-            animator.SetAnimation("walk");
+            animator.Animation = "walk";
             doingCustomAnimation = false;
         }
         else if (movement.IsRunning)
         {
-            animator.SetAnimation("run");
+            animator.Animation = "run";
             doingCustomAnimation = false;
         }
         else if (doingCustomAnimation)
         {
             if (idleOnFinish && animator.IsAnimationFinished)
             {
-                animator.SetAnimation("idle");
+                animator.Animation = "idle";
                 doingCustomAnimation = false;
             }
         }
         else
         {
-            animator.SetAnimation("idle");
+            animator.Animation = "idle";
         }
     }
 
     public bool Animate(string animation, bool idleOnFinish = true)
     {
-        var animator = GetComponent<SpriteAnimator>();
+        var animator = GetComponent<SimpleAnimator>();
         if (animator == null)
             return true;
 
         doingCustomAnimation = true;
         this.idleOnFinish = idleOnFinish;
 
-        if (animator.GetAnimation().name == animation)
+        if (animator.Animation == null)
+        {
+            animator.Animation = animation;
+        }
+
+        if (animator.Animation == animation)
             return animator.IsAnimationFinished;
-        animator.SetAnimation(animation);
+        animator.Animation = animation;
 
         return false;
     }

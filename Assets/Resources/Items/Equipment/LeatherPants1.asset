@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f0e55ff384bd114cb1829a0bdc1da2b, type: 3}
-  m_Name: Sword1
+  m_Name: LeatherPants1
   m_EditorClassIdentifier: 
-  name: Sword
+  name: Leather pants
   uiSprite: {fileID: 0}
   gameSprite: {fileID: 0}
   size: {x: 2, y: 2}
   armorModifier: 0
   damageModifier: 0
-  femaleSpriteSheet: {fileID: 0}
-  maleSpriteSheet: {fileID: 3609844246062878222, guid: 80660fee05039a84ea853f25e69e92af,
+  femaleSpriteSheet: {fileID: 562963071660348177, guid: 6488a608932e1644ebf1ffc2d6bd950a,
     type: 3}
-  type: 0
+  maleSpriteSheet: {fileID: 562963071660348177, guid: 2ed5782f06175364297638c54b8771b9,
+    type: 3}
+  type: 6

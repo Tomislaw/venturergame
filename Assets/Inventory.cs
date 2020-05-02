@@ -14,7 +14,7 @@ public class InventoryItem
 }
 
 [System.Serializable]
-public struct InventoryPair
+public class InventoryPair
 {
     public InventoryItem item;
     public Vector2Int pos;
@@ -39,6 +39,22 @@ public class Inventory : MonoBehaviour
         items.Add(new InventoryPair { pos = slot, item = item });
 
         return true;
+    }
+
+    public bool MoveItem(InventoryItem item, Vector2Int slot)
+    {
+        foreach (var i in items)
+        {
+            if (i.item == item)
+            {
+                if (!CanMoveItemHere(item, slot))
+                    return false;
+                i.pos = slot;
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public bool PutItem(InventoryItem item)
@@ -97,14 +113,55 @@ public class Inventory : MonoBehaviour
 
     public bool CanPlaceItemHere(InventoryItem item, Vector2Int slot)
     {
+        return CanPlaceItemHere(item.item, slot);
+    }
+
+    public bool CanPlaceItemHere(Item item, Vector2Int slot)
+    {
         if (slot.x < 0 || slot.x >= size.x || slot.y < 0 || slot.y >= size.y)
             return false;
+
+        if (slot.x + item.Size.x > size.x || slot.y + item.Size.y > size.y)
+            return false;
+
+        for (int x = slot.x; x < item.Size.x + slot.x; x++)
+        {
+            for (int y = slot.y; y < item.Size.y + slot.y; y++)
+            {
+                if (IsSlotTaken(new Vector2Int(x, y)))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public bool ContainsItem(InventoryItem item)
+    {
+        foreach (var i in items)
+            if (i.item == item)
+                return true;
+
+        return false;
+    }
+
+    public bool CanMoveItemHere(InventoryItem item, Vector2Int slot)
+    {
+        if (slot.x < 0 || slot.x >= size.x || slot.y < 0 || slot.y >= size.y)
+            return false;
+
+        if (slot.x + item.item.Size.x > size.x || slot.y + item.item.Size.y > size.y)
+            return false;
+
         for (int x = slot.x; x < item.item.Size.x + slot.x; x++)
         {
             for (int y = slot.y; y < item.item.Size.y + slot.y; y++)
             {
-                if (IsSlotTaken(new Vector2Int(x, y)))
-                    return false;
+                var _item = GetItem(new Vector2Int(x, y));
+                if (_item == null)
+                    continue;
+                if (item == _item)
+                    continue;
+                return false;
             }
         }
         return true;
@@ -185,7 +242,7 @@ internal class InventoryEditor : Editor
                 addItemCount = EditorGUILayout.IntField(addItemCount);
             }
 
-            if (GUILayout.Button("Add"))
+            if (GUILayout.Button("Add") && addItem)
             {
                 var item = new InventoryItem();
                 item.item = addItem;
