@@ -14,9 +14,12 @@ public class DebugPlayer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        var character = GetComponent<CharacterMovementController>();
+
         if (Input.GetKey(KeyCode.Space))
         {
             GetComponent<CharacterBasicAttackController>().Attack();
+            PushGrass2();
         }
         else if (Input.GetKey(KeyCode.LeftControl))
         {
@@ -25,12 +28,12 @@ public class DebugPlayer : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             GetComponent<CharacterMovementController>().MoveLeft(Input.GetKey(KeyCode.LeftShift));
-            PushGrass(-20);
+            PushGrass(character.speed);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             GetComponent<CharacterMovementController>().MoveRight(Input.GetKey(KeyCode.LeftShift));
-            PushGrass(20);
+            PushGrass(character.speed);
         }
         else
         {
@@ -38,16 +41,36 @@ public class DebugPlayer : MonoBehaviour
         }
     }
 
-    private void PushGrass(float force)
+    private void PushGrass2()
     {
-        var colliders = Physics2D.OverlapCircleAll(transform.position, 1f);
+        var colliders = Physics2D.OverlapCircleAll(transform.position, 1);
         foreach (var collide in colliders)
         {
-            var bodies = collide.GetComponentsInChildren<Rigidbody2D>();
+            var bodies = collide.GetComponentsInChildren<ExpensiveGrassStalk>();
             foreach (var body in bodies)
             {
-                if (Vector2.Distance(transform.position, body.position) < 0.7f)
-                    body.AddRelativeForce(new Vector2(force * Time.deltaTime, 0));
+                var rg = body.GetComponent<Rigidbody2D>();
+                if (Vector2.Distance(body.transform.position, transform.position) < 1)
+                    rg.AddExplosionForce(1, transform.position, 1);
+            }
+        }
+    }
+
+    private void PushGrass(float force)
+    {
+        var collider = GetComponent<Collider2D>();
+        var colliders = new List<Collider2D>();
+        collider.OverlapCollider(new ContactFilter2D(), colliders);
+
+        foreach (var collide in colliders)
+        {
+            var bodies = collide.GetComponentsInChildren<ExpensiveGrassStalk>();
+            foreach (var body in bodies)
+            {
+                var rg = body.GetComponent<Rigidbody2D>();
+                if (body.attach.x % 0.02 > 0.01)
+                    if (collider.OverlapPoint(body.transform.position))
+                        rg.velocity = new Vector2(force, rg.velocity.y);
             }
         }
     }

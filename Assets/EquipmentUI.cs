@@ -53,10 +53,6 @@ public class EquipmentUI : MonoBehaviour
 
     private void CreateAndPutInventoryIcon(Equipment equipped)
     {
-        var go = Instantiate(draggablePrefab);
-        go.item = new InventoryItem();
-        go.item.item = equipped;
-
         EquipmentDropSlot parent = null;
         if (equipped.type == Equipment.Type.Helmet)
             parent = head;
@@ -75,6 +71,11 @@ public class EquipmentUI : MonoBehaviour
         else if (equipped.type == Equipment.Type.Necklace)
             parent = necklace;
 
+        var item = new InventoryItem();
+        item.item = equipped;
+
+        var go = Instantiate(draggablePrefab);
+        go.SetItem(item);
         go.transform.parent = parent.transform;
         go.transform.localPosition = new Vector3();
         go.transform.localScale = new Vector3(1, 1, 1);

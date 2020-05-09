@@ -9,7 +9,8 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
 {
     public Color dragValidColor = Color.blue;
     public Color dragInvalidColor = Color.red;
-    public Image image;
+    public Image background;
+    public Image icon;
     public InventoryItem item;
     private Color originalColor;
     private Vector3 initialPosition;
@@ -22,8 +23,8 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
 
     private void OnEnable()
     {
-        originalColor = image.color;
-        RecalculateSize();
+        originalColor = background.color;
+        SetItem(item);
     }
 
     public void RecalculateSize()
@@ -33,20 +34,10 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
             rect.sizeDelta = new Vector2(32 * item.item.Size.x, 32 * item.item.Size.y);
     }
 
-    private void Update()
-    {
-        //if (dragging)
-        //{
-        //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //    Vector3 rayPoint = ray.GetPoint(distance);
-        //    transform.position = rayPoint;
-        //}
-    }
-
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition + draggingOffset;
-        image.color = originalColor;
+        background.color = originalColor;
         transform.position = initialPosition;
 
         if (lastDropSlot != null)
@@ -74,7 +65,7 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
             if (slot != null)
             {
                 canDrop = slot.OnHoverItem(transform.position, item);
-                image.color = canDrop ? dragValidColor : dragInvalidColor;
+                background.color = canDrop ? dragValidColor : dragInvalidColor;
                 if (canDrop)
                 {
                     lastDropSlot = slot;
@@ -86,7 +77,7 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
             }
             else
             {
-                image.color = canDrop ? dragValidColor : dragInvalidColor;
+                background.color = canDrop ? dragValidColor : dragInvalidColor;
                 if (lastDropSlot != null)
                     lastDropSlot.OnFinishedHovering();
                 lastDropSlot = null;
@@ -98,5 +89,12 @@ public class DraggableItemUI : MonoBehaviour, IDragHandler, IEndDragHandler, IBe
     {
         draggingOffset = transform.position - Input.mousePosition;
         initialPosition = transform.position;
+    }
+
+    public void SetItem(InventoryItem item)
+    {
+        this.item = item;
+        icon.sprite = item.item ? item.item.UiSprite : null;
+        RecalculateSize();
     }
 }

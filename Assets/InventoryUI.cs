@@ -12,6 +12,9 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
     public GameObject[,] slots;
     public Inventory inventory;
 
+    public Color basicColor;
+    public Color hoveredColor;
+
     public DraggableItemUI draggablePrefab;
     private Vector2Int lastHoveredPosition;
 
@@ -20,7 +23,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
         foreach (var slot in slots)
         {
             var _image = slot.GetComponent<Image>();
-            _image.color = Color.white;
+            _image.color = basicColor;
         }
 
         var itemSlot = slots[lastHoveredPosition.x, lastHoveredPosition.y];
@@ -44,7 +47,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
         foreach (var slot in slots)
         {
             var _image = slot.GetComponent<Image>();
-            _image.color = Color.white;
+            _image.color = basicColor;
         }
         //throw new System.NotImplementedException();
     }
@@ -54,7 +57,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
         foreach (var slot in slots)
         {
             var _image = slot.GetComponent<Image>();
-            _image.color = Color.white;
+            _image.color = basicColor;
         }
 
         var slotId = GetSlotId(position, item.item);
@@ -71,7 +74,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
                     continue;
                 var itemSlot = slots[x, y];
                 var image = itemSlot.GetComponent<Image>();
-                image.color = Color.cyan;
+                image.color = hoveredColor;
             }
         }
         if (inventory.ContainsItem(item))
@@ -109,6 +112,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
                     obj.name = "x" + x + "_y" + y;
                     obj.transform.parent = transform;
                     obj.transform.localScale = new Vector3(1, 1, 1);
+                    obj.GetComponent<Image>().color = basicColor;
                     slots[x, y] = obj;
                 }
 
@@ -129,10 +133,9 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
     private void CreateAndPutInventoryIcon(InventoryPair pair)
     {
         var go = Instantiate(draggablePrefab);
-        go.item = pair.item;
         var slot = slots[pair.pos.x, pair.pos.y];
         go.transform.parent = slot.transform;
-        go.RecalculateSize();
+        go.SetItem(pair.item);
         go.transform.localPosition = new Vector3((go.item.item.Size.x) * 16, -(go.item.item.Size.y - 2) * 16);
         go.transform.localScale = new Vector3(1, 1, 1);
         go.inventoryController = inventory;

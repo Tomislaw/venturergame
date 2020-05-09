@@ -48,8 +48,10 @@ public class ExpensiveGrassStalk : MonoBehaviour
     {
         //dont let grass fall into ground
         if (transform.position.y <= attach.y)
+        {
             transform.position = new Vector2(transform.position.x, attach.y);
-
+            rb.velocity = new Vector2();
+        }
         //slowdown
         if (rb.velocity.y >= 0)
             rb.velocity += new Vector2(-rb.velocity.x * Mathf.Min(1, Time.deltaTime * 5), 0);
@@ -73,7 +75,6 @@ public class ExpensiveGrassStalk : MonoBehaviour
     }
 }
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 {
     public static int StalkCount = 32;
@@ -84,6 +85,9 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
     public List<Color> StalkColors = new List<Color>() { Color.green };
     public float StalkMass = 0.1f;
     public int Seed = 0;
+    public bool RandomSeed = true;
+
+    public float strenght = 2;
 
     public bool CornerLeft = false;
     public bool CornerRight = false;
@@ -123,6 +127,9 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
 
     private void GenerateGrass()
     {
+        if (RandomSeed)
+            Seed = Random.Range(int.MinValue, int.MaxValue);
+
         var _seed = GetComponent<ChunkDecorator>()?.GetProperty("seed", Seed);
         if (_seed.HasValue)
             Seed = _seed.Value;
@@ -160,7 +167,7 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
         var rg = go.AddComponent<Rigidbody2D>();
         rg.mass = StalkMass;
         //make grass stand instead of fall
-        rg.gravityScale = -1;
+        rg.gravityScale = -strenght;
         var j = go.AddComponent<DistanceJoint2D>();
         j.connectedAnchor = pos;
         j.distance = length;

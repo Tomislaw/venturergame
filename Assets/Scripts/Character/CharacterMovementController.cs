@@ -9,7 +9,8 @@ public class CharacterMovementController : MonoBehaviour
 
     public float runSpeed = 1;
     public float acceleration = 1;
-    private float speed = 0;
+
+    public float speed { get; private set; } = 0;
 
     private int moveType = 0;
     private bool moveRequested = false;

@@ -27,9 +27,17 @@ public class ExpensiveGrassRenderer : MonoBehaviour
         texture = new Texture2D(width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight, height);
         texture.filterMode = FilterMode.Point;
         expensiveGrass = GetComponent<ExpensiveGrass>();
-        mesh = CreateMesh();
         _material = new Material(material);
         _material.mainTexture = texture;
+        mesh = CreateMesh();
+        mesh.name = "rect";
+
+        UpdateTexture();
+
+        if (GetComponent<MeshFilter>())
+            GetComponent<MeshFilter>().mesh = mesh;
+        if (GetComponent<MeshRenderer>())
+            GetComponent<MeshRenderer>().material = _material;
     }
 
     private void OnBecameVisible()
@@ -45,17 +53,14 @@ public class ExpensiveGrassRenderer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        Draw();
-        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
+        UpdateTexture();
     }
 
-    private void OnRenderObject()
+    private void UpdateTexture()
     {
-        Graphics.DrawMesh(mesh, transform.localToWorldMatrix, _material, 0);
-    }
+        if (!texture)
+            return;
 
-    private void Draw()
-    {
         texture.SetAllPixels(new Color32(0, 0, 0, 0));
 
         var linesPoints = expensiveGrass.GetLines();
@@ -173,6 +178,8 @@ public class ExpensiveGrassRenderer : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (!expensiveGrass)
+            return;
         float offsetSizeL = (float)(freeSpaceXOffsetLeft) / (float)width * expensiveGrass.Width;
         float offsetSizeR = (float)(freeSpaceXOffsetRight) / (float)width * expensiveGrass.Width;
         var start = new Vector2(transform.position.x - offsetSizeL, transform.position.y);

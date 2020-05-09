@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: LeatherArmor1
   m_EditorClassIdentifier: 
   name: Leather armor
-  uiSprite: {fileID: 0}
+  uiSprite: {fileID: -6587841206207765455, guid: f7799ce70a9ad6b438db3f47aa94bfbb,
+    type: 3}
   gameSprite: {fileID: 0}
   size: {x: 2, y: 3}
   armorModifier: 0
