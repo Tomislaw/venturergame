@@ -51,7 +51,7 @@ public class DebugPlayer : MonoBehaviour
             {
                 var rg = body.GetComponent<Rigidbody2D>();
                 if (Vector2.Distance(body.transform.position, transform.position) < 1)
-                    rg.AddExplosionForce(1, transform.position, 1);
+                    rg.AddExplosionForce(1f, transform.position, 1);
             }
         }
     }
