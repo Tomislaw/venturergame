@@ -22,8 +22,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: List files
+          name: Prepare
           command: |
+            apt-get update
+            apt-get install git-lfs
+            git lfs install
+            git lfs pull
             ls -lsR
       - run:
           name: Load license
@@ -47,8 +51,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: List files
+          name: Prepare
           command: |
+            apt-get update
+            apt-get install git-lfs
+            git lfs install
+            git lfs pull
             ls -lsR
       - run:
           name: Load license
@@ -72,8 +80,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: List files
+          name: Prepare
           command: |
+            apt-get update
+            apt-get install git-lfs
+            git lfs install
+            git lfs pull
             ls -lsR
       - run:
           name: Load license
@@ -97,8 +109,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: List files
+          name: Prepare
           command: |
+            apt-get update
+            apt-get install git-lfs
+            git lfs install
+            git lfs pull
             ls -lsR
       - run:
           name: Load license
