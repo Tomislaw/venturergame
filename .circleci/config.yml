@@ -75,8 +75,8 @@ jobs:
           command: |
             ls -a build/venturer_web/venturer
             ls -a build/venturer_windows
-            zip -r ../../../venturer_web.zip build/venturer_web/venturer || true
-            zip -r ../../venturer_windows64.zip build/venturer_windows || true
+            zip -r venturer_web.zip build/venturer_web/venturer || true
+            zip -r venturer_windows64.zip build/venturer_windows || true
       - run:
           name: Publish zips
           command: |
