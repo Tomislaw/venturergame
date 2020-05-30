@@ -58,6 +58,12 @@ namespace Pipeline
             return Build("build/" + name + "_linux/" + name, BuildTarget.StandaloneLinux64);
         }
 
+        [MenuItem("Build/Build OSX")]
+        public static int BuildOSX()
+        {
+            return Build("build/" + name + "_osx/" + name, BuildTarget.StandaloneOSX);
+        }
+
         [MenuItem("Build/Build All")]
         public static int BuildAll()
         {

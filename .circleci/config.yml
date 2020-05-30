@@ -4,6 +4,12 @@ config:
   unity-win: &unity-win
     docker:
       - image: gableroux/unity3d:2019.2.16f1-windows
+  unity-osx: &unity-osx
+    docker:
+      - image: gableroux/unity3d:2019.2.16f1-mac
+  unity-linux: &unity-linux
+    docker:
+      - image: gableroux/unity3d:2019.2.16f1-linux-il2cpp   
   unity-webgl: &unity-webgl
     docker:
       - image: gableroux/unity3d:2019.2.16f1-webgl
@@ -32,7 +38,48 @@ jobs:
             - logs
       - store_artifacts:
           path: logs
-          
+  build-osx:
+    <<: *unity-osx
+    steps:
+      - checkout
+      - run:
+          name: Load license
+          command: |
+            echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-osx.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: 
+          name: Build
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-osx.log" -executeMethod Pipeline.BuildExecutor.BuildOSX
+            ls -a build/venturer_osx
+      - persist_to_workspace:
+          root: ~/project
+          paths: 
+            - build
+            - logs
+      - store_artifacts:
+          path: logs
+  build-linux:
+    <<: *unity-linux
+    steps:
+      - checkout
+      - run:
+          name: Load license
+          command: |
+            echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-win.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: 
+          name: Build
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildLinux
+            ls -a build/venturer_linux
+      - persist_to_workspace:
+          root: ~/project
+          paths: 
+            - build
+            - logs
+      - store_artifacts:
+          path: logs
   build-webgl:
     <<: *unity-webgl
     steps:
@@ -71,12 +118,25 @@ jobs:
             apk add p7zip
             apk add curl
       - run:
-          name: Prepare zips
+          name: Zip web
           command: |
             ls -a build/venturer_web/venturer
-            ls -a build/venturer_windows
             7z a venturer_web.zip build/venturer_web/venturer/* || true
+      - run:
+          name: Zip win64
+          command: |
+            ls -a build/venturer_windows
             7z a venturer_windows64.zip build/venturer_windows/* || true
+      - run:
+          name: Zip linux64
+          command: |
+            ls -a build/venturer_windows
+            7z a venturer_linux64.zip build/venturer_linux/* || true
+      - run:
+          name: Zip osx
+          command: |
+            ls -a build/venturer_windows
+            7z a venturer_osx.zip build/venturer_osx/* || true               
       - run:
           name: Publish zips
           command: |
@@ -92,6 +152,12 @@ jobs:
           name: Store windows zip
           path: venturer_windows64.zip
       - store_artifacts:
+          name: Store linux zip
+          path: venturer_linux64.zip
+      - store_artifacts:
+          name: Store osx zip
+          path: venturer_osx.zip 
+      - store_artifacts:
           name: Store web zip
           path: venturer_web.zip
 workflows:
@@ -99,11 +165,15 @@ workflows:
   build:
     jobs:
       - build-win
+      - build-linux
+      - build-osx
       - build-webgl
       - test:
           requires:
             - build-win
             - build-webgl
+            - build-osx
+            - build-linux
       - deploy:
           requires:
             - test
