@@ -65,18 +65,18 @@ jobs:
       - attach_workspace:
           at: ~/project
       - run:
-          name: apk
+          name: Download tools
           command: |
             apk update
-            apk add zip
+            apk add p7zip
             apk add curl
       - run:
           name: Prepare zips
           command: |
             ls -a build/venturer_web/venturer
             ls -a build/venturer_windows
-            zip -r venturer_web.zip build/venturer_web/venturer || true
-            zip -r venturer_windows64.zip build/venturer_windows || true
+            7z a venturer_web.zip build/venturer_web/venturer/* || true
+            7z a venturer_windows64.zip build/venturer_windows/* || true
       - run:
           name: Publish zips
           command: |
@@ -86,10 +86,13 @@ jobs:
           command: |
             ls -a build/venturer_web/venturer || exit 0
       - store_artifacts:
+          name: Store logs
           path: logs
       - store_artifacts:
+          name: Store windows zip
           path: venturer_windows64.zip
       - store_artifacts:
+          name: Store web zip
           path: venturer_web.zip
 workflows:
   version: 2
