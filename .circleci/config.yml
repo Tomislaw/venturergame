@@ -23,7 +23,8 @@ jobs:
       - checkout
       - run:
           name: List files
-          commad: ls -lsR
+          commad: |
+            ls -lsR
       - run:
           name: Load license
           command: |
@@ -47,7 +48,8 @@ jobs:
       - checkout
       - run:
           name: List files
-          commad: ls -lsR
+          commad: |
+            ls -lsR
       - run:
           name: Load license
           command: |
@@ -71,7 +73,8 @@ jobs:
       - checkout
       - run:
           name: List files
-          commad: ls -lsR
+          commad: |
+            ls -lsR
       - run:
           name: Load license
           command: |
@@ -95,7 +98,8 @@ jobs:
       - checkout
       - run:
           name: List files
-          commad: ls -lsR
+          commad: |
+            ls -lsR
       - run:
           name: Load license
           command: |
@@ -134,7 +138,8 @@ jobs:
             apk add curl
       - run:
           name: List files
-          commad: ls -lsR
+          commad: |
+            ls -lsR
       - run:
           name: Zip web
           command: |
