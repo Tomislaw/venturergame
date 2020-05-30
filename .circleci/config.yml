@@ -22,6 +22,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: List files
+          commad: ls -lsR
+      - run:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
@@ -42,6 +45,9 @@ jobs:
     <<: *unity-osx
     steps:
       - checkout
+      - run:
+          name: List files
+          commad: ls -lsR
       - run:
           name: Load license
           command: |
@@ -64,6 +70,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: List files
+          commad: ls -lsR
+      - run:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
@@ -85,6 +94,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: List files
+          commad: ls -lsR
+      - run:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
@@ -105,6 +117,9 @@ jobs:
     <<: *main
     steps:
       - checkout
+      - run:
+          name: List files
+          commad: ls -lsR
       - run: ls -a || exit 0
   deploy:
     <<: *main
@@ -117,6 +132,9 @@ jobs:
             apk update
             apk add p7zip
             apk add curl
+      - run:
+          name: List files
+          commad: ls -lsR
       - run:
           name: Zip web
           command: |
