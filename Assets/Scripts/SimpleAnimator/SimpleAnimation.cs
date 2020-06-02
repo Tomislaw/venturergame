@@ -18,7 +18,7 @@ public class SimpleAnimation : ScriptableObject
     public float time = 1;
     public bool loop = true;
 
-    public List<Frame> frames;
+    public List<Frame> frames = new List<Frame>();
 
 #if UNITY_EDITOR
     public List<Sprite> sprites = new List<Sprite>();

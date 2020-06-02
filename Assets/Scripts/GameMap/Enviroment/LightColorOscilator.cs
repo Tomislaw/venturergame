@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.LWRP;
 public class LightColorOscilator : MonoBehaviour
 {
     public ColorOscilator colorOscilator;
-    public Light2D light;
+    public UnityEngine.Experimental.Rendering.Universal.Light2D light;
 
     [Range(0, 1)]
     public float value = 0;

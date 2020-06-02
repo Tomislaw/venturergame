@@ -3,16 +3,16 @@ version: 2.1
 config:
   unity-win: &unity-win
     docker:
-      - image: gableroux/unity3d:2019.2.16f1-windows
+      - image: gableroux/unity3d:2019.3.14f1-windows
   unity-osx: &unity-osx
     docker:
-      - image: gableroux/unity3d:2019.2.16f1-mac
+      - image: gableroux/unity3d:2019.3.14f1-mac
   unity-linux: &unity-linux
     docker:
-      - image: gableroux/unity3d:2019.2.16f1
+      - image: gableroux/unity3d:2019.3.14f1
   unity-webgl: &unity-webgl
     docker:
-      - image: gableroux/unity3d:2019.2.16f1-webgl
+      - image: gableroux/unity3d:2019.3.14f1-webgl
   main: &main
     docker:
       - image: alpine:3.9.5

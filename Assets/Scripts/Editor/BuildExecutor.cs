@@ -64,10 +64,16 @@ namespace Pipeline
             return Build("build/" + name + "_osx/" + name, BuildTarget.StandaloneOSX);
         }
 
+        [MenuItem("Build/Build Android")]
+        public static int BuildAndroid()
+        {
+            return Build("build/" + name + "_android/" + name, BuildTarget.Android);
+        }
+
         [MenuItem("Build/Build All")]
         public static int BuildAll()
         {
-            return BuildLinux() | BuildWindows() | BuildWebGL();
+            return BuildLinux() | BuildWindows() | BuildWebGL() | BuildOSX();
         }
     }
 }
