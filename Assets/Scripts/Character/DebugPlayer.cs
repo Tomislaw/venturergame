@@ -68,7 +68,7 @@ public class DebugPlayer : MonoBehaviour
             foreach (var body in bodies)
             {
                 var rg = body.GetComponent<Rigidbody2D>();
-                if (body.attach.x % 0.02 > 0.01)
+                if (Mathf.Abs(body.attach.x % 0.02f) > 0.01)
                     if (collider.OverlapPoint(body.transform.position))
                         rg.velocity = new Vector2(force, rg.velocity.y);
             }

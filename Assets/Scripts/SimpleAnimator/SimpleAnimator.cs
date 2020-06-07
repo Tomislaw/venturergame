@@ -57,10 +57,9 @@ public class SimpleAnimator : MonoBehaviour
 
     private void OnEnable()
     {
-        ReloadAnimations();
-
-        this.Animation = _currentAnimation;
-        this.timeForAnimation = currentAnimation.animationTime;
+        Animation = _currentAnimation;
+        if (currentAnimation != null)
+            timeForAnimation = currentAnimation.animationTime;
     }
 
     public void Sync(SimpleAnimator other)
@@ -89,19 +88,10 @@ public class SimpleAnimator : MonoBehaviour
             {
                 timeForAnimation = currentAnimation.animationTime;
             }
-            else
-            {
-                if (animationFrame != currentAnimation.frames.Count - 1)
-                {
-                    animationFrame = currentAnimation.frames.Count - 1;
-                    spriteRenderer.sprite = currentAnimation.frames[animationFrame];
-                }
-
-                return;
-            }
         }
 
-        int id = (int)Mathf.Lerp(currentAnimation.frames.Count - 1, 0, timeForAnimation / currentAnimation.animationTime);
+        int _id = (int)((1f - (timeForAnimation / currentAnimation.animationTime)) * currentAnimation.frames.Count);
+        int id = Mathf.Min(currentAnimation.frames.Count - 1, _id);
 
         if (id != animationFrame)
         {
@@ -129,6 +119,7 @@ public class SimpleAnimator : MonoBehaviour
         _animation.name = animation.name;
         _animation.animationTime = animation.time;
         _animation.frames = new List<Sprite>();
+        _animation.looped = animation.loop;
         int i = 0;
         foreach (var frame in animation.frames)
         {
@@ -156,15 +147,24 @@ public class SimpleAnimator : MonoBehaviour
 
 #endif
 
+    private void Start()
+    {
+        ReloadAnimations();
+
+        if (currentAnimation?.frames?.Count > 0)
+            spriteRenderer.sprite = currentAnimation.frames[0];
+    }
+
     private void ReloadAnimations()
     {
         if (texture == null)
         {
-            Debug.LogError("Object " + name + " do't have selected texture.");
+            Debug.LogError("Object " + name + " don't have selected texture.");
             return;
         }
 
         animationsInternal.Clear();
+
         foreach (var animation in animations)
         {
             if (animation != null)

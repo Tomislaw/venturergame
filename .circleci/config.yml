@@ -12,6 +12,9 @@ config:
       - image: gableroux/unity3d:2019.3.14f1
   unity-webgl: &unity-webgl
     docker:
+      - image: gableroux/unity3d:2019.3.14f1-android
+  unity-android: &unity-android
+    docker:
       - image: gableroux/unity3d:2019.3.14f1-webgl
   main: &main
     docker:
@@ -91,11 +94,11 @@ jobs:
           name: Load license
           command: |
             echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
-            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-win.log" -manualLicenseFile .circleci/license.ulf || exit 0
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-lin.log" -manualLicenseFile .circleci/license.ulf || exit 0
       - run: 
           name: Build
           command: |
-            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-win.log" -executeMethod Pipeline.BuildExecutor.BuildLinux
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-lin.log" -executeMethod Pipeline.BuildExecutor.BuildLinux
             ls -a build/venturer_linux
       - persist_to_workspace:
           root: ~/project
@@ -126,6 +129,35 @@ jobs:
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-web.log" -executeMethod Pipeline.BuildExecutor.BuildWebGL
             ls -a build/venturer_web
+      - persist_to_workspace:
+          root: ~/project
+          paths: 
+            - build
+            - logs
+      - store_artifacts:
+          path: logs
+  build-android:
+    <<: *unity-android
+    steps:
+      - checkout
+      - run:
+          name: Prepare
+          command: |
+            apt-get update
+            apt-get install git-lfs
+            git lfs install
+            git lfs pull
+            ls -lsR
+      - run:
+          name: Load license
+          command: |
+            echo $UNITY_LICENSE | base64 --decode > .circleci/license.ulf
+            /opt/Unity/Editor/Unity -quit -batchmode -nographics -silent-crashes -logFile "./logs/license-and.log" -manualLicenseFile .circleci/license.ulf || exit 0
+      - run: 
+          name: Build
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-and.log" -executeMethod Pipeline.BuildExecutor.BuildAndroid
+            ls -a build/venturer_android
       - persist_to_workspace:
           root: ~/project
           paths: 

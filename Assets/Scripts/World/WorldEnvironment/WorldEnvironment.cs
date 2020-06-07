@@ -8,6 +8,8 @@ public class WorldEnvironment : MonoBehaviour
 
     public float normalizedDayTime { get => (time % 86400000f) / 86400000f; }
 
+    public bool useRealTime = false;
+
     public GlobalTime _timeData;
 
     public GlobalTime timeData
@@ -20,10 +22,29 @@ public class WorldEnvironment : MonoBehaviour
         }
     }
 
+#if (UNITY_EDITOR)
+
     public void OnValidate()
     {
         time = _timeData.ToLong();
     }
+
+#endif
+
+    //#if (!UNITY_EDITOR)
+    public void Start()
+    {
+        if (useRealTime)
+        {
+            var date = System.DateTime.Now;
+            _timeData.hour = date.Hour;
+            _timeData.minute = date.Minute;
+            _timeData.second = date.Second;
+            time = _timeData.ToLong();
+        }
+    }
+
+    //#endif
 
     public void Update()
     {

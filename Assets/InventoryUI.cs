@@ -110,8 +110,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
                 {
                     var obj = Instantiate(inventorySlot);
                     obj.name = "x" + x + "_y" + y;
-                    obj.transform.parent = transform;
-                    obj.transform.localScale = new Vector3(1, 1, 1);
+                    obj.transform.SetParent(transform, false);
                     obj.GetComponent<Image>().color = basicColor;
                     slots[x, y] = obj;
                 }

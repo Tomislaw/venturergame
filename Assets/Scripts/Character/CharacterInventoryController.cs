@@ -18,6 +18,16 @@ public class CharacterInventoryController : MonoBehaviour
     {
     }
 
+    public void Start()
+    {
+        var human = GetComponent<HumanCharacter>();
+        if (human)
+            foreach (var item in equipped)
+            {
+                human.Equip(item);
+            }
+    }
+
     public Equipment GetEquippedWeapon()
     {
         return equipped.Find(it => it.type == Equipment.Type.MainHand || it.type == Equipment.Type.TwoHanded);
