@@ -245,6 +245,7 @@ workflows:
             - build-webgl
             - build-osx
             - build-linux
+            - build-android
       - deploy:
           requires:
             - test

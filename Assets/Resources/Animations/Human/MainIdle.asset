@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainIdle
   m_EditorClassIdentifier: 
   name: idle
-  time: 1
+  time: 2
   loop: 1
   frames:
   - pivot: {x: 48, y: 0}
