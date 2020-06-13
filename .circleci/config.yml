@@ -239,6 +239,7 @@ workflows:
       - build-linux
       - build-osx
       - build-webgl
+      - build-android
       - test:
           requires:
             - build-win
