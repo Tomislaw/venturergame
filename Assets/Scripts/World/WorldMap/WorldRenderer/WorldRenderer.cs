@@ -7,7 +7,7 @@ using WorldStructures;
 
 public static class WorldMapRenderer
 {
-    internal static Color BiomeColor(this Region region)
+    internal static Color BiomeColor(this WorldStructures.Serializable.Region region)
     {
         if (region.Water)
             return Color.clear;
@@ -48,7 +48,8 @@ public static class WorldMapRenderer
 
         //if (cell.Border)
         //    color = new Color(0, 0, 0);
-        var color = cell.BiomeColor();
+        var color =// cell.BiomeColor();
+            Color.white;
 
         if (cell.Height > 0)
         {
@@ -136,12 +137,11 @@ public class WorldRenderer : MonoBehaviour
 {
     public WorldMap World;
     public Material Material;
-    private Texture2D m_map;
+
+    //private Texture2D m_map;
     private Mesh mesh;
 
     public bool UseCustomRenderer = false;
-
-    private SizeSettings sizeSettings;
 
     public int PixelsPerUnit = 32;
 
@@ -152,15 +152,7 @@ public class WorldRenderer : MonoBehaviour
         if (World == null)
             return;
 
-        sizeSettings = World.SizeSettings;
-        m_map = new Texture2D(sizeSettings.Size.x, sizeSettings.Size.y);
-        m_map.SetAllPixels(Color.white);
-
         var regions = World.Regions;
-
-        foreach (var cell in regions)
-            cell.Draw(ref m_map);
-        m_map.Apply();
 
         var meshes = GenerateMeshes(regions).ToList();
         CombineInstance[] combine = new CombineInstance[meshes.Count];
@@ -196,9 +188,9 @@ public class WorldRenderer : MonoBehaviour
         if (World == null)
             return;
 
-        if (worldHash != World.Hash)
+        if (worldHash != World.GetHashCode())
         {
-            worldHash = World.Hash;
+            worldHash = World.GetHashCode();
             Reload();
         }
 
@@ -216,7 +208,7 @@ public class WorldRenderer : MonoBehaviour
         //GUI.DrawTexture(new Rect(10, 10, 350, 350), m_map);
     }
 
-    private Mesh GenerateMesh(Region region)
+    private Mesh GenerateMesh(WorldStructures.Serializable.Region region)
     {
         var mesh = new Mesh();
         var indices = new List<int>();
@@ -260,10 +252,10 @@ public class WorldRenderer : MonoBehaviour
         var a = color.a;
 
         // make color darker or lighter depenting on height
-        if (region.Height > 0)
-            color *= 1f + (region.Height / 11f);
-        else if (region.Height < 0)
-            color *= 1f - Mathf.Abs(region.Height) / 8f;
+        //if (region.Height > 0)
+        //    color *= 1f + (region.Height / World.MinHeight);
+        //else if (region.Height < 0)
+        //    color *= 1f - Mathf.Abs(region.Height) / World.MinHeight;
 
         color.a = a;
 
@@ -272,7 +264,7 @@ public class WorldRenderer : MonoBehaviour
         return mesh;
     }
 
-    private IEnumerable<Mesh> GenerateMeshes(IEnumerable<Region> regions)
+    private IEnumerable<Mesh> GenerateMeshes(IEnumerable<WorldStructures.Serializable.Region> regions)
     {
         foreach (var region in regions)
             yield return GenerateMesh(region);

@@ -18,4 +18,8 @@ public class Zone : MonoBehaviour
     private void Update()
     {
     }
+
+    public void CreateFromRegion(WorldStructures.Serializable.Region region)
+    {
+    }
 }

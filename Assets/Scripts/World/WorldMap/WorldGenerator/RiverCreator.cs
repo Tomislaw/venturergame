@@ -205,9 +205,12 @@ namespace WorldGenerator
         public int Seed = 0;
         private System.Random random;
 
+        private int riverNodeCount = 0;
+
         public Task<List<Region>> GenerateRivers(List<Region> regions, CancellationToken cancellationToken = new CancellationToken())
         {
             random = new System.Random(Seed);
+            riverNodeCount = 0;
 
             Task<List<Region>> task = null;
             task = Task.Run(() =>
@@ -308,7 +311,8 @@ namespace WorldGenerator
                         break;
                 // todo add top and bottom for river
                 River river = new River();
-                river.Id = riverId;
+                river.RiverId = riverId;
+                river.Id = riverNodeCount;
                 river.Edge = node.edge;
                 node.edge.Left?.Rivers.Add(river);
                 node.edge.Right?.Rivers.Add(river);
@@ -320,6 +324,8 @@ namespace WorldGenerator
                     previousRiver.Top = river;
 
                 previousRiver = river;
+
+                riverNodeCount++;
             }
         }
     }

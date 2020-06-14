@@ -13,6 +13,7 @@ namespace WorldStructures
 
         public List<River> Rivers = new List<River>();
         public List<Region> Neighbors = new List<Region>();
+        public List<Road> Roads = new List<Road>();
         public Vector2Int Position;
         public Vector2Int Center;
 
@@ -67,10 +68,20 @@ namespace WorldStructures
 
     public class River
     {
+        public int RiverId = 0;
         public int Id = 0;
         public River Top;
         public River Bottom;
         public Edge Edge;
+        public int size = 1;
+    }
+
+    public class Road
+    {
+        public int Id = 0;
+        public Region Left;
+        public Region Right;
+        public Region Center;
         public int size = 0;
     }
 

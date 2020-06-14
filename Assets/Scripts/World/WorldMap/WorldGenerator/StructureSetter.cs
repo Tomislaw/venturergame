@@ -100,10 +100,10 @@ namespace WorldGenerator
                     cancellationToken.ThrowIfCancellationRequested();
 
                     if (neighbour.structure == Structure.IronDeposit)
-                        howGoodIsVillagePlacement += 6;
+                        howGoodIsVillagePlacement += 8;
 
                     if (neighbour.structure == Structure.SaltDeposit)
-                        howGoodIsVillagePlacement += 5;
+                        howGoodIsVillagePlacement += 6;
 
                     if (neighbour.biome == Biome.Lake)
                         howGoodIsVillagePlacement += 4;
@@ -205,7 +205,7 @@ namespace WorldGenerator
                 cancellationToken.ThrowIfCancellationRequested();
 
                 var townRegion = validTownPositions.Aggregate(
-                    (agg, next) => DistanceModifier(ref towns, next) > DistanceModifier(ref towns, agg)
+                    (agg, next) => DistanceModifier(ref towns, next) > DistanceModifier(ref towns, agg, 10)
                     ? next : agg);
 
                 townRegion.Item1.structure = Structure.Town;

@@ -78,6 +78,7 @@ namespace WorldStructures
                     Neighbors = region.Neighbors.Select(it => it.Id).ToList(),
                     Edges = Edge.Serialize(region.Edges),
                     Rivers = River.Serialize(region.Rivers),
+                    Center = region.Center,
                 };
             }
 
@@ -90,6 +91,7 @@ namespace WorldStructures
         [System.Serializable]
         public struct River
         {
+            public int RiverId;
             public int Id;
             public int Top;
             public int Bottom;
@@ -105,6 +107,7 @@ namespace WorldStructures
                     Bottom = river.Bottom != null ? river.Bottom.Id : -1,
                     Edge = Edge.Serialize(river.Edge),
                     Size = river.size,
+                    RiverId = river.RiverId,
                 };
             }
 
