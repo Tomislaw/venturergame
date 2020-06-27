@@ -37,12 +37,17 @@ public class WorldIconsRenderer : MonoBehaviour
     {
         UnityEditor.EditorApplication.delayCall += () =>
         {
-            if (this == null)
-                return;
-            for (int i = this.transform.childCount; i > 0; --i)
-                DestroyImmediate(this.transform.GetChild(0).gameObject);
-            AddIcons();
+            Reload();
         };
+    }
+
+    private void Reload()
+    {
+        if (this == null)
+            return;
+        for (int i = this.transform.childCount; i > 0; --i)
+            DestroyImmediate(this.transform.GetChild(0).gameObject);
+        AddIcons();
     }
 
     private void Update()
@@ -50,16 +55,15 @@ public class WorldIconsRenderer : MonoBehaviour
         if (World == null)
             return;
 
-        if (World.GetHashCode() == worldHash)
+        if (World.Version == worldHash)
             return;
 
         worldHash = World.GetHashCode();
 
-        if (this == null)
-            return;
-        for (int i = this.transform.childCount; i > 0; --i)
-            DestroyImmediate(this.transform.GetChild(0).gameObject);
-        AddIcons();
+        UnityEditor.EditorApplication.delayCall += () =>
+        {
+            Reload();
+        };
     }
 
 #endif

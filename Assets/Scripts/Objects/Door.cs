@@ -20,9 +20,6 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-            isOpen = !isOpen;
-
         if (isOpen)
         {
             if (timeToOpen > 0)

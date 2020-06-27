@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using WorldGenerator;
 using WorldStructures;
@@ -147,10 +148,14 @@ public class WorldRenderer : MonoBehaviour
 
     private int worldHash = 0;
 
+    public bool debugPositions = false;
+
     public void Reload()
     {
         if (World == null)
             return;
+
+        Debug.Log("Reload");
 
         var regions = World.Regions;
 
@@ -188,10 +193,14 @@ public class WorldRenderer : MonoBehaviour
         if (World == null)
             return;
 
-        if (worldHash != World.GetHashCode())
+        if (worldHash != World.Version)
         {
-            worldHash = World.GetHashCode();
-            Reload();
+            worldHash = World.Version;
+
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                Reload();
+            };
         }
 
         //foreach (var mesh in meshes)
@@ -274,4 +283,22 @@ public class WorldRenderer : MonoBehaviour
     {
         return (b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y);
     }
+
+#if UNITY_EDITOR
+
+    private void OnDrawGizmos()
+    {
+        if (!debugPositions)
+            return;
+        foreach (var region in World.Regions)
+        {
+            var pos = transform.position + new Vector3(region.Center.x, region.Center.y) / (float)PixelsPerUnit;
+            var label = region.RegionId.ToString();
+            //Debug.LogError(pos.ToString());
+            Handles.Label(pos, label);
+            Gizmos.DrawCube(pos, new Vector3(0.1f, 0.1f, 0.1f));
+        }
+    }
+
+#endif
 }

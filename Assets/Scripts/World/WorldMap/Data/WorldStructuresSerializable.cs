@@ -44,6 +44,7 @@ namespace WorldStructures
         {
             public Vector2Int Position;
             public Vector2Int Center;
+            public Vector2Int RegionId;
 
             public int Id;
             public int Height;
@@ -60,6 +61,7 @@ namespace WorldStructures
             public List<int> Neighbors;
             public List<Edge> Edges;
             public List<River> Rivers;
+            public List<Road> Roads;
 
             public static Region Serialize(WorldStructures.Region region)
             {
@@ -78,13 +80,40 @@ namespace WorldStructures
                     Neighbors = region.Neighbors.Select(it => it.Id).ToList(),
                     Edges = Edge.Serialize(region.Edges),
                     Rivers = River.Serialize(region.Rivers),
+                    Roads = Road.Serialize(region.Roads),
                     Center = region.Center,
+                    RegionId = region.RegionId,
                 };
             }
 
             public static List<Region> Serialize(List<WorldStructures.Region> regions)
             {
                 return regions.Select(it => Region.Serialize(it)).ToList();
+            }
+        }
+
+        [System.Serializable]
+        public struct Road
+        {
+            public int Id;
+            public int Type;
+            public int Left;
+            public int Right;
+
+            public static Road Serialize(WorldStructures.Road road)
+            {
+                return new Road
+                {
+                    Id = road.Id,
+                    Type = road.Type,
+                    Left = road.Left.Id,
+                    Right = road.Right.Id,
+                };
+            }
+
+            public static List<Road> Serialize(List<WorldStructures.Road> rivers)
+            {
+                return rivers.Select(it => Road.Serialize(it)).ToList();
             }
         }
 

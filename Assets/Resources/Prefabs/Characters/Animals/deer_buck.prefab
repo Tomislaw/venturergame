@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: -2937833281184669878}
   - component: {fileID: -8470989287803982510}
   - component: {fileID: -212043946774059533}
+  - component: {fileID: 2822629049858874215}
+  - component: {fileID: 7648038828236752593}
   m_Layer: 0
   m_Name: deer_buck
   m_TagString: Untagged
@@ -52,6 +54,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -110,7 +113,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4068555cad97da14cb8219b6d78806ae, type: 2}
   - {fileID: 11400000, guid: 907b42281ff6bce4d8a29739021790d6, type: 2}
   - {fileID: 11400000, guid: 59052efbaafb7144f9596a0a3b5c6359, type: 2}
-  _currentAnimation: idle
+  _currentAnimation: death
 --- !u!114 &119458986502900648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,16 +192,44 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.75, y: 0.75}
   m_EdgeRadius: 0
+--- !u!114 &2822629049858874215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9d78fe19cfda614182947d4d3d64515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GroupName: deer
+  groups: []
+--- !u!114 &7648038828236752593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4b77b9e8a2adb4fbc6098bc4e51830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectTime: 0.2
+  color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &6684020534876328029
 PrefabInstance:
   m_ObjectHideFlags: 0

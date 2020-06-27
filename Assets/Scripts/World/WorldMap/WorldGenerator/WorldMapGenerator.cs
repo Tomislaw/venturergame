@@ -61,6 +61,8 @@ public class WorldMapGenerator : MonoBehaviour
         var structure = new StructureSetter();
         structure.Settings = StructureSettings;
 
+        var roads = new RoadSetter();
+
         var regions = await world.Generate();
         regions = await islands.GenerateIsland(regions, cancellationToken);
         regions = await rivers.GenerateRivers(regions, cancellationToken);
@@ -68,8 +70,12 @@ public class WorldMapGenerator : MonoBehaviour
         regions = await moisture.CalculateMoisture(regions, cancellationToken);
         regions = await biome.CalculateBiome(regions, cancellationToken);
         regions = await structure.GenerateStructures(regions, cancellationToken);
+        regions = await structure.GenerateStructures(regions, cancellationToken);
+        regions = await roads.GenerateInitialRoads(regions, cancellationToken);
 
-        WorldMap.SetRegions(WorldStructures.Serializable.Region.Serialize(regions));
+        var serialized = WorldStructures.Serializable.Region.Serialize(regions);
+
+        WorldMap.SetRegions(serialized);
         WorldMap.Size = SizeSettings.Size;
     }
 
@@ -84,7 +90,7 @@ public class WorldMapGenerator : MonoBehaviour
             }
             catch (OperationCanceledException e)
             {
-                //Debug.LogError(e);
+                Debug.Log("Generating world cancelled");
             }
         }
         cancellationTokenSource = new CancellationTokenSource();

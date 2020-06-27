@@ -18,8 +18,19 @@ public class DebugPlayer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            GetComponent<CharacterBasicAttackController>().Attack();
-            PushGrass2();
+            var attackComponent = GetComponent<CharacterBasicAttackController>();
+
+            bool moveLeft = Input.GetKey(KeyCode.A);
+            bool moveRight = Input.GetKey(KeyCode.D);
+
+            if (attackComponent.CanAttack)
+            {
+                if (moveLeft != moveRight)
+                {
+                    character.FaceLeft = moveLeft;
+                }
+            }
+            attackComponent.Attack(moveLeft || moveRight);
         }
         else if (Input.GetKey(KeyCode.LeftControl))
         {

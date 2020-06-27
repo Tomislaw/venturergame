@@ -25,6 +25,11 @@ public class CharacterMovementController : MonoBehaviour
         get => moveType == 2;
     }
 
+    public bool IsMoving
+    {
+        get => speed != 0;
+    }
+
     public bool FaceLeft
     {
         get { return transform.localScale.x < 0; }
@@ -47,7 +52,7 @@ public class CharacterMovementController : MonoBehaviour
     private void LateUpdate()
     {
         transform.position += new Vector3(speed * Time.deltaTime, 0, 0);
-        if (!moveRequested)
+        if (!moveRequested && IsMoving)
             Stop();
         moveRequested = false;
     }
@@ -97,6 +102,17 @@ public class CharacterMovementController : MonoBehaviour
 
         if (speed > maxSpeed)
             speed = maxSpeed;
+    }
+
+    public void ForceMove(float moveSpeed)
+    {
+        moveRequested = true;
+        moveType = 0;
+
+        if (speed != 0)
+            FaceLeft = speed < 0;
+
+        speed = moveSpeed;
     }
 
     public void Stop()

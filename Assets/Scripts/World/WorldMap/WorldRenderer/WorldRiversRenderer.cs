@@ -28,10 +28,13 @@ public class WorldRiversRenderer : MonoBehaviour
         if (World == null)
             return;
 
-        if (worldHash != World.GetHashCode())
+        if (worldHash != World.Version)
         {
-            worldHash = World.GetHashCode();
-            Reload();
+            worldHash = World.Version;
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                Reload();
+            };
         }
     }
 

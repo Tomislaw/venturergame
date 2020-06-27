@@ -20,6 +20,8 @@ namespace WorldStructures
         public List<Edge> Edges = new List<Edge>();
 
         public int Id = 0;
+        public Vector2Int RegionId;
+
         public int Height = -1;
         public float Moisture = 0;
         public float Temperature = 0;
@@ -66,6 +68,28 @@ namespace WorldStructures
         }
     }
 
+    public class Road
+    {
+        public int Id = 0;
+        public int Type = 0;
+        public Region Left = null;
+        public Region Right = null;
+
+        public Road(Region a, Region b)
+        {
+            if (a.RegionId.x < b.RegionId.x || a.RegionId.y < b.RegionId.y)
+            {
+                Left = a;
+                Right = b;
+            }
+            else
+            {
+                Left = b;
+                Right = a;
+            }
+        }
+    }
+
     public class River
     {
         public int RiverId = 0;
@@ -74,15 +98,6 @@ namespace WorldStructures
         public River Bottom;
         public Edge Edge;
         public int size = 1;
-    }
-
-    public class Road
-    {
-        public int Id = 0;
-        public Region Left;
-        public Region Right;
-        public Region Center;
-        public int size = 0;
     }
 
     public enum Biome

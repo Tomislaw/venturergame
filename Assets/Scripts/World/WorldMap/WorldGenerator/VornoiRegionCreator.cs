@@ -90,6 +90,7 @@ namespace WorldGenerator
                 cell.Region = new Region();
                 cell.Region.Position = new Vector2Int((int)cell.X, (int)cell.Y);
                 cell.Region.Id = counter;
+                cell.Region.RegionId = new Vector2Int(counter / Settings.Rows.x, counter % Settings.Rows.y);
                 counter++;
             }
             foreach (var cell in cells)

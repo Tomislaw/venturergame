@@ -5,31 +5,54 @@ using System.Linq;
 
 public class CharacterBasicAttackController : MonoBehaviour
 {
-    public float attackTime = 0.8f;
+    public float timeBetweenAttack = 0.1f;
+    public float attackTime = 0.3f;
+
+    public bool canMoveWhileAttacking = true;
+    public bool loseSpeedWhleAttacking = true;
+    public float moveSpeedWhileAttacking = 0.1f;
 
     private float timeOfAttackLeft = 0;
+    private float timeBetweenAttackLeft = 0;
+    private float currentSpeedWhileAttacking = 0;
     private bool _attackRequested = false;
+    private bool _attackRequestedWhileMoving = false;
+    private bool? _ovverideDirection = null;
 
     public bool IsAttacking { get => timeOfAttackLeft > 0; }
-    public bool CanAttack { get => timeOfAttackLeft <= 0; }
+    public bool CanAttack { get => timeOfAttackLeft <= 0 && timeBetweenAttackLeft <= 0; }
     public bool IsFinishedAttacking { get; private set; } = false;
     public bool IsStartedAttacking { get; private set; } = false;
 
-    public void Attack()
+    public void Attack(bool andMove = false)
     {
         var movementController = GetComponent<CharacterMovementController>();
         var blockComtroller = GetComponent<CharacterBlockComponent>();
-        if (movementController)
+
+        if (CanAttack)
+        {
+            _attackRequested = true;
+            if (canMoveWhileAttacking)
+            {
+                _attackRequestedWhileMoving = andMove;
+                currentSpeedWhileAttacking = movementController.FaceLeft ? -moveSpeedWhileAttacking : moveSpeedWhileAttacking;
+                movementController.ForceMove(currentSpeedWhileAttacking);
+            }
+        }
+
+        if (_ovverideDirection != null)
+            movementController.FaceLeft = _ovverideDirection.Value;
+
+        if (movementController && !canMoveWhileAttacking)
             movementController.Stop();
         if (blockComtroller)
             blockComtroller.StopBlocking();
-        if (CanAttack)
-            _attackRequested = true;
     }
 
     public void CancelAttack()
     {
         timeOfAttackLeft = 0;
+        timeBetweenAttackLeft = timeBetweenAttack;
     }
 
     private void FindAndDamage()
@@ -74,8 +97,26 @@ public class CharacterBasicAttackController : MonoBehaviour
             IsStartedAttacking = true;
         }
 
+        if (timeBetweenAttackLeft > 0)
+        {
+            timeBetweenAttackLeft -= Time.deltaTime;
+        }
+
         if (IsAttacking)
         {
+            // move while attacking
+            if (canMoveWhileAttacking && _attackRequestedWhileMoving)
+            {
+                var movementController = GetComponent<CharacterMovementController>();
+                if (movementController)
+                {
+                    if (loseSpeedWhleAttacking)
+                        currentSpeedWhileAttacking *= Mathf.Max(0, (timeOfAttackLeft / attackTime));
+                    movementController.ForceMove(currentSpeedWhileAttacking);
+                }
+            }
+
+            // stop attacking and damage opponents
             timeOfAttackLeft -= Time.deltaTime;
             if (timeOfAttackLeft < 0)
             {
@@ -83,6 +124,8 @@ public class CharacterBasicAttackController : MonoBehaviour
                 timeOfAttackLeft = 0;
                 IsFinishedAttacking = true;
                 FindAndDamage();
+                timeBetweenAttackLeft = timeBetweenAttack;
+                currentSpeedWhileAttacking = 0;
             }
         }
     }

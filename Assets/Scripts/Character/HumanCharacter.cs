@@ -241,20 +241,33 @@ public class HumanCharacter : MonoBehaviour
 [CustomEditor(typeof(HumanCharacter)), CanEditMultipleObjects]
 internal class HumanCharacterEditor : Editor
 {
-    private HumanCharacter gameObject;
-    private int m_head;
-    private int m_body;
-    private int m_hair;
-    private int f_head;
-    private int f_body;
-    private int f_hair;
-    private bool gender;
+    public HumanCharacter gameObject;
+    public int m_head;
+    public int m_body;
+    public int m_hair;
+    public int f_head;
+    public int f_body;
+    public int f_hair;
+    public bool gender;
 
-    private bool updated = false;
+    public bool updated = false;
 
     public void OnEnable()
     {
         gameObject = (serializedObject.targetObject as HumanCharacter);
+        gender = gameObject.male;
+        if (gameObject.male)
+        {
+            m_head = gameObject.head;
+            m_hair = gameObject.hair;
+            m_body = gameObject.body;
+        }
+        else
+        {
+            f_head = gameObject.head;
+            f_hair = gameObject.hair;
+            f_body = gameObject.body;
+        }
     }
 
     public override void OnInspectorGUI()

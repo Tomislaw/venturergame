@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeerCharacterAi : MonoBehaviour
+public class DeerCharacterAi : MonoBehaviour, Damageable.OnDamage
 {
     public enum State
     {
@@ -70,11 +70,6 @@ public class DeerCharacterAi : MonoBehaviour
         {
             state = State.Dead;
             return;
-        }
-
-        if (damageable.HealthChange < 0)
-        {
-            alertedTimeLeft = alertedTime;
         }
 
         if (alertedTimeLeft > 0)
@@ -192,6 +187,11 @@ public class DeerCharacterAi : MonoBehaviour
         {
             grassPos = closestGrass.transform.position;
         }
+    }
+
+    public void OnDamage(Damageable.DamageData damage)
+    {
+        alertedTimeLeft = alertedTime;
     }
 
     //private void sleep()
