@@ -39,9 +39,12 @@ public class WorldMap : MonoBehaviour, IWorldMap
                     Roads.Add(road);
         }
 
+#if UNITY_EDITOR
         UnityEditor.EditorApplication.delayCall += () =>
         {
             Version++;
         };
     }
+
+#endif
 }

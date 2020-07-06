@@ -190,6 +190,7 @@ public class WorldRenderer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+#if UNITY_EDITOR
         if (World == null)
             return;
 
@@ -210,6 +211,7 @@ public class WorldRenderer : MonoBehaviour
         //var matrix = gameObject.transform.localToWorldMatrix;
         //foreach (var mesh in meshes)
         //    Graphics.DrawMesh(mesh, matrix, Material, 31);
+#endif
     }
 
     private void OnGUI()

@@ -24,16 +24,19 @@ public class WorldRoadsRenderer : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+#if UNITY_EDITOR
         if (World == null)
             return;
 
         if (worldHash != World.Version)
         {
             worldHash = World.Version;
+
             UnityEditor.EditorApplication.delayCall += () =>
             {
                 Reload();
             };
+#endif
         }
     }
 
