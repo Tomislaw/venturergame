@@ -31,10 +31,13 @@ public class WorldRiversRenderer : MonoBehaviour
         if (worldHash != World.Version)
         {
             worldHash = World.Version;
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.delayCall += () =>
             {
                 Reload();
             };
+
+#endif
         }
     }
 

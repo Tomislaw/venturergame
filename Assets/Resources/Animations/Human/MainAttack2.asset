@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainAttack2
   m_EditorClassIdentifier: 
   name: attack2
-  time: 0.2
+  time: 0.3
   loop: 0
   frames:
   - pivot: {x: 48, y: 0}

@@ -19,8 +19,8 @@ MonoBehaviour:
   size: {x: 2, y: 2}
   armorModifier: 0
   damageModifier: 0
-  femaleSpriteSheet: {fileID: 562963071660348177, guid: 5a7c1038eeef1b645ab0f0c8dddb35f4,
+  femaleSpriteSheet: {fileID: 8518355249121521590, guid: 9f0399d333d3c8a4db2fec6d5d325e57,
     type: 3}
-  maleSpriteSheet: {fileID: 562963071660348177, guid: 54296cd89e63279488f07b90a9579dd2,
+  maleSpriteSheet: {fileID: 8518355249121521590, guid: b1348db5decd09244b4b5f75edd499f4,
     type: 3}
   type: 5

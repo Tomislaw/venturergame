@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: death
   time: 1
-  loop: 1
+  loop: 0
   frames:
   - pivot: {x: 16, y: 0}
     rect:

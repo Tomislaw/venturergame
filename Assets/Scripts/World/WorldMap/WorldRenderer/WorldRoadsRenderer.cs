@@ -36,8 +36,8 @@ public class WorldRoadsRenderer : MonoBehaviour
             {
                 Reload();
             };
-#endif
         }
+#endif
     }
 
     public void Reload()

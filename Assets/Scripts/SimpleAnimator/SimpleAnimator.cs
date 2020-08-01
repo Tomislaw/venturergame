@@ -9,7 +9,7 @@ public class SimpleAnimator : MonoBehaviour
 {
     public Texture2D texture;
     public int pixelsPerUnit = 32;
-    public List<SimpleAnimation> animations;
+    public List<SimpleAnimation> animations = new List<SimpleAnimation>();
 
     private float timeForAnimation;
     private int animationFrame = 0;
@@ -18,7 +18,7 @@ public class SimpleAnimator : MonoBehaviour
     private List<SpriteAnimation> animationsInternal = new List<SpriteAnimation>();
 
     [SerializeField]
-    private string _currentAnimation;
+    private string _currentAnimation = "idle";
 
     private SpriteAnimation currentAnimation;
 
@@ -70,7 +70,7 @@ public class SimpleAnimator : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (currentAnimation == null)
+        if (currentAnimation == null || currentAnimation.frames == null)
         {
             spriteRenderer.sprite = null;
             return;
@@ -90,7 +90,10 @@ public class SimpleAnimator : MonoBehaviour
             }
         }
 
-        int _id = (int)((1f - (timeForAnimation / currentAnimation.animationTime)) * currentAnimation.frames.Count);
+        int _id = 0;
+        if (currentAnimation.animationTime > 0)
+            _id = (int)((1f - (timeForAnimation / currentAnimation.animationTime)) * currentAnimation.frames.Count);
+
         int id = Mathf.Min(currentAnimation.frames.Count - 1, _id);
 
         if (id != animationFrame)
@@ -147,7 +150,7 @@ public class SimpleAnimator : MonoBehaviour
 
 #endif
 
-    private void Start()
+    private void Awake()
     {
         ReloadAnimations();
 
@@ -181,7 +184,7 @@ internal class SimpleAnimatiorEditor : Editor
     private SimpleAnimator animation;
 
     private string currentAnimation;
-    private int currentAnimationId;
+    private int currentAnimationId = -1;
     private string[] animations;
 
     private void OnEnable()
@@ -204,7 +207,7 @@ internal class SimpleAnimatiorEditor : Editor
         EditorGUILayout.PropertyField(serializedObject.FindProperty("pixelsPerUnit"), true);
         EditorGUILayout.PropertyField(serializedObject.FindProperty("animations"), true);
 
-        animations = animation.animations.Select(it => it.name).ToArray();
+        animations = animation.animations.Select(it => it == null ? "" : it.name).ToArray();
 
         int i = 0;
 
@@ -216,10 +219,19 @@ internal class SimpleAnimatiorEditor : Editor
             }
             i++;
         }
-        currentAnimationId = EditorGUILayout.Popup("CurrentAnimation", currentAnimationId, animations);
-        currentAnimation = animations[currentAnimationId];
-        if (animation.Animation == null || currentAnimation != animation.Animation)
-            animation.Animation = currentAnimation;
+
+        if (currentAnimationId >= animations.Length)
+        {
+            currentAnimationId = 0;
+        }
+
+        if (currentAnimationId >= 0 && currentAnimationId < animations.Length)
+        {
+            currentAnimationId = EditorGUILayout.Popup("CurrentAnimation", currentAnimationId, animations);
+            currentAnimation = animations[currentAnimationId];
+            if (animation.Animation == null || currentAnimation != animation.Animation)
+                animation.Animation = currentAnimation;
+        }
 
         serializedObject.ApplyModifiedProperties();
     }

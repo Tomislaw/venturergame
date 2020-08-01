@@ -44,7 +44,6 @@ public class WorldMap : MonoBehaviour, IWorldMap
         {
             Version++;
         };
-    }
-
 #endif
+    }
 }

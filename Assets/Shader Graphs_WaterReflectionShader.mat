@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_WaterReflectionShader
+  m_Shader: {fileID: -6465566751694194690, guid: 6b0bf7a7030a6094bb8ed3f91bc42278,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_49AB7E86:
+        m_Texture: {fileID: 8400000, guid: 9dfbbcc1d4aa6a14fb911162a53d62b7, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E3AE4531:
+        m_Texture: {fileID: 2800000, guid: 99fe6c4eba412ac419e1eb1e23d5b98a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_20F25EFE: 2
+    - Vector1_4938ECD1: 0.2
+    m_Colors:
+    - Color_C6A8048: {r: 0.8820755, g: 0.9699408, b: 1, a: 1}

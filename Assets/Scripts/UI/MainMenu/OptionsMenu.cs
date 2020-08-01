@@ -72,4 +72,9 @@ public class OptionsMenu : MonoBehaviour
         ScreenOptions.FullScreen = fullScreen;
         ScreenOptions.Apply();
     }
+
+    public void Start()
+    {
+        ScreenOptions.Apply();
+    }
 }

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterMovementController))]
+[RequireComponent(typeof(BasicCharacter))]
 public class DeerCharacterAi : MonoBehaviour, Damageable.OnDamage
 {
     public enum State
@@ -9,8 +11,8 @@ public class DeerCharacterAi : MonoBehaviour, Damageable.OnDamage
         Idle, Sleeping, Alerted, LookingForFood, Eat, Wander, Dead
     }
 
-    public CharacterMovementController controller;
-    public BasicCharacter character;
+    private CharacterMovementController controller;
+    private BasicCharacter character;
 
     public State state = State.Idle;
 
@@ -216,4 +218,10 @@ public class DeerCharacterAi : MonoBehaviour, Damageable.OnDamage
 
     //    sleppines -= Time.deltaTime * 5;
     //}
+
+    private void OnEnable()
+    {
+        controller = GetComponent<CharacterMovementController>();
+        character = GetComponent<BasicCharacter>();
+    }
 }

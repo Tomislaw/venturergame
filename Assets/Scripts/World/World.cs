@@ -17,4 +17,8 @@ public class World : MonoBehaviour
     private void Update()
     {
     }
+
+    private void Start()
+    {
+    }
 }

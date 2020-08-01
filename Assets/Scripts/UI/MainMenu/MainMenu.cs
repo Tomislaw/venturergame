@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        //ScreenOptions.Apply();
+        ScreenOptions.Apply();
         Unroll();
     }
 

@@ -18,12 +18,12 @@ public class DebugPlayer : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            var attackComponent = GetComponent<CharacterBasicAttackController>();
+            var attackComponent = GetComponent<CharacterHumanAttackController>();
 
             bool moveLeft = Input.GetKey(KeyCode.A);
             bool moveRight = Input.GetKey(KeyCode.D);
 
-            if (attackComponent.CanAttack)
+            if (attackComponent.CanRequestAttack)
             {
                 if (moveLeft != moveRight)
                 {

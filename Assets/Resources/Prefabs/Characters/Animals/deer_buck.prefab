@@ -11,14 +11,15 @@ GameObject:
   - component: {fileID: 119458986502900629}
   - component: {fileID: 119458986502900650}
   - component: {fileID: 119458986502900651}
-  - component: {fileID: 119458986502900648}
   - component: {fileID: 119458986502900654}
   - component: {fileID: -2937833281184669878}
   - component: {fileID: -8470989287803982510}
-  - component: {fileID: -212043946774059533}
   - component: {fileID: 2822629049858874215}
   - component: {fileID: 7648038828236752593}
-  m_Layer: 0
+  - component: {fileID: 3937168203479977325}
+  - component: {fileID: 8300574276011343935}
+  - component: {fileID: 715780074736932503}
+  m_Layer: 10
   m_Name: deer_buck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,21 +115,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 907b42281ff6bce4d8a29739021790d6, type: 2}
   - {fileID: 11400000, guid: 59052efbaafb7144f9596a0a3b5c6359, type: 2}
   _currentAnimation: death
---- !u!114 &119458986502900648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119458986502900655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7580152bd964fba44b03c8b1eb878b8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 1.25
-  runSpeed: 3
-  acceleration: 25
 --- !u!114 &119458986502900654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,8 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd14a16489804234bab5e259673977d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 119458986502900648}
-  character: {fileID: -8470989287803982510}
   state: 0
   timeToGetHungry: 30
   timeToChangeIdle: 7
@@ -176,32 +160,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc232a3894ce3014ab52418c203819e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &-212043946774059533
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119458986502900655}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.75}
-  m_EdgeRadius: 0
 --- !u!114 &2822629049858874215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +188,58 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectTime: 0.2
   color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!58 &3937168203479977325
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.4}
+  serializedVersion: 2
+  m_Radius: 0.4
+--- !u!50 &8300574276011343935
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &715780074736932503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119458986502900655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faf64cfb11d1bca41852f475542f27df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 1
+  runSpeed: 1
+  acceleration: 1
 --- !u!1001 &6684020534876328029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,6 +311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: hud_crystals_small
+      objectReference: {fileID: 0}
+    - target: {fileID: 7911911060348794452, guid: 144c40cae8edf4e4fa02bfedd6758563,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 144c40cae8edf4e4fa02bfedd6758563, type: 3}

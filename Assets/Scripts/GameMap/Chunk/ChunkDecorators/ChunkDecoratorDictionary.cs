@@ -4,13 +4,13 @@ using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChunkDecorators", menuName = "ScriptableObjects/GameWorld/ChunkDecorators", order = 1)]
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class ChunkDecoratorDictionary : ScriptableObject
 {
     [SerializeField]
     public Dictionary<string, GameObject> entries = new Dictionary<string, GameObject>();
 
-    private void OnValidate()
+    private void OnEnable()
     {
         var list = Resources.LoadAll<GameObject>("Prefabs/ChunkDecorators");
         foreach (var item in list)

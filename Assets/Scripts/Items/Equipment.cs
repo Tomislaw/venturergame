@@ -28,3 +28,11 @@ public class Equipment : SingleItem
         return str;
     }
 }
+
+public static class EquipmentExtensions
+{
+    public static bool IsWeapon(this Equipment.Type w)
+    {
+        return w == Equipment.Type.MainHand || w == Equipment.Type.OffHand || w == Equipment.Type.TwoHanded;
+    }
+}

@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - WorldMap
-  - 
-  - 
-  - 
+  - World_Player
+  - World_NonBlocking
+  - World_Blocking
   - 
   - 
   - 
