@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "SingeItem", menuName = "ScriptableObjects/Items/SingeItem", order = 1)]
+[CreateAssetMenu(fileName = "SingeItem", menuName = "Venturer/Items/SingeItem", order = 1)]
 [System.Serializable]
 public class SingleItem : Item
 {

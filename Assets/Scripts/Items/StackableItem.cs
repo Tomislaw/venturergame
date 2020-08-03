@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "StackableItem", menuName = "ScriptableObjects/Items/StackableItem", order = 1)]
+[CreateAssetMenu(fileName = "StackableItem", menuName = "Venturer/Items/StackableItem", order = 1)]
 public class StackableItem : Item
 {
     public string name;

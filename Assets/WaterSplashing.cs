@@ -11,9 +11,10 @@ public class WaterSplashing : MonoBehaviour
 
     private Dictionary<GameObject, SpriteRenderer> splashes = new Dictionary<GameObject, SpriteRenderer>();
 
-    private void Start()
+    private void Awake()
     {
         waterCollider = GetComponent<BoxCollider2D>();
+        splashingPrefab.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,7 +69,8 @@ public class WaterSplashing : MonoBehaviour
             return;
 
         var splash = Instantiate(splashingPrefab);
-        splash.transform.parent = transform;
+        splash.gameObject.SetActive(true);
+        splash.transform.SetParent(transform, false);
         splashes.Add(go, splash);
     }
 }

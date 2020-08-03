@@ -221,4 +221,24 @@ public class ExpensiveGrass : MonoBehaviour, IChunkDecoratorObject
         CornerLeft = cd.GetProperty("cornerLeft", false);
         CornerRight = cd.GetProperty("cornerRight", false);
     }
+
+    public void OnTriggerStay2D(Collider2D collider)
+    {
+        var rigidbody = collider.gameObject.GetComponent<Rigidbody2D>();
+        if (rigidbody == null)
+            return;
+
+        var force = rigidbody.velocity.x;
+        if (force == 0)
+            return;
+
+        var bodies = GetComponentsInChildren<ExpensiveGrassStalk>();
+        foreach (var body in bodies)
+        {
+            var rg = body.GetComponent<Rigidbody2D>();
+            if (Mathf.Abs(body.attach.x % 0.02f) > 0.01)
+                if (collider.OverlapPoint(body.transform.position))
+                    rg.velocity = new Vector2(force, rg.velocity.y);
+        }
+    }
 }

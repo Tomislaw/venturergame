@@ -14,6 +14,30 @@ TextureImporter:
   - first:
       213: -6780562557229239585
     second: water_splashing1_3
+  - first:
+      213: -6575469563332650360
+    second: water_splashing1_0
+  - first:
+      213: 4217196846861382570
+    second: water_splashing1_1
+  - first:
+      213: 4317833599351012617
+    second: water_splashing1_2
+  - first:
+      213: -8625224771718684293
+    second: water_splashing1_3
+  - first:
+      213: 8326094067661831480
+    second: water_splashing1_4
+  - first:
+      213: 4152709217403512572
+    second: water_splashing1_5
+  - first:
+      213: -4564805444251107902
+    second: water_splashing1_6
+  - first:
+      213: -4151783224914098484
+    second: water_splashing1_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,6 +151,90 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88a1a2e354d3fb4a0800000000000000
+      internalID: -6575469563332650360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_splashing1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa3f115403e768a30800000000000000
+      internalID: 4217196846861382570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_splashing1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90d309028c60ceb30800000000000000
+      internalID: 4317833599351012617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_splashing1_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71eecdb4cb0d4880800000000000000
+      internalID: -8625224771718684293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_splashing1_4
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -137,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a80f66538425ccb00800000000000000
-      internalID: 850144899753242762
+      spriteID: 83d7875e07a3c8370800000000000000
+      internalID: 8326094067661831480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_splashing1_1
+      name: water_splashing1_5
       rect:
         serializedVersion: 2
         x: 32
@@ -158,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 439aec41d59d82fd0800000000000000
-      internalID: -2366402610378921676
+      spriteID: cf6a3def70361a930800000000000000
+      internalID: 4152709217403512572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_splashing1_2
+      name: water_splashing1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -179,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20073630b3a482480800000000000000
-      internalID: -8923801044314263550
+      spriteID: 2cdb4a242ad86a0c0800000000000000
+      internalID: -4564805444251107902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water_splashing1_3
+      name: water_splashing1_7
       rect:
         serializedVersion: 2
         x: 32
@@ -200,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd27907774a96e1a0800000000000000
-      internalID: -6780562557229239585
+      spriteID: cc6c19e6727e166c0800000000000000
+      internalID: -4151783224914098484
       vertices: []
       indices: 
       edges: []

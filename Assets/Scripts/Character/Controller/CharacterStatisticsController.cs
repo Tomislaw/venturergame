@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class CharacterStatisticsController : MonoBehaviour
 {
+    public int Level = 1;
+
     // Attributes
     public int Strenght = 1;
+
     public int Dexterity = 1;
     public int Constitution = 1;
     public int Willpower = 1;
@@ -16,14 +19,12 @@ public class CharacterStatisticsController : MonoBehaviour
 
     // Skills
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 }

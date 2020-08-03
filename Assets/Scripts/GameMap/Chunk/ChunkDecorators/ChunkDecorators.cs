@@ -2,27 +2,29 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using Venturer;
 
 [CreateAssetMenu(fileName = "ChunkDecorators", menuName = "ScriptableObjects/GameWorld/ChunkDecorators", order = 1)]
 [ExecuteAlways]
-public class ChunkDecoratorDictionary : ScriptableObject
+public class ChunkDecorators : Venturer.ScriptableSingleton<ChunkDecorators>
 {
-    [SerializeField]
-    public Dictionary<string, GameObject> entries = new Dictionary<string, GameObject>();
+    public Dictionary<string, GameObject> decoratos { get; private set; } = new Dictionary<string, GameObject>();
+
+    public string Directory = "Prefabs/ChunkDecorators";
 
     private void OnEnable()
     {
-        var list = Resources.LoadAll<GameObject>("Prefabs/ChunkDecorators");
+        var list = Resources.LoadAll<GameObject>(Directory);
         foreach (var item in list)
         {
-            entries.Add(item.name, item);
+            decoratos.Add(item.name, item);
         }
     }
 }
 
 #if UNITY_EDITOR
 
-[CustomEditor(typeof(ChunkDecoratorDictionary))]
+[CustomEditor(typeof(ChunkDecorators))]
 public class ChunkDecoratorEditorDisplay : Editor
 {
     private Dictionary<string, GameObject> entries;
@@ -30,11 +32,13 @@ public class ChunkDecoratorEditorDisplay : Editor
 
     private void OnEnable()
     {
-        entries = (serializedObject.targetObject as ChunkDecoratorDictionary).entries;
+        entries = (serializedObject.targetObject as ChunkDecorators).decoratos;
     }
 
     public override void OnInspectorGUI()
     {
+        DrawDefaultInspector();
+
         EditorGUILayout.LabelField("Entries - " + entries.Count());
 
         int size = entries.Count() * 16;

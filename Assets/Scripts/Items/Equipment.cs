@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "EquipmentItem", menuName = "ScriptableObjects/Items/EquipmentItem", order = 1)]
+[CreateAssetMenu(fileName = "EquipmentItem", menuName = "Venturer/Items/EquipmentItem", order = 1)]
 public class Equipment : SingleItem
 {
     public int armorModifier;

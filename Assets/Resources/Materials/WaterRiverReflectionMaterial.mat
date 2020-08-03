@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_WaterReflectionShader
+  m_Name: WaterRiverReflectionMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 6b0bf7a7030a6094bb8ed3f91bc42278,
     type: 3}
   m_ShaderKeywords: 
@@ -29,7 +29,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_17EB0A1C: 1
     - Vector1_20F25EFE: 2
     - Vector1_4938ECD1: 0.2
     m_Colors:
-    - Color_C6A8048: {r: 0.8820755, g: 0.9699408, b: 1, a: 1}
+    - Color_C6A8048: {r: 1, g: 1, b: 1, a: 0.36862746}
+    - Color_DBD11D1: {r: 1, g: 1, b: 1, a: 1}

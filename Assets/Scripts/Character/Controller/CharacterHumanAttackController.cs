@@ -145,6 +145,27 @@ public class CharacterHumanAttackController : MonoBehaviour
 
     private void FindAndDamage()
     {
+        float weaponRange = 1;
+        var colliders = Physics2D.OverlapCircleAll(transform.position, weaponRange);
+        var movementController = GetComponent<CharacterMovementController>();
+        foreach (var collider in colliders)
+        {
+            var damageable = collider.GetComponent<Damageable>();
+            if (!damageable)
+                continue;
+            if (!movementController)
+            {
+                damageable.Damage(gameObject, 3);
+            }
+            else
+            {
+                if (movementController.FaceLeft && collider.transform.position.x > transform.position.x)
+                    continue;
+                if (!movementController.FaceLeft && collider.transform.position.x < transform.position.x)
+                    continue;
+                damageable.Damage(gameObject, 4);
+            }
+        }
     }
 
     public enum State

@@ -69,20 +69,20 @@ public class DebugPlayer : MonoBehaviour
 
     private void PushGrass(float force)
     {
-        var collider = GetComponent<Collider2D>();
-        var colliders = new List<Collider2D>();
-        collider.OverlapCollider(new ContactFilter2D(), colliders);
+        //var collider = GetComponent<Collider2D>();
+        //var colliders = new List<Collider2D>();
+        //collider.OverlapCollider(new ContactFilter2D(), colliders);
 
-        foreach (var collide in colliders)
-        {
-            var bodies = collide.GetComponentsInChildren<ExpensiveGrassStalk>();
-            foreach (var body in bodies)
-            {
-                var rg = body.GetComponent<Rigidbody2D>();
-                if (Mathf.Abs(body.attach.x % 0.02f) > 0.01)
-                    if (collider.OverlapPoint(body.transform.position))
-                        rg.velocity = new Vector2(force, rg.velocity.y);
-            }
-        }
+        //foreach (var collide in colliders)
+        //{
+        //    var bodies = collide.GetComponentsInChildren<ExpensiveGrassStalk>();
+        //    foreach (var body in bodies)
+        //    {
+        //        var rg = body.GetComponent<Rigidbody2D>();
+        //        if (Mathf.Abs(body.attach.x % 0.02f) > 0.01)
+        //            if (collider.OverlapPoint(body.transform.position))
+        //                rg.velocity = new Vector2(force, rg.velocity.y);
+        //    }
+        //}
     }
 }

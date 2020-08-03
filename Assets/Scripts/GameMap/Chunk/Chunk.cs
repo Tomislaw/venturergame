@@ -7,9 +7,6 @@ public class Chunk : MonoBehaviour
 {
     public const int CHUNK_SIZE = 24;
 
-    [SerializeField]
-    public ChunkDecoratorDictionary dictionary;
-
     public List<ChunkDecoratorData> items;
     public int style = 0;
 
@@ -43,7 +40,7 @@ public class Chunk : MonoBehaviour
         int counter = 0;
         foreach (var item in items)
         {
-            var go = ChunkDecorator.Create(dictionary, item);
+            var go = ChunkDecorator.Create(item);
 
             if (go == null)
             {
