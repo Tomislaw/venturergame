@@ -107,6 +107,12 @@ public class CharacterMovementController : MonoBehaviour
             speed = -maxSpeed;
     }
 
+    public void Move(bool isLeft, bool isRunning = false)
+    {
+        if (isLeft) MoveLeft(isRunning);
+        else MoveRight(isRunning);
+    }
+
     public void MoveRight(bool isRunning = false)
     {
         if (speed < 0)

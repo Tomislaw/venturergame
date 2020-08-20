@@ -3,19 +3,19 @@ version: 2.1
 config:
   unity-win: &unity-win
     docker:
-      - image: gableroux/unity3d:2019.3.14f1-windows
+      - image: gableroux/unity3d:2019.4.8f1-windows
   unity-osx: &unity-osx
     docker:
-      - image: gableroux/unity3d:2019.3.14f1-mac
+      - image: gableroux/unity3d:2019.4.8f1-mac
   unity-linux: &unity-linux
     docker:
-      - image: gableroux/unity3d:2019.3.14f1
+      - image: gableroux/unity3d:2019.4.8f1
   unity-webgl: &unity-webgl
     docker:
-      - image: gableroux/unity3d:2019.3.14f1-webgl
+      - image: gableroux/unity3d:2019.4.8f1-webgl
   unity-android: &unity-android
     docker:
-      - image: gableroux/unity3d:2019.3.14f1-android-update-2020-07-16-android
+      - image: gableroux/unity3d:2019.4.8f1-android
   main: &main
     docker:
       - image: alpine:3.9.5
@@ -207,7 +207,12 @@ jobs:
           name: Zip osx
           command: |
             ls -a build/venturer_windows
-            7z a venturer_osx.zip build/venturer_osx/* || true               
+            7z a venturer_osx.zip build/venturer_osx/* || true
+      - run:
+          name: Zip android
+          command: |
+            ls -a build/venturer_windows
+            7z a venturer_osx.zip build/venturer_android/* || true         
       - run:
           name: Publish zips
           command: |
@@ -231,6 +236,9 @@ jobs:
       - store_artifacts:
           name: Store web zip
           path: venturer_web.zip
+      - store_artifacts:
+          name: Store android zip
+          path: venturer_android.zip
 workflows:
   version: 2
   build:

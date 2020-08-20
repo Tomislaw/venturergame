@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "EquipmentItem", menuName = "ScriptableObjects/SimpleAnimator/Animation", order = 1)]
+[CreateAssetMenu(fileName = "Animation", menuName = "Venturer/SimpleAnimator/Animation", order = 1)]
 public class SimpleAnimation : ScriptableObject
 {
     [System.Serializable]

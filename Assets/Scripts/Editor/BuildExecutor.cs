@@ -67,13 +67,13 @@ namespace Pipeline
         [MenuItem("Build/Build Android")]
         public static int BuildAndroid()
         {
-            return Build("build/" + name + "_android/" + name, BuildTarget.Android);
+            return Build("build/" + name + "_android/" + name + ".apk", BuildTarget.Android);
         }
 
         [MenuItem("Build/Build All")]
         public static int BuildAll()
         {
-            return BuildLinux() | BuildWindows() | BuildWebGL() | BuildOSX();
+            return BuildLinux() | BuildWindows() | BuildAndroid() | BuildWebGL() | BuildOSX();
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Venturer
         {
             if (s_Instance != null)
             {
-                Debug.LogError("ScriptableSingleton already exists. Did you query the singleton in a constructor?");
+                Debug.LogWarning("ScriptableSingleton already exists. Did you query the singleton in a constructor?");
             }
             else
             {
