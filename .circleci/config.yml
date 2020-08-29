@@ -157,6 +157,8 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-and.log" -executeMethod Pipeline.BuildExecutor.BuildAndroid
+            ls -a
+            ls -a build
             ls -a build/venturer_android
       - persist_to_workspace:
           root: ~/project
@@ -207,12 +209,7 @@ jobs:
           name: Zip osx
           command: |
             ls -a build/venturer_windows
-            7z a venturer_osx.zip build/venturer_osx/* || true
-      - run:
-          name: Zip android
-          command: |
-            ls -a build/venturer_windows
-            7z a venturer_osx.zip build/venturer_android/* || true         
+            7z a venturer_osx.zip build/venturer_osx/* || true     
       - run:
           name: Publish zips
           command: |
@@ -238,22 +235,22 @@ jobs:
           path: venturer_web.zip
       - store_artifacts:
           name: Store android zip
-          path: venturer_android.zip
+          path: build/venturer_android/venturer.apk
 workflows:
   version: 2
   build:
     jobs:
-      - build-win
-      - build-linux
-      - build-osx
-      - build-webgl
+      #- build-win
+      #- build-linux
+      #- build-osx
+      #- build-webgl
       - build-android
       - test:
           requires:
-            - build-win
-            - build-webgl
-            - build-osx
-            - build-linux
+            #- build-win
+            #- build-webgl
+            #- build-osx
+            #- build-linux
             - build-android
       - deploy:
           requires:
