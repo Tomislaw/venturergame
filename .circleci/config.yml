@@ -157,8 +157,6 @@ jobs:
           name: Build
           command: |
             /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/build-and.log" -executeMethod Pipeline.BuildExecutor.BuildAndroid
-            ls -a
-            ls -a build
             ls -a build/venturer_android
       - persist_to_workspace:
           root: ~/project
@@ -240,17 +238,17 @@ workflows:
   version: 2
   build:
     jobs:
-      #- build-win
-      #- build-linux
-      #- build-osx
-      #- build-webgl
+      - build-win
+      - build-linux
+      - build-osx
+      - build-webgl
       - build-android
       - test:
           requires:
-            #- build-win
-            #- build-webgl
-            #- build-osx
-            #- build-linux
+            - build-win
+            - build-webgl
+            - build-osx
+            - build-linux
             - build-android
       - deploy:
           requires:
