@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static Damageable;
 
 [RequireComponent(typeof(SpriteMask))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -24,7 +25,7 @@ public class SpriteHealthBarMask : MonoBehaviour
 }
 
 [RequireComponent(typeof(SortingGroup))]
-public class SpriteHealthBar : MonoBehaviour
+public class SpriteHealthBar : MonoBehaviour, OnDamage
 {
     public enum Type
     {
@@ -177,5 +178,11 @@ public class SpriteHealthBar : MonoBehaviour
         }
         maskObj2.transform.localScale = new Vector2(spriteRenderer.bounds.size.x, spriteRenderer.bounds.size.y * end) * pixelsPerUnit;
         yield return 0;
+    }
+
+    public void OnDamage(DamageData damage)
+    {
+        if (damage.isDead)
+            gameObject.SetActive(false);
     }
 }

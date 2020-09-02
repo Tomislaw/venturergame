@@ -59,7 +59,7 @@ public class Damageable : MonoBehaviour
             isDead = IsDead,
         };
 
-        foreach (var item in GetComponentsInParent<OnDamage>())
+        foreach (var item in GetComponentsInChildren<OnDamage>())
         {
             item.OnDamage(data);
         }

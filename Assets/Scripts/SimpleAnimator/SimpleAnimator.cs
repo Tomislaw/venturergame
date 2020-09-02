@@ -30,28 +30,38 @@ public class SimpleAnimator : MonoBehaviour
         get { return currentAnimation == null ? null : currentAnimation.name; }
         set
         {
-            if (currentAnimation != null && currentAnimation.name == value)
-            {
-                if (!currentAnimation.looped && !IsAnimationFinished)
-                    return;
-                if (currentAnimation.looped)
-                    return;
-            }
+            SetAnimation(value);
+        }
+    }
 
-            currentAnimation = null;
-            foreach (var a in animationsInternal)
-            {
-                if (a.name != value)
-                    continue;
+    public void SetAnimation(string value, bool restartIfSame = true)
+    {
+        if (!restartIfSame)
+        {
+            if (currentAnimation.name == value)
+                return;
+        }
+        else if (currentAnimation != null && currentAnimation.name == value)
+        {
+            if (!currentAnimation.looped && !IsAnimationFinished)
+                return;
+            if (currentAnimation.looped)
+                return;
+        }
 
-                currentAnimation = a;
-                _currentAnimation = a.name;
-                animationFrame = -1;
-                timeForAnimation = currentAnimation.animationTime;
-                if (currentAnimation.frames.Count > 0)
-                    spriteRenderer.sprite = currentAnimation.frames[0];
-                break;
-            }
+        currentAnimation = null;
+        foreach (var a in animationsInternal)
+        {
+            if (a.name != value)
+                continue;
+
+            currentAnimation = a;
+            _currentAnimation = a.name;
+            animationFrame = -1;
+            timeForAnimation = currentAnimation.animationTime;
+            if (currentAnimation.frames.Count > 0)
+                spriteRenderer.sprite = currentAnimation.frames[0];
+            break;
         }
     }
 
@@ -64,6 +74,7 @@ public class SimpleAnimator : MonoBehaviour
 
     public void Sync(SimpleAnimator other)
     {
+        Animation = other.Animation;
         animationFrame = other.animationFrame;
         timeForAnimation = other.timeForAnimation;
     }

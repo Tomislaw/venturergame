@@ -45,14 +45,14 @@ public class MainMenu : MonoBehaviour
     {
         var rect = GetComponent<RectTransform>();
         LeanTween.move(rect, rect.anchoredPosition - new Vector2(0, hideDistance), hideSpeed).setEase(LeanTweenType.easeInOutCubic);
-        return LeanTween.rotate(rect, new Vector2(0, hideDistance), hideSpeed).setEase(LeanTweenType.easeInOutCubic);
+        return LeanTween.rotate(rect, new Vector2(-30, hideDistance), hideSpeed).setEase(LeanTweenType.easeInOutCubic);
     }
 
     public void Show(bool show)
     {
         if (show)
         {
-            Unroll().setOnComplete(() => { ShowFromBottom(); });
+            ShowFromBottom().setOnComplete(() => { Unroll(); });
         }
         else
         {

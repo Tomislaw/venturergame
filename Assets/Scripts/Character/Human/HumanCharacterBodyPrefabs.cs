@@ -6,62 +6,42 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HumanCharacterBodyPrefabs", menuName = "ScriptableObjects/Characters/HumanCharacterBodyPrefabs", order = 1)]
 public class HumanCharacterBodyPrefabs : ScriptableObject
 {
-    public List<GameObject> femaleHeads = new List<GameObject>();
-    public List<GameObject> maleHeads = new List<GameObject>();
+    public Dictionary<string, List<GameObject>> Prefabs = new Dictionary<string, List<GameObject>>();
 
-    public List<GameObject> femaleLegs = new List<GameObject>();
-    public List<GameObject> maleLegs = new List<GameObject>();
+    public Color[] hairColors = new Color[0];
+    public Color[] bodyColors = new Color[0];
 
-    public List<GameObject> femaleHairs = new List<GameObject>();
-    public List<GameObject> maleHairs = new List<GameObject>();
-
-    public List<GameObject> femaleBodies = new List<GameObject>();
-    public List<GameObject> maleBodies = new List<GameObject>();
+    public string beardPrefabs = "Prefabs/Characters/Human/Beard";
+    public string headPrefabs = "Prefabs/Characters/Human/Head";
+    public string hairPrefabs = "Prefabs/Characters/Human/Hair";
+    public string legsPrefabs = "Prefabs/Characters/Human/Legs";
+    public string bodyPrefabs = "Prefabs/Characters/Human/Body";
 
     public void Reload()
     {
-        femaleHeads.Clear();
-        maleHeads.Clear();
-        femaleHairs.Clear();
-        maleHairs.Clear();
-        femaleBodies.Clear();
-        maleBodies.Clear();
+        Prefabs.Clear();
 
-        var heads = Resources.LoadAll("Prefabs/Characters/Human/Head", typeof(GameObject));
-        foreach (var head in heads)
-        {
-            if (head.name.StartsWith("f_"))
-                femaleHeads.Add(head as GameObject);
-            else if (head.name.StartsWith("m_"))
-                maleHeads.Add(head as GameObject);
-        }
+        InsertPrefabs("Beard", beardPrefabs);
+        InsertPrefabs("Head", headPrefabs);
+        InsertPrefabs("Body", bodyPrefabs);
+        InsertPrefabs("Hair", hairPrefabs);
+        InsertPrefabs("Legs", legsPrefabs);
+    }
 
-        var bodies = Resources.LoadAll("Prefabs/Characters/Human/Body", typeof(GameObject));
-        foreach (var body in bodies)
+    private void InsertPrefabs(string name, string directory)
+    {
+        var female = new List<GameObject>();
+        var male = new List<GameObject>();
+        var prefabs = Resources.LoadAll(directory, typeof(GameObject));
+        foreach (var prefab in prefabs)
         {
-            if (body.name.StartsWith("f_"))
-                femaleBodies.Add(body as GameObject);
-            else if (body.name.StartsWith("m_"))
-                maleBodies.Add(body as GameObject);
+            if (prefab.name.StartsWith("f_"))
+                female.Add(prefab as GameObject);
+            else if (prefab.name.StartsWith("m_"))
+                male.Add(prefab as GameObject);
         }
-
-        var hairs = Resources.LoadAll("Prefabs/Characters/Human/Hair", typeof(GameObject));
-        foreach (var hair in hairs)
-        {
-            if (hair.name.StartsWith("f_"))
-                femaleHairs.Add(hair as GameObject);
-            else if (hair.name.StartsWith("m_"))
-                maleHairs.Add(hair as GameObject);
-        }
-
-        var legs = Resources.LoadAll("Prefabs/Characters/Human/Legs", typeof(GameObject));
-        foreach (var leg in legs)
-        {
-            if (leg.name.StartsWith("f_"))
-                femaleHairs.Add(leg as GameObject);
-            else if (leg.name.StartsWith("m_"))
-                maleHairs.Add(leg as GameObject);
-        }
+        Prefabs["female" + name] = female;
+        Prefabs["male" + name] = male;
     }
 
     public void OnValidate()

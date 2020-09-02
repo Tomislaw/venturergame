@@ -12,13 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 439f772515087ab4eb02942374a31fd9, type: 3}
   m_Name: HumanCharacterBodyPrefabs
   m_EditorClassIdentifier: 
-  femaleHeads:
-  - {fileID: 883459483045881404, guid: 750366ece59e22c42936979141f5cafb, type: 3}
-  maleHeads:
-  - {fileID: 8046484545766386199, guid: 90a4eca3630e97546b6e65248f22dfe4, type: 3}
-  femaleHairs: []
-  maleHairs: []
-  femaleBodies:
-  - {fileID: 8046484545766386199, guid: f6226d64a1a35374593db79d9d53fd21, type: 3}
-  maleBodies:
-  - {fileID: 8046484545766386199, guid: 18287f7d746032745a6018b97baf6c03, type: 3}
+  hairColors:
+  - {r: 0.14901961, g: 0.14328235, b: 0.13754511, a: 1}
+  - {r: 0.255, g: 0.214404, b: 0.204255, a: 1}
+  - {r: 0.383, g: 0.2533692, b: 0.21448, a: 1}
+  - {r: 0.701, g: 0.61632216, b: 0.37583733, a: 1}
+  - {r: 0.7529412, g: 0.6934377, b: 0.5058824, a: 1}
+  - {r: 0.8207547, g: 0.80304766, b: 0.6465379, a: 1}
+  - {r: 0.72156864, g: 0.41233343, b: 0.23306668, a: 1}
+  - {r: 0.63529414, g: 0.29803923, b: 0.20392159, a: 1}
+  - {r: 0.36862746, g: 0.14509805, b: 0.07450981, a: 1}
+  - {r: 0.37543473, g: 0.376, b: 0.36020797, a: 1}
+  - {r: 0.57254905, g: 0.57254905, b: 0.53304315, a: 1}
+  - {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 1}
+  bodyColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0.9529412, g: 0.9372549, b: 0.9137255, a: 1}
+  - {r: 0.9597453, g: 0.98039216, b: 0.85882354, a: 1}
+  - {r: 0.872, g: 0.83211637, b: 0.77346396, a: 1}
+  - {r: 0.615, g: 0.538494, b: 0.42373502, a: 1}
+  - {r: 0.445, g: 0.3883121, b: 0.30611464, a: 1}
+  beardPrefabs: Prefabs/Characters/Human/Beard
+  headPrefabs: Prefabs/Characters/Human/Head
+  hairPrefabs: Prefabs/Characters/Human/Hair
+  legsPrefabs: Prefabs/Characters/Human/Legs
+  bodyPrefabs: Prefabs/Characters/Human/Body
