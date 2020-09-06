@@ -1,6 +1,9 @@
 version: 2.1
      
 config:
+  unity: &unity
+    docker:
+      - image: gableroux/unity3d:2019.4.8f1
   unity-win: &unity-win
     docker:
       - image: gableroux/unity3d:2019.4.8f1-windows
@@ -166,13 +169,20 @@ jobs:
       - store_artifacts:
           path: logs
   test:
-    <<: *main
+    <<: *unity
     steps:
       - checkout
-      - run:
-          name: List files
-          command: ls -lsR
-      - run: ls -a || exit 0
+      - run: 
+          name: Docs
+          command: |
+            /opt/Unity/Editor/Unity -batchmode -quit -nographics -silent-crashes -logFile "./logs/docs.log" -executeMethod Pipeline.BuildExecutor.GenerateDocs
+      - persist_to_workspace:
+          root: ~/project
+          paths: 
+            - build/docs
+            - logs
+      - store_artifacts:
+          path: logs
   deploy:
     <<: *main
     steps:
@@ -212,6 +222,7 @@ jobs:
           name: Publish zips
           command: |
             ls -a
+            ls -a build
       - run:
           name: Publish webgl
           command: |

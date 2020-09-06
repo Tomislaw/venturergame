@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using System;
+using System.IO;
 
 namespace Pipeline
 {
@@ -74,6 +75,26 @@ namespace Pipeline
         public static int BuildAll()
         {
             return BuildLinux() | BuildWindows() | BuildAndroid() | BuildWebGL() | BuildOSX();
+        }
+
+        [MenuItem("Build/Generate Docs")]
+        public static int GenerateDocs()
+        {
+            try
+            {
+                var path = "build/docs/version.txt";
+                if (!File.Exists(path))
+                    File.Create(path).Close();
+
+                File.WriteAllText(path, Application.version);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return 1;
+            }
+
+            return 0;
         }
     }
 }
