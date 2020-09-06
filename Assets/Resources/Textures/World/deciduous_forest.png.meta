@@ -1,0 +1,668 @@
+fileFormatVersion: 2
+guid: 4e7e2b3cbc104ca4ca7c1640ec00d7cc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5992331935623260687
+    second: deciduous_forest_0
+  - first:
+      213: -4368051997630926762
+    second: deciduous_forest_1
+  - first:
+      213: -705260215088203098
+    second: deciduous_forest_2
+  - first:
+      213: -2615466417224359486
+    second: deciduous_forest_3
+  - first:
+      213: 2882579317860547082
+    second: deciduous_forest_4
+  - first:
+      213: -3604464266994648575
+    second: deciduous_forest_5
+  - first:
+      213: 7999578502554470159
+    second: deciduous_forest_6
+  - first:
+      213: 4050359380843754670
+    second: deciduous_forest_7
+  - first:
+      213: -6830092104021459229
+    second: deciduous_forest_8
+  - first:
+      213: 7068361837226075513
+    second: deciduous_forest_9
+  - first:
+      213: -5969700244505539940
+    second: deciduous_forest_10
+  - first:
+      213: 2547988364485684456
+    second: deciduous_forest_11
+  - first:
+      213: -8092217602513906466
+    second: deciduous_forest_12
+  - first:
+      213: 1263866230344694092
+    second: deciduous_forest_13
+  - first:
+      213: -2240952986267446729
+    second: deciduous_forest_14
+  - first:
+      213: 4756282846666287933
+    second: deciduous_forest_15
+  - first:
+      213: -4206818179444091716
+    second: deciduous_forest_16
+  - first:
+      213: 5066834904594745908
+    second: deciduous_forest_17
+  - first:
+      213: -4572886058035269359
+    second: deciduous_forest_18
+  - first:
+      213: -6351228739986556239
+    second: deciduous_forest_19
+  - first:
+      213: 6149983682347338695
+    second: deciduous_forest_20
+  - first:
+      213: 5902622172872559211
+    second: deciduous_forest_21
+  - first:
+      213: 8069155058025820909
+    second: deciduous_forest_22
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: deciduous_forest_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 1024
+        width: 174
+        height: 254
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 069ceae580f6a1e40848c7bc10006e2c
+      internalID: 5992331935623260687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_1
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 1024
+        width: 133
+        height: 244
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e02b1c8d313cd4cbae72d60764b49b
+      internalID: -4368051997630926762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_2
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 1024
+        width: 142
+        height: 253
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e9e86e557744644bac6ed6ce17cfab9
+      internalID: -705260215088203098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_3
+      rect:
+        serializedVersion: 2
+        x: 829
+        y: 1024
+        width: 178
+        height: 253
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 622c0ec919a52f641b266e7ad0d8378f
+      internalID: -2615466417224359486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_4
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 1024
+        width: 151
+        height: 255
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f91debe7f673a3b49af8e7db977859ec
+      internalID: 2882579317860547082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 896
+        width: 56
+        height: 124
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e70ae78efde5d1478f62431f8b51431
+      internalID: -3604464266994648575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_6
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 897
+        width: 53
+        height: 127
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56a467180dcef4444ae105c41f68f9d8
+      internalID: 7999578502554470159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_7
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 896
+        width: 66
+        height: 119
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90ed15be94f981d40a8df478487dec5b
+      internalID: 4050359380843754670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_8
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 896
+        width: 73
+        height: 125
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fe383c23dc0ad4593943d7dda9fcaf
+      internalID: -6830092104021459229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_9
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 896
+        width: 55
+        height: 122
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d9a92943bd5e8541a478e4ff04462d3
+      internalID: 7068361837226075513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_10
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 896
+        width: 77
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 366d609d5c506d044ac8bab657ff4686
+      internalID: -5969700244505539940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_11
+      rect:
+        serializedVersion: 2
+        x: 802
+        y: 896
+        width: 67
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73fab82bcb199ac4eb2c4a9dfed5aca2
+      internalID: 2547988364485684456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_12
+      rect:
+        serializedVersion: 2
+        x: 932
+        y: 896
+        width: 64
+        height: 42
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2ee0f522a5fe934ba6962cc47f73bd8
+      internalID: -8092217602513906466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_13
+      rect:
+        serializedVersion: 2
+        x: 1046
+        y: 896
+        width: 83
+        height: 43
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbcdbb822002104ba38c4694bc80313
+      internalID: 1263866230344694092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_14
+      rect:
+        serializedVersion: 2
+        x: 1179
+        y: 896
+        width: 75
+        height: 40
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f2de1ac3ec30945a4cf6dbbe337fa9
+      internalID: -2240952986267446729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_15
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 768
+        width: 154
+        height: 86
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83a971b46af94944e963adb93db1223c
+      internalID: 4756282846666287933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_16
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 768
+        width: 133
+        height: 79
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f5fba059605ee64bb19a5164b31fab2
+      internalID: -4206818179444091716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_17
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 768
+        width: 128
+        height: 83
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b86f956cd21d62147885435f81cbd70c
+      internalID: 5066834904594745908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_18
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 768
+        width: 166
+        height: 85
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c37686eef12c8f44b9fa77be932a738
+      internalID: -4572886058035269359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_19
+      rect:
+        serializedVersion: 2
+        x: 1074
+        y: 768
+        width: 151
+        height: 80
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76a4f4a13c85cd428313634b86a7ce1
+      internalID: -6351228739986556239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_20
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 512
+        width: 1273
+        height: 253
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ef427e2ccd45e048915a9be40010119
+      internalID: 6149983682347338695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 1280
+        height: 255
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3603e27953eb678499439a93d5471197
+      internalID: 5902622172872559211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deciduous_forest_22
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1278
+        height: 255
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251e1fbf8aad85f45baa684bba1ce8db
+      internalID: 8069155058025820909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
