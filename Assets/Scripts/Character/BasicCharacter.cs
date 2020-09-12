@@ -17,7 +17,7 @@ public class BasicCharacter : MonoBehaviour
 
     private void Update()
     {
-        var animator = GetComponent<SimpleAnimator>();
+        var animator = GetComponent<SpriteAnimator>();
         if (animator == null)
             return;
 
@@ -65,7 +65,7 @@ public class BasicCharacter : MonoBehaviour
 
     public bool Animate(string animation, bool idleOnFinish = true)
     {
-        var animator = GetComponent<SimpleAnimator>();
+        var animator = GetComponent<SpriteAnimator>();
         if (animator == null)
             return true;
 

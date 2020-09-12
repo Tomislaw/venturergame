@@ -14,8 +14,8 @@ public class OnDamageEffect : MonoBehaviour, Damageable.OnDamage
 
     private IEnumerator Flick()
     {
-        var mainSprite = GetComponent<SimpleAnimator>();
-        var sprites = GetComponentsInChildren<SimpleAnimator>();
+        var mainSprite = GetComponent<SpriteAnimator>();
+        var sprites = GetComponentsInChildren<SpriteAnimator>();
 
         timeLeft = effectTime;
         while (timeLeft > 0)

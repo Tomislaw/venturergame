@@ -105,15 +105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: ae27cafe34ac7484eb2a62e6fdaf4f97, type: 3}
   pixelsPerUnit: 32
-  animations:
-  - {fileID: 11400000, guid: 544352f97bf627b4bb603de701fe208b, type: 2}
-  - {fileID: 11400000, guid: eb905fb0dca3f4641ad4810f7bbc2534, type: 2}
-  - {fileID: 11400000, guid: 717267db3f819f643a401a41edc6fb4c, type: 2}
-  - {fileID: 11400000, guid: 31510641d9077044c841fa6438b10ee8, type: 2}
-  - {fileID: 11400000, guid: 0053c235a732c9b41b6a6f2f80a22828, type: 2}
-  - {fileID: 11400000, guid: 4068555cad97da14cb8219b6d78806ae, type: 2}
-  - {fileID: 11400000, guid: 907b42281ff6bce4d8a29739021790d6, type: 2}
-  - {fileID: 11400000, guid: 59052efbaafb7144f9596a0a3b5c6359, type: 2}
+  clip: {fileID: 11400000, guid: f22c581b29e6c7147b0d56c5327e1d14, type: 2}
   _currentAnimation: death
 --- !u!114 &119458986502900654
 MonoBehaviour:
@@ -240,6 +232,7 @@ MonoBehaviour:
   walkSpeed: 1
   runSpeed: 1
   acceleration: 1
+  slowdown: 0.1
 --- !u!1001 &6684020534876328029
 PrefabInstance:
   m_ObjectHideFlags: 0

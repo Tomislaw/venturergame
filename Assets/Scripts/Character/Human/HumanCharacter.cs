@@ -20,6 +20,10 @@ public class HumanCharacter : MonoBehaviour
     internal Color _hairColor { get => hairColor > 0 || hairColor < prefabs.hairColors.Length ? prefabs.hairColors[hairColor] : Color.white; }
     internal Color _bodyColor { get => bodyColor > 0 || hairColor < prefabs.bodyColors.Length ? prefabs.bodyColors[bodyColor] : Color.white; }
 
+    public GameObject Head;
+    public GameObject Body;
+    public GameObject Legs;
+
     public bool IsWeaponEquipped
     {
         get
@@ -53,11 +57,10 @@ public class HumanCharacter : MonoBehaviour
         }
     }
 
-    private Dictionary<Equipment.Type, Equipment> equipment = new Dictionary<Equipment.Type, Equipment>();
-
     public HumanCharacterBodyPrefabs prefabs;
 
-    private Dictionary<string, (SimpleAnimator, HumanAnimationType.Type)> sprites = new Dictionary<string, (SimpleAnimator, HumanAnimationType.Type)>();
+    private Dictionary<Equipment.Type, Equipment> equipment = new Dictionary<Equipment.Type, Equipment>();
+    private Dictionary<string, (Animator, HumanAnimationType.Type)> sprites = new Dictionary<string, (Animator, HumanAnimationType.Type)>();
 
     private CharacterHumanAttackController.State previousAttackState = CharacterHumanAttackController.State.None;
     private State state;
@@ -79,26 +82,33 @@ public class HumanCharacter : MonoBehaviour
             return;
         }
 
+        GameObject parent = this.gameObject;
+
         int type = -1;
         switch (name)
         {
             case "Head":
                 type = this.head;
+                parent = Head;
                 break;
 
             case "Body":
+                parent = Body;
                 type = this.body;
                 break;
 
             case "Beard":
+                parent = Head;
                 type = this.beard;
                 break;
 
             case "Legs":
+                parent = Legs;
                 type = this.legs;
                 break;
 
             case "Hair":
+                parent = Head;
                 type = this.hair;
                 break;
 
@@ -106,18 +116,17 @@ public class HumanCharacter : MonoBehaviour
                 return;
         }
 
-        var part = transform.Find(name)?.gameObject;
+        if (sprites.ContainsKey(name))
+        {
+            var part = sprites[name].Item1?.gameObject;
+            if (part)
+                Destroy(part);
 
-#if UNITY_EDITOR
-        if (part)
-            DestroyImmediate(part);
-#else
-        if (part)
-            Destroy(part);
-#endif
+            sprites.Remove(name);
+        }
+
         string gender = male ? "male" : "female";
-
-        AddBodyPart(prefabs.Prefabs[gender + name], type, name);
+        AddBodyPart(prefabs.Prefabs[gender + name], type, name, parent.transform);
     }
 
     public void InvalidateEquipment()
@@ -125,8 +134,7 @@ public class HumanCharacter : MonoBehaviour
         foreach (var item in equipment.Keys)
         {
             var itemName = item.ToString().ToLower();
-            var go = transform.Find(itemName)?.gameObject;
-
+            var go = sprites[itemName].Item1?.gameObject;
             if (go)
             {
 #if UNITY_EDITOR
@@ -140,20 +148,20 @@ public class HumanCharacter : MonoBehaviour
         foreach (var equipment in equipment.Values)
         {
             GameObject animator = male ? equipment.maleSpriteSheet : equipment.femaleSpriteSheet;
-            if (animator != null && animator.GetComponent<SimpleAnimator>() != null)
+            if (animator != null && animator.GetComponent<SpriteAnimator>() != null)
             {
                 var item = Instantiate(animator);
                 item.name = equipment.type.ToString().ToLower();
                 item.transform.SetParent(transform, false);
                 var type = item.GetComponent<HumanAnimationType>()?.AnimationType ?? HumanAnimationType.Type.Main;
-                sprites[item.name] = (item.GetComponent<SimpleAnimator>(), type);
+                sprites[item.name] = (item.GetComponent<SpriteAnimator>(), type);
             }
         }
     }
 
     public void InvalidateColors()
     {
-        var sprites = GetComponentsInChildren<SimpleAnimator>();
+        var sprites = GetComponentsInChildren<SpriteAnimator>();
         foreach (var item in sprites)
         {
             var name = item.gameObject.name;
@@ -166,13 +174,19 @@ public class HumanCharacter : MonoBehaviour
 
     public void Invalidate()
     {
+        foreach (var item in GetComponentsInChildren<HumanAnimationType>())
+        {
+            var animator = item.GetComponent<Animator>();
+            if (animator != null)
+                sprites[animator.gameObject.name] = (animator, item.AnimationType);
+        }
         InvalidateBody();
         InvalidateEquipment();
         InvalidateColors();
         SyncAnimation();
     }
 
-    private void AddBodyPart(List<GameObject> objects, int id, string name)
+    private void AddBodyPart(List<GameObject> objects, int id, string name, Transform parent)
     {
         if (objects.Count <= id || id < 0)
         {
@@ -182,11 +196,8 @@ public class HumanCharacter : MonoBehaviour
         {
             var item = GameObject.Instantiate(objects[id]);
             item.name = name;
-            item.transform.parent = transform;
-            item.transform.localPosition = new Vector3();
-            item.transform.localScale = new Vector3(1, 1, 1);
-
-            sprites[item.name] = (item.GetComponent<SimpleAnimator>(), item.GetComponent<HumanAnimationType>().AnimationType);
+            item.transform.SetParent(parent, false);
+            sprites[item.name] = (item.GetComponent<SpriteAnimator>(), item.GetComponent<HumanAnimationType>().AnimationType);
         }
     }
 
@@ -200,14 +211,38 @@ public class HumanCharacter : MonoBehaviour
             return;
 #endif
 
+        GameObject parent = this.gameObject;
+
+        switch (equipment.type)
+        {
+            case Equipment.Type.MainHand:
+            case Equipment.Type.OffHand:
+            case Equipment.Type.TwoHanded:
+            case Equipment.Type.Armor:
+            case Equipment.Type.Necklace:
+            case Equipment.Type.Ring:
+                parent = Body;
+                break;
+
+            case Equipment.Type.Helmet:
+                parent = Head;
+
+                break;
+
+            case Equipment.Type.Boots:
+            case Equipment.Type.Pants:
+                parent = Legs;
+                break;
+        }
+
         GameObject animator = male ? equipment.maleSpriteSheet : equipment.femaleSpriteSheet;
-        if (animator != null && animator.GetComponent<SimpleAnimator>() != null)
+        if (animator != null && animator.GetComponent<SpriteAnimator>() != null)
         {
             var item = Instantiate(animator);
             item.name = equipment.type.ToString().ToLower();
-            item.transform.SetParent(transform, false);
+            item.transform.SetParent(parent.transform, false);
             var type = item.GetComponent<HumanAnimationType>()?.AnimationType ?? HumanAnimationType.Type.Main;
-            sprites[item.name] = (item.GetComponent<SimpleAnimator>(), type);
+            sprites[item.name] = (item.GetComponent<SpriteAnimator>(), type);
         }
 
         SyncAnimation();
@@ -223,28 +258,31 @@ public class HumanCharacter : MonoBehaviour
 #endif
 
         var name = type.ToString().ToLower();
-        sprites.Remove(name);
-        var item = transform.Find(name);
-        if (item != null)
-            Destroy(item.gameObject);
+        if (sprites.ContainsKey(name))
+        {
+            var item = sprites[name].Item1?.gameObject;
+            if (item)
+                Destroy(item);
+            sprites.Remove(name);
+        }
     }
 
     public void SyncAnimation()
     {
-        SimpleAnimator firstBody = null;
-        SimpleAnimator firstLegs = null;
+        Animator firstBody = null;
+        Animator firstLegs = null;
         foreach (var item in sprites)
         {
             if (firstBody == null && item.Value.Item2 == HumanAnimationType.Type.Main)
             {
                 firstBody = item.Value.Item1;
-                return;
+                continue;
             }
 
             if (firstLegs == null && item.Value.Item2 == HumanAnimationType.Type.Legs)
             {
                 firstLegs = item.Value.Item1;
-                return;
+                continue;
             }
 
             item.Value.Item1.Sync(item.Value.Item2 == HumanAnimationType.Type.Main ? firstBody : firstLegs);
@@ -494,6 +532,8 @@ internal class HumanCharacterEditor : Editor
 
     public bool updated = false;
 
+    private bool showCharData = true;
+
     public void OnEnable()
     {
         gameObject = (serializedObject.targetObject as HumanCharacter);
@@ -524,6 +564,9 @@ internal class HumanCharacterEditor : Editor
             return;
 
         EditorGUILayout.PropertyField(serializedObject.FindProperty("prefabs"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Head"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Body"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("Legs"));
 
         if (gameObject.prefabs == null)
         {
@@ -531,71 +574,78 @@ internal class HumanCharacterEditor : Editor
             return;
         }
 
-        var g = EditorGUILayout.Toggle("Is male", gender);
-        updated |= g != gender; gender = g;
-
-        if (!gender)
+        showCharData = EditorGUILayout.Foldout(showCharData, "Character data");
+        if (showCharData)
         {
-            var head = EditorGUILayout.Popup("female head", f_head, gameObject.prefabs.Prefabs["femaleHead"].Select(it => it.name).ToArray());
-            var body = EditorGUILayout.Popup("female body", f_body, gameObject.prefabs.Prefabs["femaleBody"].Select(it => it.name).ToArray());
-            var hair = EditorGUILayout.Popup("female hair", f_hair, gameObject.prefabs.Prefabs["femaleHair"].Select(it => it.name).ToArray());
-            var legs = EditorGUILayout.Popup("female legs", f_legs, gameObject.prefabs.Prefabs["femaleLegs"].Select(it => it.name).ToArray());
-            var beard = EditorGUILayout.Popup("female beards", f_beard, gameObject.prefabs.Prefabs["femaleBeard"].Select(it => it.name).ToArray());
-            updated |= f_head != head || f_body != body || f_hair != hair || f_hair != legs || f_beard != beard; ;
-            f_head = head; f_body = body; f_hair = hair; f_legs = legs; f_beard = beard;
-        }
-        else
-        {
-            var head = EditorGUILayout.Popup("male head", m_head, gameObject.prefabs.Prefabs["maleHead"].Select(it => it.name).ToArray());
-            var body = EditorGUILayout.Popup("male body", m_body, gameObject.prefabs.Prefabs["maleBody"].Select(it => it.name).ToArray());
-            var hair = EditorGUILayout.Popup("male hair", m_hair, gameObject.prefabs.Prefabs["maleHair"].Select(it => it.name).ToArray());
-            var legs = EditorGUILayout.Popup("male legs", m_legs, gameObject.prefabs.Prefabs["maleLegs"].Select(it => it.name).ToArray());
-            var beard = EditorGUILayout.Popup("male beards", m_beard, gameObject.prefabs.Prefabs["maleBeard"].Select(it => it.name).ToArray());
-            updated |= m_head != head || m_body != body || m_hair != hair || m_hair != legs || m_beard != beard;
-            m_head = head; m_body = body; m_hair = hair; m_legs = legs; m_beard = beard;
-        }
+            EditorGUI.indentLevel++;
 
-        hairColor = EditorGUILayout.IntSlider("hair color", hairColor, 0, gameObject.prefabs.hairColors.Length - 1);
-        bodyColor = EditorGUILayout.IntSlider("body color", bodyColor, 0, gameObject.prefabs.bodyColors.Length - 1);
+            var g = EditorGUILayout.Toggle("Is male", gender);
+            updated |= g != gender; gender = g;
 
-        bool colorUpdated = hairColor != gameObject.hairColor || bodyColor != gameObject.bodyColor;
-
-        serializedObject.FindProperty("male").boolValue = gender;
-        if (!gender)
-        {
-            serializedObject.FindProperty("head").intValue = f_head;
-            serializedObject.FindProperty("body").intValue = f_body;
-            serializedObject.FindProperty("hair").intValue = f_hair;
-            serializedObject.FindProperty("legs").intValue = f_legs;
-            serializedObject.FindProperty("beard").intValue = f_beard;
-        }
-        else
-        {
-            serializedObject.FindProperty("head").intValue = m_head;
-            serializedObject.FindProperty("body").intValue = m_body;
-            serializedObject.FindProperty("hair").intValue = m_hair;
-            serializedObject.FindProperty("legs").intValue = m_legs;
-            serializedObject.FindProperty("beard").intValue = m_beard;
-        }
-        serializedObject.FindProperty("hairColor").intValue = hairColor;
-        serializedObject.FindProperty("bodyColor").intValue = bodyColor;
-        serializedObject.ApplyModifiedProperties();
-
-        if (updated && Application.isPlaying)
-            gameObject.Invalidate();
-        updated = false;
-
-        if (colorUpdated && Application.isPlaying)
-        {
-            var sprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
-            foreach (var sprite in sprites)
+            if (!gender)
             {
-                var name = sprite.gameObject.name;
-                if (name == "beard" || name == "hair")
-                    sprite.color = gameObject._hairColor;
-                else if (name == "head" || name == "body" || name == "body")
-                    sprite.color = gameObject._bodyColor;
+                var head = EditorGUILayout.Popup("female head", f_head, gameObject.prefabs.Prefabs["femaleHead"].Select(it => it.name).ToArray());
+                var body = EditorGUILayout.Popup("female body", f_body, gameObject.prefabs.Prefabs["femaleBody"].Select(it => it.name).ToArray());
+                var hair = EditorGUILayout.Popup("female hair", f_hair, gameObject.prefabs.Prefabs["femaleHair"].Select(it => it.name).ToArray());
+                var legs = EditorGUILayout.Popup("female legs", f_legs, gameObject.prefabs.Prefabs["femaleLegs"].Select(it => it.name).ToArray());
+                var beard = EditorGUILayout.Popup("female beards", f_beard, gameObject.prefabs.Prefabs["femaleBeard"].Select(it => it.name).ToArray());
+                updated |= f_head != head || f_body != body || f_hair != hair || f_hair != legs || f_beard != beard; ;
+                f_head = head; f_body = body; f_hair = hair; f_legs = legs; f_beard = beard;
             }
+            else
+            {
+                var head = EditorGUILayout.Popup("male head", m_head, gameObject.prefabs.Prefabs["maleHead"].Select(it => it.name).ToArray());
+                var body = EditorGUILayout.Popup("male body", m_body, gameObject.prefabs.Prefabs["maleBody"].Select(it => it.name).ToArray());
+                var hair = EditorGUILayout.Popup("male hair", m_hair, gameObject.prefabs.Prefabs["maleHair"].Select(it => it.name).ToArray());
+                var legs = EditorGUILayout.Popup("male legs", m_legs, gameObject.prefabs.Prefabs["maleLegs"].Select(it => it.name).ToArray());
+                var beard = EditorGUILayout.Popup("male beards", m_beard, gameObject.prefabs.Prefabs["maleBeard"].Select(it => it.name).ToArray());
+                updated |= m_head != head || m_body != body || m_hair != hair || m_hair != legs || m_beard != beard;
+                m_head = head; m_body = body; m_hair = hair; m_legs = legs; m_beard = beard;
+            }
+
+            hairColor = EditorGUILayout.IntSlider("hair color", hairColor, 0, gameObject.prefabs.hairColors.Length - 1);
+            bodyColor = EditorGUILayout.IntSlider("body color", bodyColor, 0, gameObject.prefabs.bodyColors.Length - 1);
+
+            bool colorUpdated = hairColor != gameObject.hairColor || bodyColor != gameObject.bodyColor;
+
+            serializedObject.FindProperty("male").boolValue = gender;
+            if (!gender)
+            {
+                serializedObject.FindProperty("head").intValue = f_head;
+                serializedObject.FindProperty("body").intValue = f_body;
+                serializedObject.FindProperty("hair").intValue = f_hair;
+                serializedObject.FindProperty("legs").intValue = f_legs;
+                serializedObject.FindProperty("beard").intValue = f_beard;
+            }
+            else
+            {
+                serializedObject.FindProperty("head").intValue = m_head;
+                serializedObject.FindProperty("body").intValue = m_body;
+                serializedObject.FindProperty("hair").intValue = m_hair;
+                serializedObject.FindProperty("legs").intValue = m_legs;
+                serializedObject.FindProperty("beard").intValue = m_beard;
+            }
+            serializedObject.FindProperty("hairColor").intValue = hairColor;
+            serializedObject.FindProperty("bodyColor").intValue = bodyColor;
+            serializedObject.ApplyModifiedProperties();
+
+            if (updated && Application.isPlaying)
+                gameObject.Invalidate();
+            updated = false;
+
+            if (colorUpdated && Application.isPlaying)
+            {
+                var sprites = gameObject.GetComponentsInChildren<SpriteRenderer>();
+                foreach (var sprite in sprites)
+                {
+                    var name = sprite.gameObject.name;
+                    if (name == "beard" || name == "hair")
+                        sprite.color = gameObject._hairColor;
+                    else if (name == "head" || name == "body" || name == "body")
+                        sprite.color = gameObject._bodyColor;
+                }
+            }
+            EditorGUI.indentLevel--;
         }
     }
 }

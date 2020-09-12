@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62e4dc0002fee6a4cbcdfc35ab40c09e, type: 3}
+  m_Name: LegsWalk
+  m_EditorClassIdentifier: 
+  name: walk
+  time: 1
+  loop: 1
+  pixelsPerUnit: 32
+  frames:
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 96
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 192
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 288
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 384
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 480
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 576
+      y: 576
+      width: 96
+      height: 96
+  - pivot: {x: 48, y: 0}
+    rect:
+      serializedVersion: 2
+      x: 672
+      y: 576
+      width: 96
+      height: 96
+  sprites:
+  - {fileID: -7974971932058924485, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: -1762210040340488668, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: 1209383827719957249, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: 1263963618251845520, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: 4762898356636958366, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: 3174826110327378977, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: -5294289783848896388, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}
+  - {fileID: -4569450754798322963, guid: d5c8833db42ea984bab6b2d8449459f2, type: 3}

@@ -13,7 +13,7 @@ public class Box : MonoBehaviour, Damageable.OnDamage
     // Update is called once per frame
     private void Update()
     {
-        var animator = GetComponent<SimpleAnimator>();
+        var animator = GetComponent<SpriteAnimator>();
         if (animator == null)
             return;
 
@@ -24,7 +24,7 @@ public class Box : MonoBehaviour, Damageable.OnDamage
 
     public void OnDamage(Damageable.DamageData damage)
     {
-        var animator = GetComponent<SimpleAnimator>();
+        var animator = GetComponent<SpriteAnimator>();
         if (animator == null)
             return;
         if (damage.isDead)

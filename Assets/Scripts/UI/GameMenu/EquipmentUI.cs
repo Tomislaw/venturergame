@@ -76,7 +76,7 @@ public class EquipmentUI : MonoBehaviour
 
         var go = Instantiate(draggablePrefab);
         go.SetItem(item);
-        go.transform.parent = parent.transform;
+        go.transform.SetParent(parent.transform, false);
         go.transform.localPosition = new Vector3();
         go.transform.localScale = new Vector3(1, 1, 1);
         go.equippedController = controller;

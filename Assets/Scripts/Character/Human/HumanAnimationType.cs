@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[RequireComponent(typeof(SimpleAnimator))]
 public class HumanAnimationType : MonoBehaviour
 {
     public Type AnimationType;

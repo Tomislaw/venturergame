@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
         }
 
         var itemSlot = slots[lastHoveredPosition.x, lastHoveredPosition.y];
-        gameObject.transform.parent = itemSlot.transform;
+        gameObject.transform.SetParent(itemSlot.transform, false);
         gameObject.transform.localPosition = new Vector3((item.item.Size.x) * 16, -(item.item.Size.y - 2) * 16);
 
         var draggable = gameObject.GetComponent<DraggableItemUI>();

@@ -1,5 +1,94 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1425085522696302317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8119275569965129457}
+  - component: {fileID: 6585467149455694388}
+  - component: {fileID: 3928848681807988588}
+  m_Layer: 9
+  m_Name: HeadMain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8119275569965129457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425085522696302317}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.28125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5241692626875838173}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6585467149455694388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425085522696302317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642a9e5092e543f40b836d9df5fdb883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clip: {fileID: 11400000, guid: 80616f048531b6c489a351172ab27309, type: 2}
+  _currentAnimation: idle
+--- !u!114 &3928848681807988588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425085522696302317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6984f0c1b5563e744b20072a1db54c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationType: 0
+--- !u!1 &4864875597928753995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6682043741824425694}
+  m_Layer: 9
+  m_Name: BodyMain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6682043741824425694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4864875597928753995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5241692626875838173}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5241692626875838168
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +132,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3340431452214691941}
+  - {fileID: 6682043741824425694}
+  - {fileID: 3059176683727573689}
+  - {fileID: 8119275569965129457}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,6 +185,9 @@ MonoBehaviour:
   hair: 0
   hairColor: 0
   bodyColor: 0
+  Head: {fileID: 1425085522696302317}
+  Body: {fileID: 4864875597928753995}
+  Legs: {fileID: 8811828759800800366}
   prefabs: {fileID: 11400000, guid: 11460826c8717924084760c62ffb2551, type: 2}
 --- !u!114 &5241692626875838161
 MonoBehaviour:
@@ -298,7 +393,7 @@ MonoBehaviour:
   timeBetweenSteps_running: 0.3
   timeBetweenSteps_walking: 0.5
   source: {fileID: 9113130716741223431}
-  WalkingOnGrass: 0
+  stepId: -1
 --- !u!82 &9113130716741223431
 AudioSource:
   m_ObjectHideFlags: 0
@@ -395,6 +490,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8811828759800800366
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3059176683727573689}
+  m_Layer: 9
+  m_Name: LegsMain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3059176683727573689
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811828759800800366}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5241692626875838173}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5241692628205507271
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -465,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 7911911060348794452, guid: 144c40cae8edf4e4fa02bfedd6758563,
         type: 3}
       propertyPath: m_Name
-      value: hud_crystals_small
+      value: HealthBar
       objectReference: {fileID: 0}
     - target: {fileID: 7911911060348794452, guid: 144c40cae8edf4e4fa02bfedd6758563,
         type: 3}

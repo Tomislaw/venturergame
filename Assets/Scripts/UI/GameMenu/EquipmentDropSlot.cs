@@ -43,7 +43,7 @@ public class EquipmentDropSlot : MonoBehaviour, IItemDropSlot
 
     public void OnDropItem(InventoryItem item, GameObject gameObject)
     {
-        gameObject.transform.parent = transform;
+        gameObject.transform.SetParent(transform, false);
         gameObject.transform.localPosition = new Vector3();
         if (image)
             image.color = initialColor;

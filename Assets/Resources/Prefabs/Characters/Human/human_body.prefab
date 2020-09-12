@@ -97,20 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 0c5ce638f296d2e44a35ecd53e8c5157, type: 3}
   pixelsPerUnit: 32
-  animations:
-  - {fileID: 11400000, guid: b8f1ec9ba1968ae47b9d2a3787b9e505, type: 2}
-  - {fileID: 11400000, guid: 6bd809ef5eaf8e948a9b298fac0a1035, type: 2}
-  - {fileID: 11400000, guid: 572fe7b795b6330419e5db4bd098da3e, type: 2}
-  - {fileID: 11400000, guid: a217ae0fc3b05ea4d8eb48683b5ccda6, type: 2}
-  - {fileID: 11400000, guid: 99b34d5bb47e98e43903ee664e0614bd, type: 2}
-  - {fileID: 11400000, guid: fe33e10201c2d984a82bd1e140a132bc, type: 2}
-  - {fileID: 11400000, guid: 0fae10c19486b12409ffe8c6ebe330be, type: 2}
-  - {fileID: 11400000, guid: 5c60f3fc34fa6634abd753594967bdf3, type: 2}
-  - {fileID: 11400000, guid: 1127511721a53a14f83068bf43ae3f4b, type: 2}
-  - {fileID: 11400000, guid: 97a74c477683f90479c0e3a826c6f217, type: 2}
-  - {fileID: 11400000, guid: 7b59b4919e24cbd48b4fa77164c7e75a, type: 2}
-  - {fileID: 11400000, guid: e31609208df1acf4f86f43917199c16a, type: 2}
-  - {fileID: 11400000, guid: a83d8dda50cd1b34b92f8450571c96ed, type: 2}
+  clip: {fileID: 11400000, guid: f1d23e8c79f77d447b46f518d23a946b, type: 2}
   _currentAnimation: attack1
 --- !u!114 &776402412603512434
 MonoBehaviour:
