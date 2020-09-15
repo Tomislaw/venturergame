@@ -47,11 +47,6 @@ PrefabInstance:
       propertyPath: texture
       value: 
       objectReference: {fileID: 2800000, guid: a470a425ed881dd4f8d30c228c3b7d5f, type: 3}
-    - target: {fileID: 7962631925477760408, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
-        type: 3}
-      propertyPath: _currentAnimation
-      value: attack1
-      objectReference: {fileID: 0}
     - target: {fileID: 8424244402506673428, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
         type: 3}
       propertyPath: m_Name

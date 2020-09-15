@@ -25,11 +25,7 @@ public class Inventory : MonoBehaviour
     public Vector2Int size;
 
     [SerializeField]
-    public List<InventoryPair> items = new List<InventoryPair>();
-
-    private void Start()
-    {
-    }
+    internal List<InventoryPair> items = new List<InventoryPair>();
 
     public bool PutItem(InventoryItem item, Vector2Int slot)
     {

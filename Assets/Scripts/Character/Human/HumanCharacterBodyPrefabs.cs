@@ -16,6 +16,7 @@ public class HumanCharacterBodyPrefabs : ScriptableObject
     public string hairPrefabs = "Prefabs/Characters/Human/Hair";
     public string legsPrefabs = "Prefabs/Characters/Human/Legs";
     public string bodyPrefabs = "Prefabs/Characters/Human/Body";
+    public string armsPrefabs = "Prefabs/Characters/Human/Arms";
 
     public void Reload()
     {
@@ -26,6 +27,7 @@ public class HumanCharacterBodyPrefabs : ScriptableObject
         InsertPrefabs("Body", bodyPrefabs);
         InsertPrefabs("Hair", hairPrefabs);
         InsertPrefabs("Legs", legsPrefabs);
+        InsertPrefabs("Arms", armsPrefabs);
     }
 
     private void InsertPrefabs(string name, string directory)

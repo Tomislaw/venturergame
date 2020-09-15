@@ -133,7 +133,7 @@ public class InventoryUI : MonoBehaviour, IItemDropSlot
     {
         var go = Instantiate(draggablePrefab);
         var slot = slots[pair.pos.x, pair.pos.y];
-        go.transform.parent = slot.transform;
+        go.transform.SetParent(slot.transform, false);
         go.SetItem(pair.item);
         go.transform.localPosition = new Vector3((go.item.item.Size.x) * 16, -(go.item.item.Size.y - 2) * 16);
         go.transform.localScale = new Vector3(1, 1, 1);

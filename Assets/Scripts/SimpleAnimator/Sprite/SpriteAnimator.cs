@@ -11,7 +11,7 @@ public class SpriteAnimator : MonoBehaviour, Animator
 
     public SimpleAnimationClip clip;
 
-    public SpriteRenderer spriteRenderer { get => GetComponent<SpriteRenderer>(); }
+    public SpriteRenderer spriteRenderer { get; private set; }
 
     private List<SimpleAnimation.SpriteAnimation> animationsInternal = new List<SimpleAnimation.SpriteAnimation>();
 
@@ -23,6 +23,8 @@ public class SpriteAnimator : MonoBehaviour, Animator
     public bool IsAnimationFinished { get => currentAnimation == null || AnimationFrame == currentAnimation.frames.Count - 1 || currentAnimation.looped; }
     public bool IsAnimationLooped { get => currentAnimation != null || currentAnimation.looped; }
 
+    private int sortingOrder = 0;
+
     public string Animation
     {
         get { return currentAnimation == null ? null : currentAnimation.name; }
@@ -32,7 +34,31 @@ public class SpriteAnimator : MonoBehaviour, Animator
         }
     }
 
-    public int AnimationFrame { get; set; } = 0;
+    private int _animationFrame = 0;
+
+    public int AnimationFrame
+    {
+        get => _animationFrame;
+        set
+        {
+            if (currentAnimation != null && currentAnimation.frames.Count > 0 && currentAnimation.frames.Count > value)
+            {
+                var frame = currentAnimation.frames[value];
+
+                if (frame.sprite == spriteRenderer.sprite)
+                    return;
+
+                spriteRenderer.sprite = frame.sprite;
+                spriteRenderer.sortingOrder = sortingOrder + frame.order;
+            }
+            else
+            {
+                spriteRenderer.sprite = null;
+                spriteRenderer.sortingOrder = sortingOrder;
+            }
+        }
+    }
+
     public float TimeForAnimation { get; set; }
 
     public void Sync(Animator other)
@@ -44,7 +70,7 @@ public class SpriteAnimator : MonoBehaviour, Animator
 
     public void SetAnimation(string value, bool restartIfSame = true)
     {
-        if (!restartIfSame)
+        if (!restartIfSame && currentAnimation != null)
         {
             if (currentAnimation.name == value)
                 return;
@@ -65,12 +91,20 @@ public class SpriteAnimator : MonoBehaviour, Animator
 
             currentAnimation = a;
             _currentAnimation = a.name;
-            AnimationFrame = -1;
+            AnimationFrame = 0;
             TimeForAnimation = currentAnimation.animationTime;
-            if (currentAnimation.frames.Count > 0)
-                spriteRenderer.sprite = currentAnimation.frames[0];
             break;
         }
+    }
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        sortingOrder = spriteRenderer.sortingOrder;
+
+        ReloadAnimations();
+
+        AnimationFrame = 0;
     }
 
     private void OnEnable()
@@ -94,44 +128,18 @@ public class SpriteAnimator : MonoBehaviour, Animator
             return;
         }
 
-        if (TimeForAnimation < 0)
+        if (TimeForAnimation < 0 && currentAnimation.looped)
         {
-            if (currentAnimation.looped)
-            {
-                TimeForAnimation = currentAnimation.animationTime;
-            }
+            TimeForAnimation = currentAnimation.animationTime;
         }
 
         int _id = 0;
         if (currentAnimation.animationTime > 0)
             _id = (int)((1f - (TimeForAnimation / currentAnimation.animationTime)) * currentAnimation.frames.Count);
 
-        int id = Mathf.Min(currentAnimation.frames.Count - 1, _id);
+        AnimationFrame = Mathf.Min(currentAnimation.frames.Count - 1, _id);
 
-        if (id != AnimationFrame)
-        {
-            if (spriteRenderer.sprite != currentAnimation.frames[id])
-                spriteRenderer.sprite = currentAnimation.frames[id];
-            AnimationFrame = id;
-        }
         TimeForAnimation -= Time.deltaTime;
-    }
-
-#if (UNITY_EDITOR)
-
-    private void OnValidate()
-    {
-        ReloadAnimations();
-    }
-
-#endif
-
-    private void Awake()
-    {
-        ReloadAnimations();
-
-        if (currentAnimation?.frames?.Count > 0)
-            spriteRenderer.sprite = currentAnimation.frames[0];
     }
 
     private void ReloadAnimations()
@@ -149,67 +157,67 @@ public class SpriteAnimator : MonoBehaviour, Animator
 
 #if UNITY_EDITOR
 
-[CustomEditor(typeof(SpriteAnimator)), CanEditMultipleObjects]
-internal class SimpleAnimatiorEditor : Editor
-{
-    private SpriteAnimator animation;
+//[CustomEditor(typeof(SpriteAnimator)), CanEditMultipleObjects]
+//internal class SimpleAnimatiorEditor : Editor
+//{
+//    private SpriteAnimator animation;
 
-    private string currentAnimation;
-    private int currentAnimationId = -1;
-    private string[] animations;
+//    private string currentAnimation;
+//    private int currentAnimationId = -1;
+//    private string[] animations;
 
-    private void OnEnable()
-    {
-        animation = (serializedObject.targetObject as SpriteAnimator);
-        if (animation.Animation != null)
-            currentAnimation = animation.Animation;
-        else
-            currentAnimation = "";
-    }
+//    private void OnEnable()
+//    {
+//        animation = (serializedObject.targetObject as SpriteAnimator);
+//        if (animation.Animation != null)
+//            currentAnimation = animation.Animation;
+//        else
+//            currentAnimation = "";
+//    }
 
-    public override void OnInspectorGUI()
-    {
-        //DrawDefaultInspector();
-        serializedObject.Update();
+//    public override void OnInspectorGUI()
+//    {
+//        //DrawDefaultInspector();
+//        serializedObject.Update();
 
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("texture"), true);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("pixelsPerUnit"), true);
-        EditorGUILayout.PropertyField(serializedObject.FindProperty("clip"), true);
+//        EditorGUILayout.PropertyField(serializedObject.FindProperty("texture"), true);
+//        EditorGUILayout.PropertyField(serializedObject.FindProperty("pixelsPerUnit"), true);
+//        EditorGUILayout.PropertyField(serializedObject.FindProperty("clip"), true);
 
-        if (animation.clip == null)
-        {
-            serializedObject.ApplyModifiedProperties();
-            return;
-        }
+//        if (animation.clip == null)
+//        {
+//            serializedObject.ApplyModifiedProperties();
+//            return;
+//        }
 
-        animations = animation.clip.animations.Select(it => it == null ? "" : it.name).ToArray();
+//        animations = animation.clip.animations.Select(it => it == null ? "" : it.name).ToArray();
 
-        int i = 0;
+//        int i = 0;
 
-        foreach (var anim in animations)
-        {
-            if (anim == animation.Animation)
-            {
-                currentAnimationId = i;
-            }
-            i++;
-        }
+//        foreach (var anim in animations)
+//        {
+//            if (anim == animation.Animation)
+//            {
+//                currentAnimationId = i;
+//            }
+//            i++;
+//        }
 
-        if (currentAnimationId >= animations.Length)
-        {
-            currentAnimationId = 0;
-        }
+//        if (currentAnimationId >= animations.Length)
+//        {
+//            currentAnimationId = 0;
+//        }
 
-        if (currentAnimationId >= 0 && currentAnimationId < animations.Length)
-        {
-            currentAnimationId = EditorGUILayout.Popup("CurrentAnimation", currentAnimationId, animations);
-            currentAnimation = animations[currentAnimationId];
-            if (animation.Animation == null || currentAnimation != animation.Animation)
-                animation.Animation = currentAnimation;
-        }
+//        if (currentAnimationId >= 0 && currentAnimationId < animations.Length)
+//        {
+//            currentAnimationId = EditorGUILayout.Popup("CurrentAnimation", currentAnimationId, animations);
+//            currentAnimation = animations[currentAnimationId];
+//            if (animation.Animation == null || currentAnimation != animation.Animation)
+//                animation.Animation = currentAnimation;
+//        }
 
-        serializedObject.ApplyModifiedProperties();
-    }
-}
+//        serializedObject.ApplyModifiedProperties();
+//    }
+//}
 
 #endif

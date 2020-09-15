@@ -96,9 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   texture: {fileID: 2800000, guid: 0c5ce638f296d2e44a35ecd53e8c5157, type: 3}
-  pixelsPerUnit: 32
   clip: {fileID: 11400000, guid: f1d23e8c79f77d447b46f518d23a946b, type: 2}
-  _currentAnimation: attack1
+  _currentAnimation: idle
 --- !u!114 &776402412603512434
 MonoBehaviour:
   m_ObjectHideFlags: 0

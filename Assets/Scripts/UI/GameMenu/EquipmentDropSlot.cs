@@ -15,7 +15,7 @@ public interface IItemDropSlot
 public class EquipmentDropSlot : MonoBehaviour, IItemDropSlot
 {
     public Equipment current;
-    public Equipment.Type acceptType;
+    public List<Equipment.Type> acceptType = new List<Equipment.Type>();
     public Color hoverValidColor;
     private Color initialColor;
     public Image image;
@@ -33,7 +33,7 @@ public class EquipmentDropSlot : MonoBehaviour, IItemDropSlot
     {
         var equipment = item.item as Equipment;
 
-        bool valid = (equipment != null && equipment.type == acceptType);
+        bool valid = (equipment != null && acceptType.Contains(equipment.type));
 
         if (image && valid)
             image.color = hoverValidColor;

@@ -63,7 +63,7 @@ public class SpriteCopy : EditorWindow
 
     private void CopyPivotsAndSlices()
     {
-        if (!copyFrom || copyTo && !multiple)
+        if (!copyFrom || !copyTo && !multiple)
         {
             Debug.Log("Missing one object");
             return;

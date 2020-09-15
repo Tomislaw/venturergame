@@ -12,6 +12,7 @@ public class SimpleAnimation : ScriptableObject
     {
         public Vector2 pivot;
         public Rect rect;
+        public int order;
     }
 
     public string name = "";
@@ -41,9 +42,15 @@ public class SimpleAnimation : ScriptableObject
     public class SpriteAnimation
     {
         public string name;
-        public List<Sprite> frames;
+        public List<Frame> frames;
         public float animationTime;
         public bool looped;
+
+        public struct Frame
+        {
+            public int order;
+            public Sprite sprite;
+        }
 
         public SpriteAnimation(Texture2D texture, SimpleAnimation animation, float pixelsPerUnit)
         {
@@ -51,7 +58,7 @@ public class SimpleAnimation : ScriptableObject
                 Debug.LogError("how it is possible"); ;
             this.name = animation.name;
             this.animationTime = animation.time;
-            this.frames = new List<Sprite>();
+            this.frames = new List<Frame>();
             this.looped = animation.loop;
             int i = 0;
             foreach (var frame in animation.frames)
@@ -66,7 +73,7 @@ public class SimpleAnimation : ScriptableObject
                 {
                     var sprite = Sprite.Create(texture, rect, pivot, pixelsPerUnit);
                     sprite.name = animation.name + "_" + i;
-                    this.frames.Add(sprite);
+                    this.frames.Add(new Frame { order = frame.order, sprite = sprite });
                     i++;
                 }
                 catch (System.Exception e)

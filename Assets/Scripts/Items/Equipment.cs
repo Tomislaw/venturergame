@@ -10,11 +10,14 @@ public class Equipment : SingleItem
     public GameObject femaleSpriteSheet;
     public GameObject maleSpriteSheet;
 
+    public GameObject femaleSpriteSheet_arms;
+    public GameObject maleSpriteSheet_arms;
+
     public Type type;
 
     public enum Type
     {
-        MainHand, OffHand, TwoHanded, Helmet, Armor, Boots, Pants, Necklace, Ring
+        MainHand, OffHand, TwoHanded, Helmet, Armor, Boots, Pants, Necklace, Ring, Bow
     }
 
     public override string ToString()
@@ -33,6 +36,6 @@ public static class EquipmentExtensions
 {
     public static bool IsWeapon(this Equipment.Type w)
     {
-        return w == Equipment.Type.MainHand || w == Equipment.Type.OffHand || w == Equipment.Type.TwoHanded;
+        return w == Equipment.Type.MainHand || w == Equipment.Type.OffHand || w == Equipment.Type.TwoHanded || w == Equipment.Type.Bow;
     }
 }

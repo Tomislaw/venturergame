@@ -117,6 +117,7 @@ public class CharacterInventoryController : MonoBehaviour
                 break;
 
             case Equipment.Type.TwoHanded:
+            case Equipment.Type.Bow:
                 if (human != null)
                 {
                     human.Unequip(Equipment.Type.MainHand);

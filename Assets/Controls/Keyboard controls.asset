@@ -18,3 +18,6 @@ MonoBehaviour:
   toggleSprint: 306
   sprint: 304
   block: 306
+  attackAngleIncrease: 119
+  attackAngleDecrease: 115
+  attackAngleIntensity: 100

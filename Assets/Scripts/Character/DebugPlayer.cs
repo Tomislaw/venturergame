@@ -22,7 +22,7 @@ public class DebugPlayer : MonoBehaviour
         if (controls.IsAttacking)
         {
             var attackComponent = GetComponent<CharacterHumanAttackController>();
-
+            attackComponent.attackAngle = (int)controls.AttackAngle;
             attackComponent.Attack(controls.IsMoving);
 
             if (controls.IsMoving)

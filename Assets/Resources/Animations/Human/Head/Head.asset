@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 021b0d56357b9c24a99e8d74fe7719c5, type: 3}
+  m_Script: {fileID: 11500000, guid: daa44779b8b7a3042837eae479e88c06, type: 3}
   m_Name: Head
   m_EditorClassIdentifier: 
   animations:
   - {fileID: 11400000, guid: 9987b24bb06d6ec4ab3307e5e7e39cd4, type: 2}
-  - {fileID: 11400000, guid: 0dfbff12f73d6564ab0f3d0d7ceca156, type: 2}
   - {fileID: 11400000, guid: 3e85c067756f93a419f37a01d52ef5cb, type: 2}
   - {fileID: 11400000, guid: 4a3e38ce9dc655f4ebbf74fbb4ee046d, type: 2}
-  parent: {fileID: 11400000, guid: f1d23e8c79f77d447b46f518d23a946b, type: 2}
+  - {fileID: 11400000, guid: 0dfbff12f73d6564ab0f3d0d7ceca156, type: 2}
+  - {fileID: 11400000, guid: 6c42a6ee27eceb54b944f00df8c091d5, type: 2}
+  - {fileID: 11400000, guid: 6838355de78fd9b43a17bc7034b9299c, type: 2}
+  - {fileID: 11400000, guid: 01c36b3ff00021c4b81fba5206c2ddb7, type: 2}

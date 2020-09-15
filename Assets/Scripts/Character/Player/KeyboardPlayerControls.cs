@@ -22,6 +22,10 @@ public class KeyboardPlayerControls : PlayerControls
     public KeyCode sprint = KeyCode.LeftShift;
     public KeyCode block = KeyCode.LeftControl;
 
+    public KeyCode attackAngleIncrease = KeyCode.W;
+    public KeyCode attackAngleDecrease = KeyCode.S;
+    public float attackAngleIntensity = 100;
+
     private bool _isSprinting = false;
 
     public override void UpdateControls()
@@ -46,7 +50,20 @@ public class KeyboardPlayerControls : PlayerControls
             IsSprinting = !_isSprinting;
         }
 
+        if (Input.GetKey(attackAngleIncrease))
+        {
+            AttackAngle += Time.deltaTime * attackAngleIntensity;
+        }
+
+        if (Input.GetKey(attackAngleDecrease))
+        {
+            AttackAngle -= Time.deltaTime * attackAngleIntensity;
+        }
+
         IsBlocking = Input.GetKey(block);
         IsAttacking = Input.GetKey(attack);
+
+        if (!IsAttacking)
+            AttackAngle = 0;
     }
 }

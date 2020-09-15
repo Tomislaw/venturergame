@@ -41,7 +41,7 @@ public class TransformAnimator : MonoBehaviour, Animator
     {
         if (!restartIfSame)
         {
-            if (currentAnimation.name == value)
+            if (currentAnimation != null && currentAnimation.name == value)
                 return;
         }
         else if (currentAnimation != null && currentAnimation.name == value)

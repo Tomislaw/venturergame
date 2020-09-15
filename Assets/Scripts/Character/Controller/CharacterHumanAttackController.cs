@@ -14,6 +14,8 @@ public class CharacterHumanAttackController : MonoBehaviour
     public float timeBetweenAttack = 0.2f;
     public float timeOfAttack = 0.2f;
 
+    public int attackAngle = 0;
+
     private float _timeToChargeLightAttackLeft = 0;
     private float _timeToChargeHeavyAttackLeft = 0;
     private float _timeOfAttackLeft = 0;

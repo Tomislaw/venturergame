@@ -322,11 +322,6 @@ PrefabInstance:
       propertyPath: currentAnimation.name
       value: idle
       objectReference: {fileID: 0}
-    - target: {fileID: 7962631925477760408, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
-        type: 3}
-      propertyPath: _currentAnimation
-      value: attack1
-      objectReference: {fileID: 0}
     - target: {fileID: 8424244402506673428, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
         type: 3}
       propertyPath: m_Name
