@@ -58,7 +58,7 @@ MonoBehaviour:
     SetRotation: 0
     SetScale: 0
     pixelsPerUnit: 32
-  - position: {x: -2, y: 41, z: 0}
+  - position: {x: 0, y: 41, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 0}
     scale: {x: 0, y: 0, z: 0}
     SetPosition: 1

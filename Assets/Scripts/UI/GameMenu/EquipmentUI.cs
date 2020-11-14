@@ -17,10 +17,6 @@ public class EquipmentUI : MonoBehaviour
 
     public DraggableItemUI draggablePrefab;
 
-    private void Start()
-    {
-    }
-
     private void OnValidate()
     {
         if (head)
@@ -62,7 +58,7 @@ public class EquipmentUI : MonoBehaviour
             parent = pants;
         else if (equipped.type == Equipment.Type.Boots)
             parent = boots;
-        else if (equipped.type == Equipment.Type.MainHand)
+        else if (equipped.type == Equipment.Type.MainHand || equipped.type == Equipment.Type.TwoHanded || equipped.type == Equipment.Type.Bow)
             parent = mainhand;
         else if (equipped.type == Equipment.Type.OffHand)
             parent = offhand;

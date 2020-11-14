@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1905de18e704602419c56659f3877458, type: 3}
+  m_Name: FemalePrefabs
+  m_EditorClassIdentifier: 
+  Heads:
+  - main: {fileID: 2800000, guid: 5d95d2d05b02781419147536fc508faf, type: 3}
+    mask: {fileID: 0}
+    normal: {fileID: 0}
+  Beards:
+  - main: {fileID: 2800000, guid: 9255163144d9f664c87ab151331b4ff6, type: 3}
+    mask: {fileID: 0}
+    normal: {fileID: 0}
+  Hairs:
+  - main: {fileID: 2800000, guid: f7763663f2e00bf42ba8b22c89092a7c, type: 3}
+    mask: {fileID: 0}
+    normal: {fileID: 0}
+  Bodies:
+  - main: {fileID: 2800000, guid: 03a1a8834ca5c1a48ad4c5c0e2ea5ca4, type: 3}
+    mask: {fileID: 0}
+    normal: {fileID: 0}
+  Legs:
+  - main: {fileID: 2800000, guid: 2cb920bbecb08904b8418cc3fcf27032, type: 3}
+    mask: {fileID: 0}
+    normal: {fileID: 0}
+  hairColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  bodyColors:
+  - {r: 1, g: 1, b: 1, a: 1}

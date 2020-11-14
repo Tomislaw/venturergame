@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354d2b39823dcc74ea57d32c4102fa1b, type: 3}
   m_Name: ChunkDecorators
   m_EditorClassIdentifier: 
-  Directory: Prefabs/ChunkDecorators
+  Directory: Prefabs/Map/ChunkDecorators

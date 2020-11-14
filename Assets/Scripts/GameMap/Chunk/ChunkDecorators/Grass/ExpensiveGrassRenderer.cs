@@ -8,14 +8,13 @@ public class ExpensiveGrassRenderer : MonoBehaviour
 {
     private ExpensiveGrass expensiveGrass;
     private Texture2D texture;
-    private Mesh mesh;
-    private Material _material;
 
-    public int width = 32;
-    public int height = 32;
-    public int freeSpaceXOffsetLeft = 32;
-    public int freeSpaceXOffsetRight = 32;
-    public Material material;
+    public float width = 32;
+    public float height = 32;
+    public float freeSpaceXOffsetLeft = 32;
+    public float freeSpaceXOffsetRight = 32;
+    public float pixelsPerUnit = 32;
+    private Sprite sprite;
 
     private void Awake()
     {
@@ -24,20 +23,24 @@ public class ExpensiveGrassRenderer : MonoBehaviour
 
     private void Start()
     {
-        texture = new Texture2D(width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight, height);
+        texture = new Texture2D(
+            (int)(width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight), (int)height,
+            TextureFormat.ARGB32,
+            false
+            );
         texture.filterMode = FilterMode.Point;
+        texture.wrapMode = TextureWrapMode.Mirror;
         expensiveGrass = GetComponent<ExpensiveGrass>();
-        _material = new Material(material);
-        _material.mainTexture = texture;
-        mesh = CreateMesh();
-        mesh.name = "rect";
+
+        //mesh = CreateMesh();
+        //mesh.name = "rect";
+        var offset = freeSpaceXOffsetLeft / (width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight);
+        sprite = Sprite.Create(texture, new Rect(0f, 0f, width + freeSpaceXOffsetLeft + freeSpaceXOffsetRight, height), new Vector2(offset, 0), pixelsPerUnit);
 
         UpdateTexture();
 
-        if (GetComponent<MeshFilter>())
-            GetComponent<MeshFilter>().mesh = mesh;
-        if (GetComponent<MeshRenderer>())
-            GetComponent<MeshRenderer>().material = _material;
+        if (GetComponent<SpriteRenderer>())
+            GetComponent<SpriteRenderer>().sprite = sprite;
     }
 
     private void OnBecameVisible()
@@ -105,7 +108,7 @@ public class ExpensiveGrassRenderer : MonoBehaviour
         else if (v.y > height)
             v.y = height;
 
-        return new Vector2Int((int)v.x + freeSpaceXOffsetLeft, (int)v.y);
+        return new Vector2Int((int)(v.x + freeSpaceXOffsetLeft), (int)v.y);
     }
 
     private void DrawLine(Vector2Int point1, Vector2Int point2, ref Texture2D texture, Color color)
@@ -128,52 +131,6 @@ public class ExpensiveGrassRenderer : MonoBehaviour
             if (e2 > -dx) { err -= dy; x0 += sx; }
             if (e2 < dy) { err += dx; y0 += sy; }
         }
-    }
-
-    private Mesh CreateMesh()
-    {
-        var mesh = new Mesh();
-
-        float offsetSizeL = (float)(freeSpaceXOffsetLeft) / width * expensiveGrass.Width;
-        float offsetSizeR = (float)(freeSpaceXOffsetRight) / width * expensiveGrass.Width;
-        float start = -offsetSizeL;
-        float end = expensiveGrass.Width + offsetSizeR;
-        var vertices = new Vector3[4]
-        {
-            new Vector3(start, 0, 0),
-            new Vector3(end, 0, 0),
-            new Vector3(start, 1, 0),
-            new Vector3(end, 1, 0)
-        };
-        mesh.vertices = vertices;
-
-        var tris = new int[6]
-        {
-            // lower left triangle
-            0, 1, 2,
-            // upper right triangle
-            1, 2, 3
-        };
-        mesh.triangles = tris;
-
-        var normals = new Vector3[4]
-        {
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward,
-            -Vector3.forward
-        };
-        mesh.normals = normals;
-
-        var uv = new Vector2[4]
-        {
-            new Vector2(0, 0),
-            new Vector2(1, 0),
-            new Vector2(0, 1),
-            new Vector2(1, 1)
-        };
-        mesh.uv = uv;
-        return mesh;
     }
 
     private void OnDrawGizmosSelected()

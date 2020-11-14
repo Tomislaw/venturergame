@@ -91,9 +91,11 @@ MonoBehaviour:
   head: 0
   beard: 0
   hair: 0
+  arms: 0
   hairColor: 0
   bodyColor: 0
   prefabs: {fileID: 11400000, guid: 11460826c8717924084760c62ffb2551, type: 2}
+  AimRotation: 0
 --- !u!114 &5241692626875838161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,6 +223,8 @@ MonoBehaviour:
   timeToChargeMaxAttack: 1
   timeBetweenAttack: 0
   timeOfAttack: 0.33
+  maxAngle: 80
+  minAngle: -65
 --- !u!70 &5241692626875838164
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

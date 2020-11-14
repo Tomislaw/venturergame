@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class Zone : MonoBehaviour
 {
-    public Zone zoneToLeft;
-    public Zone zoneToRight;
+    public string zoneName;
 
-    public float chunkSize = 10;
     public List<Chunk> chunks = new List<Chunk>();
 
-    private void Start()
+    private List<Chunk> _loadedChunks = new List<Chunk>();
+
+    public float Width
     {
+        get
+        {
+            float width = 0;
+            foreach (var ch in chunks)
+                width += ch.Width;
+            return width;
+        }
     }
 
-    // Update is called once per frame
-    private void Update()
+    private void Awake()
     {
+        Load();
     }
 
-    public void CreateFromRegion(WorldStructures.Serializable.Region region)
+    public void Load()
     {
+        float start = 0;
+        foreach (var chunk in chunks)
+        {
+            var loadedChunk = Instantiate(chunk);
+            loadedChunk.transform.SetParent(this.transform, false);
+            loadedChunk.transform.localPosition = new Vector2(start, 0);
+            //loadedChunk.LoadChunk();
+            start += loadedChunk.Width;
+            _loadedChunks.Add(loadedChunk);
+        }
     }
 }

@@ -64,4 +64,14 @@ public class Damageable : MonoBehaviour
             item.OnDamage(data);
         }
     }
+
+    public void Kill(GameObject who = null)
+    {
+        Damage(who, this.health, true);
+    }
+
+    public bool CanHit(Damageable other)
+    {
+        return other.damageGroup != damageGroup;
+    }
 }

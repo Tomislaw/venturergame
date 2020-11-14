@@ -128,6 +128,11 @@ public class TransformAnimator : MonoBehaviour, Animator
 
     private void ReloadAnimations()
     {
+        if (clip == null)
+        {
+            Debug.LogError(gameObject.name + " - missing clip!");
+            return;
+        }
         animationsInternal.Clear();
         animationsInternal.AddRange(clip.GetAnimations());
     }

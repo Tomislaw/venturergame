@@ -1,13 +1,29 @@
-﻿using System;
+﻿using Assets.Scripts.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-internal interface ISaveable
+public interface ISaveable
 {
-    object Load(string data);
+    void Load(SaveableData data);
 
-    string Save();
+    SaveableData Save();
+}
+
+public struct SaveableData
+{
+    public Dictionary<string, object> data;
+
+    public T GetProperty<T>(string name, T ifNotFound = default(T))
+    {
+        return data.GetValueCasting(name, ifNotFound);
+    }
+
+    public void SetProperty(string name, object property)
+    {
+        data[name] = property;
+    }
 }

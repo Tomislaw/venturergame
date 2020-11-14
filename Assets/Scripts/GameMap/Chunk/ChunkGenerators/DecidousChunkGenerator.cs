@@ -50,21 +50,21 @@ namespace ChunkGenerators
             float grassToRoadRatioLeft = 1f;
             float grassToRoadRatioRight = 1f;
 
-            bool[] grassList = new bool[Chunk.CHUNK_SIZE];
-            for (int i = 0; i < Chunk.CHUNK_SIZE; i++)
+            bool[] grassList = new bool[RandomChunkGenerator.CHUNK_SIZE];
+            for (int i = 0; i < RandomChunkGenerator.CHUNK_SIZE; i++)
             {
-                float propability = Mathf.Lerp(grassToRoadRatioLeft, grassToRoadRatioRight, (float)i / (Chunk.CHUNK_SIZE - 1));
+                float propability = Mathf.Lerp(grassToRoadRatioLeft, grassToRoadRatioRight, (float)i / (RandomChunkGenerator.CHUNK_SIZE - 1));
                 grassList[i] = rng.NextDouble() - propability < 0;
             }
 
-            for (int i = 0; i < Chunk.CHUNK_SIZE; i++)
+            for (int i = 0; i < RandomChunkGenerator.CHUNK_SIZE; i++)
             {
                 bool cornerLeft =
                     (i == 0 && !(grassToRoadRatioLeft == 0 || grassToRoadRatioLeft == 1))
                     || (i > 0 && grassList[i - 1] != grassList[i]);
                 bool corneRight =
-                    (i == Chunk.CHUNK_SIZE - 1 && !(grassToRoadRatioRight == 0 || grassToRoadRatioRight == 1))
-                    || (i < Chunk.CHUNK_SIZE - 1 && grassList[i + 1] != grassList[i]);
+                    (i == RandomChunkGenerator.CHUNK_SIZE - 1 && !(grassToRoadRatioRight == 0 || grassToRoadRatioRight == 1))
+                    || (i < RandomChunkGenerator.CHUNK_SIZE - 1 && grassList[i + 1] != grassList[i]);
                 bool isGrass = grassList[i];
 
                 if (isGrass)
@@ -108,7 +108,7 @@ namespace ChunkGenerators
             //generate saplings
             previous = 0;
 
-            float offset = (float)Chunk.CHUNK_SIZE / 2 / saplings;
+            float offset = (float)RandomChunkGenerator.CHUNK_SIZE / 2 / saplings;
             int rand = (int)(offset / 2.5f);
             for (int i = 0; i < saplings; i++)
             {
@@ -119,7 +119,7 @@ namespace ChunkGenerators
                 sapling.properties = new Dictionary<string, object>();
                 sapling.properties.Add("position",
                     new Vector3(
-                        Mathf.Lerp(0, Chunk.CHUNK_SIZE, (float)i / saplings)
+                        Mathf.Lerp(0, RandomChunkGenerator.CHUNK_SIZE, (float)i / saplings)
                         + rng.Next(-rand, rand) * rand + offset,
                         0,
                         1));
@@ -129,7 +129,7 @@ namespace ChunkGenerators
             //generate shrubs
             previous = 0;
 
-            offset = (float)Chunk.CHUNK_SIZE / 2 / shrubs;
+            offset = (float)RandomChunkGenerator.CHUNK_SIZE / 2 / shrubs;
             rand = (int)(offset / 2.5f);
             for (int i = 0; i < shrubs; i++)
             {
@@ -140,7 +140,7 @@ namespace ChunkGenerators
                 bush.properties = new Dictionary<string, object>();
                 bush.properties.Add("position",
                     new Vector3(
-                    Mathf.Lerp(0, Chunk.CHUNK_SIZE, (float)i / shrubs)
+                    Mathf.Lerp(0, RandomChunkGenerator.CHUNK_SIZE, (float)i / shrubs)
                      + rng.Next(-rand, rand) * rand + offset,
                     0,
                     2));
@@ -150,7 +150,7 @@ namespace ChunkGenerators
             //generate bush
             previous = 0;
 
-            offset = (float)Chunk.CHUNK_SIZE / 2 / bushes;
+            offset = (float)RandomChunkGenerator.CHUNK_SIZE / 2 / bushes;
             rand = (int)(offset / 2.5f);
             for (int i = 0; i < bushes; i++)
             {
@@ -160,7 +160,7 @@ namespace ChunkGenerators
                 bush.name = "deciduous_bush" + previous;
                 bush.properties = new Dictionary<string, object>();
                 bush.properties.Add("position", new Vector3(
-                    Mathf.Lerp(0, Chunk.CHUNK_SIZE, (float)i / bushes)
+                    Mathf.Lerp(0, RandomChunkGenerator.CHUNK_SIZE, (float)i / bushes)
                       + rng.Next(-rand, rand) * rand + offset,
                     0,
                     3));
@@ -170,7 +170,7 @@ namespace ChunkGenerators
             //generate trees
             previous = 0;
 
-            offset = (float)Chunk.CHUNK_SIZE / 2 / trees;
+            offset = (float)RandomChunkGenerator.CHUNK_SIZE / 2 / trees;
             rand = (int)(offset / 2.5f);
             for (int i = 0; i < trees; i++)
             {
@@ -180,7 +180,7 @@ namespace ChunkGenerators
                 tree.name = "deciduous_tree" + previous;
                 tree.properties = new Dictionary<string, object>();
                 tree.properties.Add("position", new Vector3(
-                    Mathf.Lerp(0, Chunk.CHUNK_SIZE, (float)i / trees)
+                    Mathf.Lerp(0, RandomChunkGenerator.CHUNK_SIZE, (float)i / trees)
                        + rng.Next(-rand, rand) + offset,
                     0,
                     4));
@@ -188,7 +188,7 @@ namespace ChunkGenerators
             }
 
             //Generate terrain
-            for (int i = 0; i < Chunk.CHUNK_SIZE / 4; i++)
+            for (int i = 0; i < RandomChunkGenerator.CHUNK_SIZE / 4; i++)
             {
                 ChunkDecoratorData terrain;
                 terrain.name = "terrain1_center";

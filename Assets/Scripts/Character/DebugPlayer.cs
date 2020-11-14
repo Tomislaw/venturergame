@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterMovementController))]
-[RequireComponent(typeof(HumanCharacter))]
 public class DebugPlayer : MonoBehaviour
 {
     // Start is called before the first frame update

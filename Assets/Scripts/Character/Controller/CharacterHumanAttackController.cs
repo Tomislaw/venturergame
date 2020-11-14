@@ -14,7 +14,19 @@ public class CharacterHumanAttackController : MonoBehaviour
     public float timeBetweenAttack = 0.2f;
     public float timeOfAttack = 0.2f;
 
-    public int attackAngle = 0;
+    private int _attackAngle = 0;
+
+    public int attackAngle
+    {
+        get => _attackAngle;
+        set
+        {
+            _attackAngle = Mathf.Min(Mathf.Max(minAngle, value), maxAngle);
+        }
+    }
+
+    public int maxAngle = 80;
+    public int minAngle = -65;
 
     private float _timeToChargeLightAttackLeft = 0;
     private float _timeToChargeHeavyAttackLeft = 0;
@@ -23,6 +35,12 @@ public class CharacterHumanAttackController : MonoBehaviour
     private bool _attackRequested = false;
     private bool _attackRequestedPreviousState = false;
     private bool _cancelled = false;
+
+    private CharacterMovementController movementController = null;
+    private CharacterStatisticsController statistics = null;
+    private CharacterInventoryController inventory = null;
+    private HumanCharacter character = null;
+    private Equipment _equippedWeapon = null;
 
     public State AttackState { get; private set; } = State.None;
 
@@ -34,6 +52,14 @@ public class CharacterHumanAttackController : MonoBehaviour
 || AttackState == State.ChargingMax;
     }
 
+    private void OnEnable()
+    {
+        statistics = GetComponent<CharacterStatisticsController>();
+        inventory = GetComponent<CharacterInventoryController>();
+        character = GetComponent<HumanCharacter>();
+        movementController = GetComponent<CharacterMovementController>();
+    }
+
     public void Attack(bool andMove = false)
     {
         if (!CanRequestAttack)
@@ -42,6 +68,8 @@ public class CharacterHumanAttackController : MonoBehaviour
         _attackRequested = true;
         if (_attackRequested && !_attackRequestedPreviousState)
         {
+            _equippedWeapon = inventory ? inventory.GetEquippedWeapon() : null;
+
             _timeToChargeLightAttackLeft = timeToChargeLightAttack;
             _timeToChargeHeavyAttackLeft = timeToChargeHeavyAttack;
             _timeOfAttackLeft = timeOfAttack;
@@ -78,7 +106,7 @@ public class CharacterHumanAttackController : MonoBehaviour
 
                 if (_attackRequested != _attackRequestedPreviousState)
                 {
-                    AttackState = State.Attacking;
+                    AttackState = State.AttackingLight;
                     break;
                 }
 
@@ -97,7 +125,7 @@ public class CharacterHumanAttackController : MonoBehaviour
 
                 if (_attackRequested != _attackRequestedPreviousState)
                 {
-                    AttackState = State.Attacking;
+                    AttackState = State.AttackingHard;
                     break;
                 }
 
@@ -116,15 +144,23 @@ public class CharacterHumanAttackController : MonoBehaviour
 
                 if (_attackRequested != _attackRequestedPreviousState)
                 {
-                    AttackState = State.Attacking;
+                    AttackState = State.AttackingHard;
                     break;
                 }
 
                 break;
 
-            case State.Attacking:
+            case State.AttackingLight:
+            case State.AttackingHard:
                 _timeOfAttackLeft -= Time.deltaTime;
-                if (_timeOfAttackLeft < 0)
+
+                if (_equippedWeapon?.type == Equipment.Type.Bow)
+                {
+                    Shoot();
+                    _timeOfAttackLeft = 0;
+                }
+
+                if (_timeOfAttackLeft <= 0)
                     AttackState = State.FinishedAttack;
                 break;
 
@@ -145,11 +181,27 @@ public class CharacterHumanAttackController : MonoBehaviour
         _attackRequested = false;
     }
 
+    private void Shoot()
+    {
+        if (_equippedWeapon?.projectile == null)
+            return;
+
+        var pos = character.Arms.transform.position;
+        var projectile = Instantiate(_equippedWeapon.projectile);
+        projectile.transform.position = pos;
+        projectile.name = gameObject.name + "_projectile";
+
+        var angle = attackAngle;
+        if (movementController.FaceLeft)
+            angle = 180 - angle;
+        projectile.Shoot(gameObject, angle, 10f);
+    }
+
     private void FindAndDamage()
     {
         float weaponRange = 1;
         var colliders = Physics2D.OverlapCircleAll(transform.position, weaponRange);
-        var movementController = GetComponent<CharacterMovementController>();
+
         foreach (var collider in colliders)
         {
             var damageable = collider.GetComponent<Damageable>();
@@ -172,6 +224,6 @@ public class CharacterHumanAttackController : MonoBehaviour
 
     public enum State
     {
-        ChargingLight, ChargingHeavy, ChargingMax, Attacking, FinishedAttack, None
+        ChargingLight, ChargingHeavy, ChargingMax, AttackingLight, AttackingHard, FinishedAttack, None
     }
 }

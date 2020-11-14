@@ -21,7 +21,7 @@ public class CharacterInventoryController : MonoBehaviour
 
     public Equipment GetEquippedWeapon()
     {
-        return equipped.Find(it => it.type == Equipment.Type.MainHand || it.type == Equipment.Type.TwoHanded);
+        return equipped.Find(it => it.type == Equipment.Type.MainHand || it.type == Equipment.Type.TwoHanded || it.type == Equipment.Type.Bow);
     }
 
     public Equipment GetEquippedOffhand()
@@ -112,6 +112,8 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Armor:
             case Equipment.Type.Boots:
             case Equipment.Type.Pants:
+            case Equipment.Type.Necklace:
+            case Equipment.Type.Ring:
                 if (human != null)
                     human.Equip(equipment);
                 break;
@@ -120,14 +122,12 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Bow:
                 if (human != null)
                 {
+                    human.Unequip(Equipment.Type.TwoHanded);
+                    human.Unequip(Equipment.Type.Bow);
                     human.Unequip(Equipment.Type.MainHand);
                     human.Unequip(Equipment.Type.OffHand);
                 }
                 human.Equip(equipment);
-                break;
-
-            case Equipment.Type.Necklace:
-            case Equipment.Type.Ring:
                 break;
         }
 
@@ -157,12 +157,14 @@ public class CharacterInventoryController : MonoBehaviour
                 break;
 
             case Equipment.Type.TwoHanded:
+            case Equipment.Type.Bow:
                 if (human != null)
                 {
+                    human.Unequip(Equipment.Type.TwoHanded);
+                    human.Unequip(Equipment.Type.Bow);
                     human.Unequip(Equipment.Type.MainHand);
                     human.Unequip(Equipment.Type.OffHand);
                 }
-                human.Unequip(type);
                 break;
 
             case Equipment.Type.Necklace:

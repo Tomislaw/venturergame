@@ -16,9 +16,10 @@ public class ChunkDecorator : MonoBehaviour
 {
     public ChunkDecoratorData data;
 
-    public static GameObject Create(ChunkDecoratorData decorator)
+    public static GameObject Create(ChunkDecoratorData decorator, ChunkDecorators decorators = null)
     {
-        var obj = ChunkDecorators.Instance.decoratos.GetValue(decorator.name, null);
+        var generator = decorators ? decorators : ChunkDecorators.Instance;
+        var obj = generator.decoratos.GetValue(decorator.name, null);
         if (obj == null)
             return null;
 

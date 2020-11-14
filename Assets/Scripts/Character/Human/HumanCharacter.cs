@@ -21,10 +21,10 @@ public class HumanCharacter : MonoBehaviour
     internal Color _hairColor { get => hairColor > 0 || hairColor < prefabs.hairColors.Length ? prefabs.hairColors[hairColor] : Color.white; }
     internal Color _bodyColor { get => bodyColor > 0 || hairColor < prefabs.bodyColors.Length ? prefabs.bodyColors[bodyColor] : Color.white; }
 
-    private GameObject Head;
-    private GameObject Body;
-    private GameObject Legs;
-    private GameObject Arms;
+    public GameObject Head { get; private set; } = null;
+    public GameObject Body { get; private set; } = null;
+    public GameObject Legs { get; private set; } = null;
+    public GameObject Arms { get; private set; } = null;
 
     public HumanCharacterBodyPrefabs prefabs;
 
@@ -399,7 +399,8 @@ public class HumanCharacter : MonoBehaviour
                     previousAttackState = attackController.AttackState;
                     break;
 
-                case CharacterHumanAttackController.State.Attacking:
+                case CharacterHumanAttackController.State.AttackingHard:
+                case CharacterHumanAttackController.State.AttackingLight:
                     if (previousAttackState == CharacterHumanAttackController.State.ChargingHeavy
                         || previousAttackState == CharacterHumanAttackController.State.ChargingMax)
                         SetState(State.StrongAttack);
@@ -469,17 +470,25 @@ public class HumanCharacter : MonoBehaviour
         var legsAnnimation = "idle";
         var mainAnimation = "idle";
         var restartIfSame = true;
+
+        var showArms = false;
+
         // legs
         switch (state)
         {
             case State.PreWeakAttack:
             case State.PreStrongAttack:
+                showArms = true;
                 legsAnnimation = "preattack";
                 break;
 
             case State.StrongAttack:
             case State.WeakAttack:
-                legsAnnimation = "attack";
+                showArms = true;
+                if (WeaponType == AttackType.Bow)
+                    legsAnnimation = "preattack";
+                else
+                    legsAnnimation = "attack";
                 restartIfSame = false;
                 break;
 
@@ -516,29 +525,17 @@ public class HumanCharacter : MonoBehaviour
         {
             case State.PreWeakAttack:
                 if (WeaponType == AttackType.Bow)
-                {
                     mainAnimation = "archer";
-                    if (Arms)
-                        Arms.SetActive(true);
-                }
                 else
-                {
                     mainAnimation = "preattack2";
-                }
 
                 break;
 
             case State.WeakAttack:
                 if (WeaponType == AttackType.Bow)
-                {
-                    mainAnimation = "idle";
-                    if (Arms)
-                        Arms.SetActive(false);
-                }
+                    mainAnimation = "archer";
                 else
-                {
                     mainAnimation = "attack2";
-                }
 
                 break;
 
@@ -546,8 +543,7 @@ public class HumanCharacter : MonoBehaviour
                 if (WeaponType == AttackType.Bow)
                 {
                     mainAnimation = "archer";
-                    if (Arms)
-                        Arms.SetActive(true);
+                    showArms = true;
                 }
                 else
                 {
@@ -559,9 +555,8 @@ public class HumanCharacter : MonoBehaviour
             case State.StrongAttack:
                 if (WeaponType == AttackType.Bow)
                 {
-                    mainAnimation = "idle";
-                    if (Arms)
-                        Arms.SetActive(false);
+                    mainAnimation = "archer";
+                    showArms = true;
                 }
                 else
                     mainAnimation = "attack1";
@@ -611,6 +606,9 @@ public class HumanCharacter : MonoBehaviour
                 mainAnimation = "death";
                 break;
         }
+
+        if (Arms.activeSelf != showArms)
+            Arms.SetActive(showArms);
 
         foreach (var animator in legsAnimators)
             animator.SetAnimation(legsAnnimation, restartIfSame);

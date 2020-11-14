@@ -28,7 +28,10 @@ public class Box : MonoBehaviour, Damageable.OnDamage
         if (animator == null)
             return;
         if (damage.isDead)
+        {
             animator.Animation = "destroy";
+            GetComponent<Collider2D>().enabled = false;
+        }
         else if (damage.damage > 0)
             animator.Animation = "damage";
     }

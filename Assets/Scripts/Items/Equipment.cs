@@ -7,11 +7,15 @@ public class Equipment : SingleItem
     public int armorModifier;
     public int damageModifier;
 
+    public float attackTime = 0.2f;
+
     public GameObject femaleSpriteSheet;
     public GameObject maleSpriteSheet;
 
     public GameObject femaleSpriteSheet_arms;
     public GameObject maleSpriteSheet_arms;
+
+    public Projectile projectile;
 
     public Type type;
 

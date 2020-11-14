@@ -23,29 +23,49 @@ public class ColorOscilator
     }
 }
 
-[RequireComponent(typeof(SpriteRenderer))]
+[System.Serializable]
+public class IntensityOscilator
+{
+    public List<float> intensity = new List<float>();
+
+    public float GetIntensity(float factor)
+    {
+        if (intensity.Count == 0) return 0;
+
+        var value = factor / (1f / intensity.Count);
+        int idStart = Mathf.FloorToInt(value);
+        if (idStart == intensity.Count)
+            return intensity[intensity.Count - 1];
+
+        int idEnd = idStart == intensity.Count - 1 ? 0 : idStart + 1;
+        var between = value - idStart;
+
+        return Mathf.Lerp(intensity[idStart], intensity[idEnd], between);
+    }
+}
+
 public class Background : MonoBehaviour
 {
     public ColorOscilator colorsTop;
     public ColorOscilator colorsBottom;
 
+    public IntensityOscilator intensityTop;
+    public IntensityOscilator intensityBottom;
+
     private Color currentTop;
     private Color currentBottom;
-
-    private SpriteRenderer sr;
-    private Texture2D texture;
+    private float currentIntensityTop;
+    private float currentIntensityBottom;
 
     [Range(0, 1)]
     public float value = 0;
 
     private float previousValue = -1;
+    private new Renderer renderer;
 
     private void Start()
     {
-        texture = new Texture2D(1, 2);
-        texture.wrapMode = TextureWrapMode.Clamp;
-        sr = GetComponent<SpriteRenderer>();
-        sr.sprite = Sprite.Create(texture, new Rect(0, 0, 1, 2), new Vector2(0.5f, 0.5f));
+        renderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -64,20 +84,21 @@ public class Background : MonoBehaviour
     {
         currentTop = colorsTop.GetColor(value);
         currentBottom = colorsBottom.GetColor(value);
+        currentIntensityTop = intensityTop.GetIntensity(value);
+        currentIntensityBottom = intensityBottom.GetIntensity(value);
 
-        texture.SetPixel(0, 1, currentTop);
-        texture.SetPixel(0, 0, currentBottom);
-        texture.Apply();
+        renderer.material.SetColor("_TopColor", currentTop * currentIntensityTop);
+        renderer.material.SetColor("_BottomColor", currentBottom * currentIntensityBottom);
     }
 
     private void ResizeSpriteToScreen()
     {
-        if (sr == null) return;
+        if (renderer == null) return;
 
         transform.localScale = new Vector3(1, 1, 1);
 
-        float width = sr.sprite.bounds.size.x;
-        float height = sr.sprite.bounds.size.y;
+        float width = 1;
+        float height = 1;
 
         float worldScreenHeight = Camera.main.orthographicSize * 2.0f + 20;
         float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width + 20;

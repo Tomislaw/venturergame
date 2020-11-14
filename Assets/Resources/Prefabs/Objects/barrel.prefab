@@ -17,6 +17,12 @@ PrefabInstance:
       propertyPath: texture
       value: 
       objectReference: {fileID: 2800000, guid: 3cf02edecdebe51488632687570cdd58, type: 3}
+    - target: {fileID: 6272135890223279973, guid: 62593b5a5cd148647a2a07d63d0c3019,
+        type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 11400000, guid: e623f6deefdc40448b7228b963695ddc,
+        type: 2}
     - target: {fileID: 6272135890223279974, guid: 62593b5a5cd148647a2a07d63d0c3019,
         type: 3}
       propertyPath: m_Sprite

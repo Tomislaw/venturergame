@@ -18,6 +18,7 @@ MonoBehaviour:
   size: {x: 1, y: 4}
   armorModifier: 0
   damageModifier: 0
+  attackTime: 0.2
   femaleSpriteSheet: {fileID: 8046484545766386199, guid: 20da2fbdbb92ad74da4464280fc32179,
     type: 3}
   maleSpriteSheet: {fileID: 8046484545766386199, guid: 20da2fbdbb92ad74da4464280fc32179,
@@ -25,4 +26,6 @@ MonoBehaviour:
   femaleSpriteSheet_arms: {fileID: 994067625804597392, guid: 7f8a483b214df6a4d83d5e62ade2968f,
     type: 3}
   maleSpriteSheet_arms: {fileID: 0}
+  projectile: {fileID: 6235877128494918403, guid: eac80b80cc7ebd3448d3701c9cfb4880,
+    type: 3}
   type: 9

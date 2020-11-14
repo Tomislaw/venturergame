@@ -11,15 +11,15 @@ public class WorldEnvironmentManager : MonoBehaviour
 
     public MoonAndSun moonAndSun;
     public Background background;
-    public LightColorOscilator globalLight;
-    public LightColorOscilator skyboxLight;
+
+    public List<ObjectColorOscilator> colorOscilators;
 
     private void Update()
     {
         float value = world.environment.normalizedDayTime;
         moonAndSun.value = value;
         background.value = value;
-        globalLight.value = value;
-        skyboxLight.value = value;
+        foreach (var oscilator in colorOscilators)
+            oscilator.value = value;
     }
 }
