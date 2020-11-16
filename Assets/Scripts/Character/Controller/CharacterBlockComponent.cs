@@ -12,17 +12,14 @@ public class CharacterBlockComponent : MonoBehaviour
     public bool IsPreparingToBlock { get; private set; } = false;
     public bool IsBlocking { get; private set; } = false;
 
+    private bool blockOrdered = false;
+
     public void StartBlocking()
     {
-        var movementController = GetComponent<CharacterMovementController>();
         var attackController = GetComponent<CharacterBasicAttackController>();
-        if (movementController != null)
-        {
-            movementController.Stop();
-        }
         if (attackController != null)
         {
-            movementController.Stop();
+            attackController.CancelAttack();
         }
         if (!IsPreparingToBlock && !IsBlocking)
             _blockRequested = true;
@@ -35,13 +32,26 @@ public class CharacterBlockComponent : MonoBehaviour
         timeToStartBlocking = 0;
     }
 
-    private void Start()
+    public void Block()
     {
+        blockOrdered = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (blockOrdered)
+        {
+            if (!IsPreparingToBlock || !IsBlocking)
+                StartBlocking();
+        }
+        else
+        {
+            if (IsPreparingToBlock || IsBlocking)
+                StopBlocking();
+        }
+        blockOrdered = false;
+
         if (IsBlocking)
         {
             _blockRequested = false;

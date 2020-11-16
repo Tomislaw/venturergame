@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5512328340159499799}
   - component: {fileID: 112874043004452758}
-  - component: {fileID: 7962631925477760408}
-  - component: {fileID: 776402412603512434}
+  - component: {fileID: -2469638057669344524}
   m_Layer: 0
   m_Name: human_body
   m_TagString: Untagged
@@ -51,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 51f34d6d443f2be4db66d10645531d33, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7962631925477760408
+--- !u!114 &-2469638057669344524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,22 +91,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8424244402506673428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c7038b1e44e734f83e8f8fa48365a0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b56a814b206fb040b54e0d57e4deca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 0c5ce638f296d2e44a35ecd53e8c5157, type: 3}
-  clip: {fileID: 11400000, guid: f1d23e8c79f77d447b46f518d23a946b, type: 2}
-  _currentAnimation: idle
---- !u!114 &776402412603512434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424244402506673428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6984f0c1b5563e744b20072a1db54c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimationType: 0
+  _texture: {fileID: 0}
+  _mask: {fileID: 0}
+  _normalmap: {fileID: 0}
+  _UseDefaultSprite: 0

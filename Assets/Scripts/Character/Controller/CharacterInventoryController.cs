@@ -7,15 +7,17 @@ using System.Linq;
 [RequireComponent(typeof(Inventory))]
 public class CharacterInventoryController : MonoBehaviour
 {
+    [RequireInterface(typeof(IEquipInterceptor))]
+    public Object interceptor;
+
     public List<Equipment> equipped = new List<Equipment>();
 
     public void Start()
     {
-        var human = GetComponent<HumanCharacter>();
-        if (human)
+        if (interceptor != null)
             foreach (var item in equipped)
             {
-                human.Equip(item);
+                (interceptor as IEquipInterceptor).Equip(item);
             }
     }
 
@@ -59,7 +61,6 @@ public class CharacterInventoryController : MonoBehaviour
         UnequipAndPutToInventory(equipment.type);
         SetEquippedItem(equipment);
 
-        var human = GetComponent<HumanCharacter>();
         switch (equipment.type)
         {
             case Equipment.Type.MainHand:
@@ -68,17 +69,17 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Armor:
             case Equipment.Type.Boots:
             case Equipment.Type.Pants:
-                if (human != null)
-                    human.Equip(equipment);
+                if (interceptor != null)
+                    (interceptor as IEquipInterceptor).Equip(equipment);
                 break;
 
             case Equipment.Type.TwoHanded:
-                if (human != null)
+                if (interceptor != null)
                 {
-                    human.Unequip(Equipment.Type.MainHand);
-                    human.Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.MainHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Equip(equipment);
                 }
-                human.Equip(equipment);
                 break;
 
             case Equipment.Type.Necklace:
@@ -103,7 +104,6 @@ public class CharacterInventoryController : MonoBehaviour
         var current = Unequip(equipment.type);
         SetEquippedItem(equipment);
 
-        var human = GetComponent<HumanCharacter>();
         switch (equipment.type)
         {
             case Equipment.Type.MainHand:
@@ -114,20 +114,20 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Pants:
             case Equipment.Type.Necklace:
             case Equipment.Type.Ring:
-                if (human != null)
-                    human.Equip(equipment);
+                if (interceptor != null)
+                    (interceptor as IEquipInterceptor).Equip(equipment);
                 break;
 
             case Equipment.Type.TwoHanded:
             case Equipment.Type.Bow:
-                if (human != null)
+                if (interceptor != null)
                 {
-                    human.Unequip(Equipment.Type.TwoHanded);
-                    human.Unequip(Equipment.Type.Bow);
-                    human.Unequip(Equipment.Type.MainHand);
-                    human.Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.TwoHanded);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.Bow);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.MainHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Equip(equipment);
                 }
-                human.Equip(equipment);
                 break;
         }
 
@@ -136,7 +136,6 @@ public class CharacterInventoryController : MonoBehaviour
 
     public Equipment Unequip(Equipment.Type type)
     {
-        var human = GetComponent<HumanCharacter>();
         var item = GetEquippedItem(type);
 
         if (item == null)
@@ -152,18 +151,18 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Armor:
             case Equipment.Type.Boots:
             case Equipment.Type.Pants:
-                if (human != null)
-                    human.Unequip(type);
+                if (interceptor != null)
+                    (interceptor as IEquipInterceptor).Unequip(type);
                 break;
 
             case Equipment.Type.TwoHanded:
             case Equipment.Type.Bow:
-                if (human != null)
+                if (interceptor != null)
                 {
-                    human.Unequip(Equipment.Type.TwoHanded);
-                    human.Unequip(Equipment.Type.Bow);
-                    human.Unequip(Equipment.Type.MainHand);
-                    human.Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.TwoHanded);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.Bow);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.MainHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.OffHand);
                 }
                 break;
 
@@ -177,7 +176,6 @@ public class CharacterInventoryController : MonoBehaviour
 
     public void UnequipAndPutToInventory(Equipment.Type type)
     {
-        var human = GetComponent<HumanCharacter>();
         var item = GetEquippedItem(type);
 
         if (item == null)
@@ -193,17 +191,17 @@ public class CharacterInventoryController : MonoBehaviour
             case Equipment.Type.Armor:
             case Equipment.Type.Boots:
             case Equipment.Type.Pants:
-                if (human != null)
-                    human.Unequip(type);
+                if (interceptor != null)
+                    (interceptor as IEquipInterceptor).Unequip(type);
                 break;
 
             case Equipment.Type.TwoHanded:
-                if (human != null)
+                if (interceptor != null)
                 {
-                    human.Unequip(Equipment.Type.MainHand);
-                    human.Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.MainHand);
+                    (interceptor as IEquipInterceptor).Unequip(Equipment.Type.OffHand);
+                    (interceptor as IEquipInterceptor).Unequip(type);
                 }
-                human.Unequip(type);
                 break;
 
             case Equipment.Type.Necklace:
@@ -278,6 +276,13 @@ internal class CharacterInventoryControllerEditor : Editor
 
         EditorGUILayout.EndHorizontal();
     }
+}
+
+public interface IEquipInterceptor
+{
+    void Equip(Equipment equip);
+
+    void Unequip(Equipment.Type type);
 }
 
 #endif

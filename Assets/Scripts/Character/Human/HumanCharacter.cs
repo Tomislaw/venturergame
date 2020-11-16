@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 [RequireComponent(typeof(CharacterMovementController))]
-public class HumanCharacter : MonoBehaviour
+public class HumanCharacter : MonoBehaviour, IEquipInterceptor
 {
     public bool male = false;
     public int legs;

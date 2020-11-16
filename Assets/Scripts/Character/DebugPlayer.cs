@@ -25,7 +25,15 @@ public class DebugPlayer : MonoBehaviour
             attackComponent.Attack(controls.IsMoving);
 
             if (controls.IsMoving)
-                character.FaceLeft = controls.IsMovingLeft;
+                character.Move(controls.IsMovingLeft, false);
+        }
+        else if (controls.IsBlocking)
+        {
+            var blockComponent = GetComponent<CharacterBlockComponent>();
+            blockComponent.Block();
+
+            if (controls.IsMoving)
+                character.Move(controls.IsMovingLeft, false);
         }
         else if (controls.IsMoving)
         {

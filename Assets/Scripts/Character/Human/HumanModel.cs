@@ -6,7 +6,7 @@ using UnityEditor.Animations;
 using UnityEngine;
 
 [ExecuteAlways]
-public class HumanModel : MonoBehaviour
+public class HumanModel : MonoBehaviour, IEquipInterceptor
 {
     public bool male;
     public int headType;
@@ -19,12 +19,12 @@ public class HumanModel : MonoBehaviour
     public int bodyColor;
     public int hairColor;
 
-    public GameObject Head;
+    public HumanModelPart Head;
     public GameObject Hair;
     public GameObject Beard;
-    public GameObject Body;
-    public GameObject Legs;
-    public GameObject Arms;
+    public HumanModelPart Body;
+    public HumanModelPart Legs;
+    public HumanModelPart Arms;
     public GameObject Main;
 
     public HumanModelPrefabs malePrefabs;
@@ -35,10 +35,6 @@ public class HumanModel : MonoBehaviour
     private Dictionary<Equipment.Type, Equipment> equipment = new Dictionary<Equipment.Type, Equipment>();
 
     private UnityEngine.Animator mainAnimator;
-    private HashSet<UnityEngine.Animator> headAnimators = new HashSet<UnityEngine.Animator>();
-    private HashSet<UnityEngine.Animator> bodyAnimators = new HashSet<UnityEngine.Animator>();
-    private HashSet<UnityEngine.Animator> legsAnimators = new HashSet<UnityEngine.Animator>();
-    private HashSet<UnityEngine.Animator> armsAnimators = new HashSet<UnityEngine.Animator>();
 
     public string debugAnim = "idle";
     private string currentAnimation = "idle";
@@ -93,60 +89,76 @@ public class HumanModel : MonoBehaviour
             switch (attackController.AttackState)
             {
                 case CharacterHumanAttackController.State.ChargingLight:
-                    SetAnimation("preattack2");
+                    if (controller.IsWalking || controller.IsRunning)
+                        mainAnimator.Play("WalkAndPreAttack2");
+                    else
+                        mainAnimator.Play("PreAttack2");
+
                     break;
 
                 case CharacterHumanAttackController.State.ChargingHeavy:
-                    SetAnimation("preattack1");
+                    if (controller.IsWalking || controller.IsRunning)
+                        mainAnimator.Play("WalkAndPreAttack1");
+                    else
+                        mainAnimator.Play("PreAttack1");
                     break;
 
                 case CharacterHumanAttackController.State.ChargingMax:
-                    SetAnimation("preattack1");
+                    if (controller.IsWalking || controller.IsRunning)
+                        mainAnimator.Play("WalkAndPreAttack1");
+                    else
+                        mainAnimator.Play("PreAttack1");
                     break;
 
                 case CharacterHumanAttackController.State.AttackingLight:
-                    SetAnimation("attack2");
+                    mainAnimator.Play("Attack2");
+                    controller.Stop();
                     break;
 
                 case CharacterHumanAttackController.State.AttackingHard:
-                    SetAnimation("attack1");
+                    mainAnimator.Play("Attack1");
+                    controller.Stop();
                     break;
 
                 case CharacterHumanAttackController.State.FinishedAttack:
-                    SetAnimation("idle");
+                    mainAnimator.Play("Idle");
                     break;
 
                 default:
                     break;
             }
         }
-        else if (controller.IsRunning)
-        {
-            if (IsWeaponEquipped)
-                SetAnimation("run");
-            else
-                SetAnimation("runww");
-
-            attackController.Cancel();
-            blockController.StopBlocking();
-        }
-        else if (controller.IsWalking)
-        {
-            SetAnimation("walk");
-            attackController.Cancel();
-            blockController.StopBlocking();
-        }
         else if (blockController.IsPreparingToBlock)
         {
-            SetAnimation("block");
+            if (controller.IsWalking || controller.IsRunning)
+                mainAnimator.Play("WalkAndPreBlock");
+            else
+                mainAnimator.Play("PreBlock1");
         }
         else if (blockController.IsBlocking)
         {
-            SetAnimation("block");
+            if (controller.IsWalking || controller.IsRunning)
+            {
+                //PlayAnimations("WalkAndPreAttack", "BlockIdle", "BlockIdle1", "Idle");
+                //SyncAnimation(mainAnimator, "WalkAndPreAttack", legsAnimators);
+            }
+            // else
+            //  PlayAnimations("BlockIdle", "BlockIdle", "BlockIdle1", "Idle");
+        }
+        else if (controller.IsRunning)
+        {
+            if (IsWeaponEquipped)
+                mainAnimator.Play("Run");
+            else
+                mainAnimator.Play("Runww");
+        }
+        else if (controller.IsWalking)
+        {
+            mainAnimator.Play("Walk");
         }
         else
         {
-            SetAnimation("idle");
+            mainAnimator.Play("Idle");
         }
 
         Head.transform.localEulerAngles =
@@ -173,12 +185,6 @@ public class HumanModel : MonoBehaviour
 
     private void Start()
     {
-        headAnimators.Add(Head.GetComponent<UnityEngine.Animator>());
-        headAnimators.Add(Hair.GetComponent<UnityEngine.Animator>());
-        headAnimators.Add(Beard.GetComponent<UnityEngine.Animator>());
-        bodyAnimators.Add(Body.GetComponent<UnityEngine.Animator>());
-        legsAnimators.Add(Legs.GetComponent<UnityEngine.Animator>());
-        armsAnimators.Add(Arms.GetComponent<UnityEngine.Animator>());
         mainAnimator = Main.GetComponent<UnityEngine.Animator>();
 
         Invalidate();
@@ -186,6 +192,8 @@ public class HumanModel : MonoBehaviour
 
     public void Invalidate()
     {
+        mainAnimator.SetLayerWeight(1, male ? 0 : 1);
+
         InvalidateBodyPart(Head?.GetComponent<SwitchableTexture>(), Prefabs.Heads, headType);
         InvalidateBodyPart(Hair?.GetComponent<SwitchableTexture>(), Prefabs.Hairs, hairType);
         InvalidateBodyPart(Beard?.GetComponent<SwitchableTexture>(), Prefabs.Beards, beardType);
@@ -195,9 +203,9 @@ public class HumanModel : MonoBehaviour
 
         InvalidateColor(Hair, Prefabs.hairColors, hairColor);
         InvalidateColor(Beard, Prefabs.hairColors, hairColor);
-        InvalidateColor(Legs, Prefabs.bodyColors, bodyColor);
-        InvalidateColor(Body, Prefabs.bodyColors, bodyColor);
-        InvalidateColor(Head, Prefabs.bodyColors, bodyColor);
+        InvalidateColor(Legs.gameObject, Prefabs.bodyColors, bodyColor);
+        InvalidateColor(Body.gameObject, Prefabs.bodyColors, bodyColor);
+        InvalidateColor(Head.gameObject, Prefabs.bodyColors, bodyColor);
 
         foreach (Equipment.Type type in Enum.GetValues(typeof(Equipment.Type)))
         {
@@ -219,24 +227,13 @@ public class HumanModel : MonoBehaviour
 
     public void InvalidateEquipment(Equipment.Type type)
     {
-        if (Application.isEditor)
+        if (!Application.isPlaying)
             return;
 
-        var obj = Arms.transform.Find(type.ToString())?.gameObject;
-        if (obj != null)
-            Destroy(obj);
-
-        obj = Head.transform.Find(type.ToString())?.gameObject;
-        if (obj != null)
-            Destroy(obj);
-
-        obj = Body.transform.Find(type.ToString())?.gameObject;
-        if (obj != null)
-            Destroy(obj);
-
-        obj = Legs.transform.Find(type.ToString())?.gameObject;
-        if (obj != null)
-            Destroy(obj);
+        //RemoveObjectAndAnimators(Arms.transform.Find(type.ToString())?.gameObject, armsAnimators);
+        Head.RemoveAndDestroy(type.ToString());
+        Body.RemoveAndDestroy(type.ToString());
+        Legs.RemoveAndDestroy(type.ToString());
 
         if (!equipment.ContainsKey(type))
             return;
@@ -249,16 +246,15 @@ public class HumanModel : MonoBehaviour
             var newItem = Instantiate(arms);
             newItem.transform.SetParent(Arms.transform, false);
             newItem.name = type.ToString();
-            armsAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
+            //  armsAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
         }
 
         var body = male ? item.maleSpriteSheet : item.femaleSpriteSheet;
 
         if (body)
         {
-            var newItem = Instantiate(arms);
+            var newItem = Instantiate(body);
             newItem.name = type.ToString();
-            GameObject target = gameObject;
 
             switch (type)
             {
@@ -269,23 +265,18 @@ public class HumanModel : MonoBehaviour
                 case Equipment.Type.Necklace:
                 case Equipment.Type.Ring:
                 case Equipment.Type.Bow:
-                    target = Body;
-                    bodyAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
+                    Body.Add(newItem);
                     break;
 
                 case Equipment.Type.Helmet:
-                    target = Head;
-                    headAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
+                    Head.Add(newItem);
                     break;
 
                 case Equipment.Type.Boots:
                 case Equipment.Type.Pants:
-                    target = Legs;
-                    legsAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
+                    Legs.Add(newItem);
                     break;
             }
-
-            newItem.transform.SetParent(target.transform, false);
         }
     }
 
@@ -317,227 +308,5 @@ public class HumanModel : MonoBehaviour
             return;
 
         sr.color = colors[id];
-    }
-
-    public void SetAnimation(string animation)
-    {
-        debugAnim = animation;
-
-        switch (animation)
-        {
-            case "idle":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Idle", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Idle");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Idle");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "walk":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Walk", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Walk");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Walk");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "run":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Run", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Run");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Run");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "runww":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Runww", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Run");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Runww");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "attack1":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Attack1", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Attack");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Attack1");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "preattack1":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("PreAttack1", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("BlockIdle");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("PreAttack1");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "attack2":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Attack2", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Attack");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Attack2");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "preattack2":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("PreAttack2", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("BlockIdle");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("PreAttack2");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "block1":
-                mainAnimator.Play("Block", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Block");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Block1");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "block2":
-                mainAnimator.Play("Block", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Block");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Block2");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "blockidle1":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("BlockIdle", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("BlockIdle");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("BlockIdle1");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "blockidle2":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("BlockIdle", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Block");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("BlockIdle2");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "blockidle3":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("BlockIdle", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Block");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("BlockIdle3");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "death":
-                mainAnimator.Play("Death", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Death");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Death");
-                foreach (var anim in headAnimators)
-                    anim.Play("Death");
-                break;
-
-            case "archer":
-
-                if (currentAnimation == animation)
-                    return;
-
-                mainAnimator.Play("Archer", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("BlockIdle");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Archer");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                foreach (var anim in armsAnimators)
-                    anim.Play("Idle");
-                break;
-
-            case "archerfire":
-                mainAnimator.Play("Archer", male ? 0 : 1);
-                foreach (var anim in legsAnimators)
-                    anim.Play("Block");
-                foreach (var anim in bodyAnimators)
-                    anim.Play("Archer");
-                foreach (var anim in headAnimators)
-                    anim.Play("Idle");
-                foreach (var anim in armsAnimators)
-                    anim.Play("Fire");
-                break;
-        }
-
-        currentAnimation = animation;
     }
 }

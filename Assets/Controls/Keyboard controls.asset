@@ -15,7 +15,7 @@ MonoBehaviour:
   moveLeft: 97
   moveRight: 100
   attack: 32
-  toggleSprint: 306
+  toggleSprint: 0
   sprint: 304
   block: 306
   attackAngleIncrease: 119

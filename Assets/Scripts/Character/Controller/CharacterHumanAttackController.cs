@@ -97,6 +97,7 @@ public class CharacterHumanAttackController : MonoBehaviour
         switch (AttackState)
         {
             case State.ChargingLight:
+
                 if (_cancelled)
                 {
                     Clear();
@@ -116,6 +117,7 @@ public class CharacterHumanAttackController : MonoBehaviour
                 break;
 
             case State.ChargingHeavy:
+
                 if (_cancelled)
                 {
                     Clear();
@@ -135,6 +137,7 @@ public class CharacterHumanAttackController : MonoBehaviour
                 break;
 
             case State.ChargingMax:
+
                 if (_cancelled)
                 {
                     Clear();
