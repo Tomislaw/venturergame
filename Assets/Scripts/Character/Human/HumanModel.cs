@@ -54,6 +54,14 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         }
     }
 
+    public bool IsShieldEquipped
+    {
+        get
+        {
+            return equipment.ContainsKey(Equipment.Type.OffHand);
+        }
+    }
+
     private enum AttackType { Bow, TwoHanded, OneHanded }
 
     private AttackType WeaponType
@@ -84,8 +92,11 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
 
         if (attackController.AttackState != CharacterHumanAttackController.State.None)
         {
-            AimRotation = Mathf.Max(-60, Mathf.Min(attackController.attackAngle, 80));
-            AimRotation -= AimRotation % 5;
+            if (equipment.ContainsKey(Equipment.Type.Bow))
+            {
+                AimRotation = Mathf.Max(-60, Mathf.Min(attackController.attackAngle, 80));
+                AimRotation -= AimRotation % 5;
+            }
             switch (attackController.AttackState)
             {
                 case CharacterHumanAttackController.State.ChargingLight:
@@ -130,20 +141,21 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         }
         else if (blockController.IsPreparingToBlock)
         {
+            char type = IsShieldEquipped ? (blockController.IsTargetingUpwards ? '3' : '1') : (IsWeaponEquipped ? '2' : '1');
+
             if (controller.IsWalking || controller.IsRunning)
-                mainAnimator.Play("WalkAndPreBlock");
+                mainAnimator.Play("Walk");
             else
-                mainAnimator.Play("PreBlock1");
+                mainAnimator.Play("Block" + type);
         }
         else if (blockController.IsBlocking)
         {
+            char type = IsShieldEquipped ? (blockController.IsTargetingUpwards ? '3' : '1') : (IsWeaponEquipped ? '2' : '1');
+
             if (controller.IsWalking || controller.IsRunning)
-            {
-                //PlayAnimations("WalkAndPreAttack", "BlockIdle", "BlockIdle1", "Idle");
-                //SyncAnimation(mainAnimator, "WalkAndPreAttack", legsAnimators);
-            }
-            // else
-            //  PlayAnimations("BlockIdle", "BlockIdle", "BlockIdle1", "Idle");
+                mainAnimator.Play("BlockAndWalk" + type);
+            else
+                mainAnimator.Play("BlockIdle" + type);
         }
         else if (controller.IsRunning)
         {

@@ -11,6 +11,7 @@ public class CharacterBlockComponent : MonoBehaviour
 
     public bool IsPreparingToBlock { get; private set; } = false;
     public bool IsBlocking { get; private set; } = false;
+    public bool IsTargetingUpwards { get; private set; } = false;
 
     private bool blockOrdered = false;
 
@@ -32,9 +33,10 @@ public class CharacterBlockComponent : MonoBehaviour
         timeToStartBlocking = 0;
     }
 
-    public void Block()
+    public void Block(bool upwards = false)
     {
         blockOrdered = true;
+        IsTargetingUpwards = upwards;
     }
 
     // Update is called once per frame

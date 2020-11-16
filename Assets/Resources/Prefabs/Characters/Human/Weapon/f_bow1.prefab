@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2469638057669344524, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
+        type: 3}
+      propertyPath: Material
+      value: 
+      objectReference: {fileID: 2100000, guid: 51f34d6d443f2be4db66d10645531d33, type: 2}
+    - target: {fileID: -2469638057669344524, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
+        type: 3}
+      propertyPath: _texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 2d0369e22affe094ab364bc41b3b865d, type: 3}
     - target: {fileID: 112874043004452758, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
         type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -27,6 +37,11 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 112874043004452758, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 51f34d6d443f2be4db66d10645531d33, type: 2}
     - target: {fileID: 5512328340159499799, guid: 582515e50fbcffa4a8ef7a22bd6be6ef,
         type: 3}
       propertyPath: m_RootOrder
