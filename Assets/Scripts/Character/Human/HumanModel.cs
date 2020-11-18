@@ -92,51 +92,77 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
 
         if (attackController.AttackState != CharacterHumanAttackController.State.None)
         {
-            if (equipment.ContainsKey(Equipment.Type.Bow))
+            bool isArcher = equipment.ContainsKey(Equipment.Type.Bow);
+            if (isArcher)
             {
                 AimRotation = Mathf.Max(-60, Mathf.Min(attackController.attackAngle, 80));
                 AimRotation -= AimRotation % 5;
+
+                switch (attackController.AttackState)
+                {
+                    case CharacterHumanAttackController.State.ChargingLight:
+                        mainAnimator.Play("Archer");
+                        break;
+
+                    case CharacterHumanAttackController.State.ChargingHeavy:
+                    case CharacterHumanAttackController.State.ChargingMax:
+                        mainAnimator.Play("ArcherIdle");
+                        break;
+
+                    case CharacterHumanAttackController.State.AttackingLight:
+                    case CharacterHumanAttackController.State.AttackingHard:
+                    case CharacterHumanAttackController.State.FinishedAttack:
+                        mainAnimator.Play("Idle");
+                        break;
+
+                    default:
+                        break;
+                }
             }
-            switch (attackController.AttackState)
+            else
             {
-                case CharacterHumanAttackController.State.ChargingLight:
-                    if (controller.IsWalking || controller.IsRunning)
-                        mainAnimator.Play("WalkAndPreAttack2");
-                    else
-                        mainAnimator.Play("PreAttack2");
+                switch (attackController.AttackState)
+                {
+                    case CharacterHumanAttackController.State.ChargingLight:
 
-                    break;
+                        if (controller.IsWalking || controller.IsRunning)
+                            mainAnimator.Play("WalkAndPreAttack2");
+                        else
+                            mainAnimator.Play("PreAttack2");
 
-                case CharacterHumanAttackController.State.ChargingHeavy:
-                    if (controller.IsWalking || controller.IsRunning)
-                        mainAnimator.Play("WalkAndPreAttack1");
-                    else
-                        mainAnimator.Play("PreAttack1");
-                    break;
+                        break;
 
-                case CharacterHumanAttackController.State.ChargingMax:
-                    if (controller.IsWalking || controller.IsRunning)
-                        mainAnimator.Play("WalkAndPreAttack1");
-                    else
-                        mainAnimator.Play("PreAttack1");
-                    break;
+                    case CharacterHumanAttackController.State.ChargingHeavy:
+                        if (controller.IsWalking || controller.IsRunning)
+                            mainAnimator.Play("WalkAndPreAttack1");
+                        else
+                            mainAnimator.Play("PreAttack1");
+                        break;
 
-                case CharacterHumanAttackController.State.AttackingLight:
-                    mainAnimator.Play("Attack2");
-                    controller.Stop();
-                    break;
+                    case CharacterHumanAttackController.State.ChargingMax:
+                        if (controller.IsWalking || controller.IsRunning)
+                            mainAnimator.Play("WalkAndPreAttack1");
+                        else
+                            mainAnimator.Play("PreAttack1");
+                        break;
 
-                case CharacterHumanAttackController.State.AttackingHard:
-                    mainAnimator.Play("Attack1");
-                    controller.Stop();
-                    break;
+                    case CharacterHumanAttackController.State.AttackingLight:
+                        mainAnimator.Play("Attack2");
+                        controller.Stop();
+                        break;
 
-                case CharacterHumanAttackController.State.FinishedAttack:
-                    mainAnimator.Play("Idle");
-                    break;
+                    case CharacterHumanAttackController.State.AttackingHard:
+                        mainAnimator.Play("Attack1");
+                        controller.Stop();
+                        break;
 
-                default:
-                    break;
+                    case CharacterHumanAttackController.State.FinishedAttack:
+                        mainAnimator.Play("Idle");
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
         else if (blockController.IsPreparingToBlock)
@@ -242,10 +268,10 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         if (!Application.isPlaying)
             return;
 
-        //RemoveObjectAndAnimators(Arms.transform.Find(type.ToString())?.gameObject, armsAnimators);
         Head.RemoveAndDestroy(type.ToString());
         Body.RemoveAndDestroy(type.ToString());
         Legs.RemoveAndDestroy(type.ToString());
+        Arms.RemoveAndDestroy(type.ToString());
 
         if (!equipment.ContainsKey(type))
             return;
@@ -256,8 +282,7 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         if (arms)
         {
             var newItem = Instantiate(arms);
-            newItem.transform.SetParent(Arms.transform, false);
-            newItem.name = type.ToString();
+            Arms.Add(newItem);
             //  armsAnimators.Add(newItem.GetComponent<UnityEngine.Animator>());
         }
 

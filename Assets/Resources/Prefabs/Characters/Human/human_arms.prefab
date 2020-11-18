@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 5512328340159499799}
   - component: {fileID: 112874043004452758}
   - component: {fileID: 1500909893619049241}
+  - component: {fileID: -7491406728808832866}
   m_Layer: 0
   m_Name: human_arms
   m_TagString: Untagged
@@ -246,7 +247,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 51f34d6d443f2be4db66d10645531d33, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -297,3 +298,20 @@ MonoBehaviour:
   maxRotationZ: 80
   minRotationZ: -80
   TakeRotationFromParent: 0
+--- !u!114 &-7491406728808832866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8424244402506673428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b56a814b206fb040b54e0d57e4deca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Material: {fileID: 2100000, guid: 51f34d6d443f2be4db66d10645531d33, type: 2}
+  _texture: {fileID: 0}
+  _mask: {fileID: 0}
+  _normalmap: {fileID: 0}
+  _UseDefaultSprite: 0

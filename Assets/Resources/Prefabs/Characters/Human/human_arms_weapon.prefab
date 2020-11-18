@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5512328340159499799}
   - component: {fileID: 112874043004452758}
-  - component: {fileID: -8269890769163124271}
   - component: {fileID: -5301001612426545929}
+  - component: {fileID: -3316139605752654759}
   m_Layer: 0
   m_Name: human_arms_weapon
   m_TagString: Untagged
@@ -83,26 +83,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &-8269890769163124271
-Animator:
-  serializedVersion: 3
+--- !u!114 &-5301001612426545929
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8424244402506673428}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5301001612426545929
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b56a814b206fb040b54e0d57e4deca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Material: {fileID: 0}
+  _texture: {fileID: 0}
+  _mask: {fileID: 0}
+  _normalmap: {fileID: 0}
+  _UseDefaultSprite: 0
+--- !u!114 &-3316139605752654759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

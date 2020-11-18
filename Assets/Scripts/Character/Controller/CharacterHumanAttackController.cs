@@ -39,7 +39,7 @@ public class CharacterHumanAttackController : MonoBehaviour
     private CharacterMovementController movementController = null;
     private CharacterStatisticsController statistics = null;
     private CharacterInventoryController inventory = null;
-    private HumanCharacter character = null;
+    private HumanModel character = null;
     private Equipment _equippedWeapon = null;
 
     public State AttackState { get; private set; } = State.None;
@@ -56,7 +56,7 @@ public class CharacterHumanAttackController : MonoBehaviour
     {
         statistics = GetComponent<CharacterStatisticsController>();
         inventory = GetComponent<CharacterInventoryController>();
-        character = GetComponent<HumanCharacter>();
+        character = GetComponent<HumanModel>();
         movementController = GetComponent<CharacterMovementController>();
     }
 

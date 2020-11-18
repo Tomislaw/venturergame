@@ -26,6 +26,8 @@ public class DebugPlayer : MonoBehaviour
 
             if (controls.IsMoving)
                 character.Move(controls.IsMovingLeft, false);
+            else
+                character.FaceLeft = controls.IsMovingLeft;
         }
         else if (controls.IsBlocking)
         {
@@ -34,6 +36,8 @@ public class DebugPlayer : MonoBehaviour
 
             if (controls.IsMoving)
                 character.Move(controls.IsMovingLeft, false);
+            else
+                character.FaceLeft = controls.IsMovingLeft;
         }
         else if (controls.IsMoving)
         {
