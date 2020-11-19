@@ -16,6 +16,9 @@ public class GenderSelectionUI : MonoBehaviour
         male.SetActive(!value);
         female.SetActive(value);
         isMale = value;
+
+        character.male = value;
+        character.Invalidate();
     }
 
     public GameObject malePressed;
@@ -23,6 +26,8 @@ public class GenderSelectionUI : MonoBehaviour
 
     public GameObject male;
     public GameObject female;
+
+    public HumanModel character;
 
     private void OnEnable()
     {

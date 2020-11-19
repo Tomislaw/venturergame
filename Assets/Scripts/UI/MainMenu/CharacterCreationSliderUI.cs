@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class CharacterCreationSliderUI : MonoBehaviour
 {
     public Mode mode;
-    public HumanCharacter character;
+    public HumanModel character;
 
     public Slider slider;
+
+    private HumanModelPrefabs prefabs { get => character.male ? character.malePrefabs : character.femalePrefabs; }
 
     private void Awake()
     {
@@ -40,17 +42,42 @@ public class CharacterCreationSliderUI : MonoBehaviour
         else if (type.Contains("Color"))
         {
             if (type.Contains("Hair"))
-                slider.maxValue = character.prefabs.hairColors.Length - 1;
+                slider.maxValue = prefabs.hairColors.Length - 1;
             else
-                slider.maxValue = character.prefabs.bodyColors.Length - 1;
+                slider.maxValue = prefabs.bodyColors.Length - 1;
         }
         else
         {
-            var prefix = character.male ? "male" : "female";
-            slider.maxValue = character.prefabs.Prefabs[prefix + type.ToString()].Count - 1;
+            switch (mode)
+            {
+                case Mode.Hair:
+                    slider.maxValue = prefabs.Hairs.Count;
+                    break;
 
-            if (type.Contains("Hair"))
-                slider.maxValue += 1;
+                case Mode.Beard:
+                    slider.maxValue = prefabs.Beards.Count - 1;
+                    break;
+
+                case Mode.Body:
+                    slider.maxValue = prefabs.Bodies.Count - 1;
+                    break;
+
+                case Mode.Legs:
+                    slider.maxValue = prefabs.Legs.Count - 1;
+                    break;
+
+                case Mode.Head:
+                    slider.maxValue = prefabs.Heads.Count - 1;
+                    break;
+
+                case Mode.HairColor:
+                    slider.maxValue = prefabs.hairColors.Length - 1;
+                    break;
+
+                case Mode.BodyColor:
+                    slider.maxValue = prefabs.bodyColors.Length - 1;
+                    break;
+            }
         }
     }
 
@@ -60,23 +87,23 @@ public class CharacterCreationSliderUI : MonoBehaviour
         switch (mode)
         {
             case Mode.Hair:
-                character.hair = v;
+                character.hairType = v;
                 break;
 
             case Mode.Beard:
-                character.beard = v;
+                character.beardType = v;
                 break;
 
             case Mode.Body:
-                character.body = v;
+                character.bodyType = v;
                 break;
 
             case Mode.Legs:
-                character.legs = v;
+                character.legsType = v;
                 break;
 
             case Mode.Head:
-                character.head = v;
+                character.headType = v;
                 break;
 
             case Mode.HairColor:
@@ -85,26 +112,10 @@ public class CharacterCreationSliderUI : MonoBehaviour
 
             case Mode.BodyColor:
                 character.bodyColor = v;
+
                 break;
         }
-
-        switch (mode)
-        {
-            case Mode.Hair:
-            case Mode.Beard:
-            case Mode.Body:
-            case Mode.Legs:
-            case Mode.Head:
-                character.InvalidateBody();
-                character.InvalidateColors();
-                character.SyncAnimation();
-                break;
-
-            case Mode.HairColor:
-            case Mode.BodyColor:
-                character.InvalidateColors();
-                break;
-        }
+        character.Invalidate();
     }
 
     public enum Mode

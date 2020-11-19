@@ -239,11 +239,7 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         InvalidateBodyPart(Arms?.GetComponent<SwitchableTexture>(), Prefabs.Bodies, bodyType);
         InvalidateBodyPart(Legs?.GetComponent<SwitchableTexture>(), Prefabs.Legs, legsType);
 
-        InvalidateColor(Hair, Prefabs.hairColors, hairColor);
-        InvalidateColor(Beard, Prefabs.hairColors, hairColor);
-        InvalidateColor(Legs.gameObject, Prefabs.bodyColors, bodyColor);
-        InvalidateColor(Body.gameObject, Prefabs.bodyColors, bodyColor);
-        InvalidateColor(Head.gameObject, Prefabs.bodyColors, bodyColor);
+        InvalidateColors();
 
         foreach (Equipment.Type type in Enum.GetValues(typeof(Equipment.Type)))
         {
@@ -251,10 +247,27 @@ public class HumanModel : MonoBehaviour, IEquipInterceptor
         }
     }
 
+    public void InvalidateColors()
+    {
+        InvalidateColor(Hair, Prefabs.hairColors, hairColor);
+        InvalidateColor(Beard, Prefabs.hairColors, hairColor);
+        InvalidateColor(Legs.gameObject, Prefabs.bodyColors, bodyColor);
+        InvalidateColor(Body.gameObject, Prefabs.bodyColors, bodyColor);
+        InvalidateColor(Head.gameObject, Prefabs.bodyColors, bodyColor);
+    }
+
     protected void InvalidateBodyPart(SwitchableTexture obj, List<SwitchableTextureData> textures, int id)
     {
         if (obj == null || textures == null || id < 0 || id > textures.Count)
             return;
+
+        if (id == textures.Count)
+        {
+            obj.gameObject.SetActive(false);
+            return;
+        }
+        else
+            obj.gameObject.SetActive(true);
 
         var tex = textures[id];
 

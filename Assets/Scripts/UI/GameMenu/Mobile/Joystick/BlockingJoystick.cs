@@ -4,9 +4,8 @@ public class BlockingJoystick : BasicJoystick
 {
     public TouchUIPlayerControls Controls;
 
-    private void Update()
+    private void LateUpdate()
     {
-        base.Update();
         if (Controls != null && Joystick != null)
         {
             Controls.Blocking = Joystick.Pressed;

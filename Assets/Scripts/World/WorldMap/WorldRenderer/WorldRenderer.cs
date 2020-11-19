@@ -155,6 +155,8 @@ public class WorldRenderer : MonoBehaviour
         if (World == null)
             return;
 
+        return;
+
         Debug.Log("Reload");
 
         var regions = World.Regions;

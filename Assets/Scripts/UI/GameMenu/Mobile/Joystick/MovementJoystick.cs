@@ -4,9 +4,8 @@ public class MovementJoystick : BasicJoystick
 {
     public TouchUIPlayerControls Controls;
 
-    private void Update()
+    private void LateUpdate()
     {
-        base.Update();
         if (Controls != null && Joystick != null)
         {
             Controls.MoveX = Value.x;
