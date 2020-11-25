@@ -4,7 +4,7 @@ public class AttackJoystick : BasicJoystick
 {
     public TouchUIPlayerControls Controls;
 
-    private void Update()
+    private new void Update()
     {
         base.Update();
         if (Controls != null && Joystick != null)
@@ -19,7 +19,6 @@ public class AttackJoystick : BasicJoystick
                 Controls.FaceLeft = Value.x < 0;
             else
                 Controls.FaceLeft = null;
-            Debug.Log(Controls.AttackingAngle);
         }
     }
 }

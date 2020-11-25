@@ -15,6 +15,9 @@ public class TouchPlayerControls : PlayerControls
     public override float AttackAngle { get; protected set; }
     public override bool IsBlocking { get; protected set; }
 
+    public override bool IsUsing1 { get => false; protected set { } }
+    public override bool IsUsing2 { get => false; protected set { } }
+
     private int moveTouchId = -1;
     private int attackTouchId = -1;
     private Vector2 moveStartPos;

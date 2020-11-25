@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1045135101387908763}
-  - component: {fileID: 1662345019378517228}
   - component: {fileID: 5815265718093626799}
   - component: {fileID: 3485138816863081610}
   - component: {fileID: 4304010017919811539}
@@ -36,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1662345019378517228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3074883574012209539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7969ec1b2ff8ac94a89ad504a75bd85a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    name: deciduous_bush2
 --- !u!23 &5815265718093626799
 MeshRenderer:
   m_ObjectHideFlags: 0

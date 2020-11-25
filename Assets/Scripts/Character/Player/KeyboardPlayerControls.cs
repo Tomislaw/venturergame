@@ -15,6 +15,9 @@ public class KeyboardPlayerControls : PlayerControls
     public override float AttackAngle { get; protected set; }
     public override bool IsBlocking { get; protected set; }
 
+    public override bool IsUsing1 { get; protected set; }
+    public override bool IsUsing2 { get; protected set; }
+
     public KeyCode moveLeft = KeyCode.A;
     public KeyCode moveRight = KeyCode.D;
     public KeyCode attack = KeyCode.Space;
@@ -22,8 +25,12 @@ public class KeyboardPlayerControls : PlayerControls
     public KeyCode sprint = KeyCode.LeftShift;
     public KeyCode block = KeyCode.LeftControl;
 
+    public KeyCode Use1 = KeyCode.E;
+    public KeyCode Use2 = KeyCode.F;
+
     public KeyCode attackAngleIncrease = KeyCode.W;
     public KeyCode attackAngleDecrease = KeyCode.S;
+
     public float attackAngleIntensity = 100;
 
     private bool _isSprinting = false;
@@ -62,6 +69,9 @@ public class KeyboardPlayerControls : PlayerControls
 
         IsBlocking = Input.GetKey(block);
         IsAttacking = Input.GetKey(attack);
+
+        IsUsing1 = Input.GetKeyDown(Use1);
+        IsUsing2 = Input.GetKeyDown(Use2);
 
         if (!IsAttacking)
             AttackAngle = 0;

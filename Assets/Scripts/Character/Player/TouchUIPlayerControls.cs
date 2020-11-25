@@ -15,6 +15,9 @@ public class TouchUIPlayerControls : PlayerControls
     public override float AttackAngle { get; protected set; }
     public override bool IsBlocking { get; protected set; }
 
+    public override bool IsUsing1 { get => false; protected set { } }
+    public override bool IsUsing2 { get => false; protected set { } }
+
     [HideInInspector]
     public float MoveX = 0;
 

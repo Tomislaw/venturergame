@@ -15,5 +15,8 @@ public abstract class PlayerControls : ScriptableObject
     public abstract float AttackAngle { get; protected set; }
     public abstract bool IsBlocking { get; protected set; }
 
+    public abstract bool IsUsing1 { get; protected set; }
+    public abstract bool IsUsing2 { get; protected set; }
+
     public abstract void UpdateControls();
 }

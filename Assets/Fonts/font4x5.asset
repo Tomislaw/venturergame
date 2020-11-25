@@ -19,6 +19,7 @@ Texture2D:
   m_TextureFormat: 1
   m_MipCount: 1
   m_IsReadable: 1
+  m_IgnoreMasterTextureLimit: 0
   m_StreamingMipmaps: 0
   m_StreamingMipmapsPriority: 0
   m_AlphaIsTransparency: 0
@@ -52,9 +53,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: font4x5
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -163799670
   material: {fileID: 3768239584588929600}
-  materialHashCode: 0
+  materialHashCode: -1950481727
   m_Version: 1.1.0
   m_SourceFontFileGUID: c14f4046d8a318b41931afca9533daba
   m_SourceFontFile_EditorRef: {fileID: 0}

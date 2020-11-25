@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class WorldEnvironmentManager : MonoBehaviour
 {
-    public World world;
+    public WorldEnvironment world;
 
     public MoonAndSun moonAndSun;
     public Background background;
@@ -16,7 +16,7 @@ public class WorldEnvironmentManager : MonoBehaviour
 
     private void Update()
     {
-        float value = world.environment.normalizedDayTime;
+        float value = world.normalizedDayTime;
         moonAndSun.value = value;
         background.value = value;
         foreach (var oscilator in colorOscilators)

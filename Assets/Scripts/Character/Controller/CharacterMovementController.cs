@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IZoneObject
+{
+    Zone Zone { get; set; }
+}
+
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterMovementController : MonoBehaviour
+public class CharacterMovementController : MonoBehaviour, IZoneObject
 {
     // Start is called before the first frame update
     public float walkSpeed = 1;
@@ -47,9 +52,20 @@ public class CharacterMovementController : MonoBehaviour
         }
     }
 
+    public Zone Zone { get; set; } = null;
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+
+        var parent = transform.parent?.gameObject;
+        while (Zone == null)
+        {
+            if (parent == null)
+                break;
+            Zone = parent.GetComponent<Zone>();
+            parent = parent.transform.parent?.gameObject;
+        }
     }
 
     // Update is called once per frame

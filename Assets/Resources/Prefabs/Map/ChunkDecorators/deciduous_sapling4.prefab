@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3752379214775730082}
-  - component: {fileID: 3752379214775730081}
   - component: {fileID: 3752379214775730080}
   - component: {fileID: 3752379214775730095}
   - component: {fileID: 3752379214775730094}
@@ -36,20 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3752379214775730081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3752379214775730092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7969ec1b2ff8ac94a89ad504a75bd85a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-    name: deciduous_sapling5
 --- !u!23 &3752379214775730080
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Door : MonoBehaviour
+public class Door : MonoBehaviour, IInteractable
 {
     public float openingTime = 1f;
     public bool isOpen = false;
 
+    private bool previousIsOpen;
     private float timeToOpen = 0;
 
-    private void Start()
+    public UnityEvent OnOpen = new UnityEvent();
+    public UnityEvent OnClose = new UnityEvent();
+
+    private void Awake()
     {
         if (isOpen)
             timeToOpen = 0;
@@ -48,10 +53,26 @@ public class Door : MonoBehaviour
     public void Open()
     {
         isOpen = true;
+        OnOpen.Invoke();
     }
 
     public void Close()
     {
         isOpen = false;
+        OnClose.Invoke();
+    }
+
+    public void Toggle()
+    {
+        isOpen = !isOpen;
+        if (isOpen)
+            OnOpen.Invoke();
+        else
+            OnClose.Invoke();
+    }
+
+    public void Use(InteractionData gameObject)
+    {
+        Toggle();
     }
 }
