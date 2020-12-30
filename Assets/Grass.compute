@@ -1,0 +1,47 @@
+﻿// https://forum.unity.com/threads/compute-shader-for-line-drawing.599989/
+#pragma kernel CSMain
+RWTexture2D<float4> surface;
+float4 colorA;
+float4 colorB;
+float4 colorC;
+
+int4 stalks[2];
+
+float4 Stalk(int4 data, int2 id)
+{
+	if (id.y > data.y)
+		return float4(0, 0, 0, 0);
+
+	float slope = (float)(data.w - 100) / 100;
+	float h = abs(slope) * data.z;
+
+	if (id.y > data.y - h)
+		return float4(0, 0, 0, 0);
+
+	float hFactor = (data.y - id.y) / 32.f;
+	//if (hFactor < 0.5)
+	//	hFactor = 0;
+
+	float a = 0.5 * hFactor;
+
+	int x = data.x + id.y * a;
+
+	if (abs(x - id.x) < 2)
+		return colorA;
+
+	return float4(0, 0, 0, 0);
+}
+
+[numthreads(8, 8, 1)]
+void CSMain(uint2 id : SV_DispatchThreadID)
+{
+	float4 color = float4(0, 0, 0, 0);
+	for (int i = 0; i < 2; i++)
+	{
+		color = Stalk(stalks[i], id);
+		if (color.w != 0)
+			break;
+	}
+
+	surface[id.xy] = color;
+}
