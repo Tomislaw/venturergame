@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7645901907107914965}
   - component: {fileID: 5300691365633578279}
   - component: {fileID: -5983204152353632428}
+  - component: {fileID: 4715424018303935694}
   m_Layer: 0
   m_Name: deciduous_sapling5
   m_TagString: Untagged
@@ -108,7 +109,7 @@ SortingGroup:
   m_GameObject: {fileID: 7645901907107914964}
   m_Enabled: 1
   m_SortingLayerID: -2103064757
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 0
 --- !u!61 &-5983204152353632428
 BoxCollider2D:
@@ -136,3 +137,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4715424018303935694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7645901907107914964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa65a8dd379650e46bc23ecaf8abf477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 2

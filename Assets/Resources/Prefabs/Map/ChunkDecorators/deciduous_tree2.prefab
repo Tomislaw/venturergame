@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 138174781375846562}
   - component: {fileID: -734110494064470565}
   - component: {fileID: 2300113716441582137}
+  - component: {fileID: -2108796632862898046}
   m_Layer: 0
   m_Name: deciduous_tree2
   m_TagString: Untagged
@@ -47,10 +48,11 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2103064757
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -4368051997630926762, guid: 4e7e2b3cbc104ca4ca7c1640ec00d7cc,
     type: 3}
@@ -106,5 +108,18 @@ SortingGroup:
   m_GameObject: {fileID: 2816215800629282089}
   m_Enabled: 1
   m_SortingLayerID: -2103064757
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 0
+--- !u!114 &-2108796632862898046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2816215800629282089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa65a8dd379650e46bc23ecaf8abf477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 4

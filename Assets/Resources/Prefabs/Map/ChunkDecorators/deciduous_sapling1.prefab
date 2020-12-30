@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5539550317900049884}
   - component: {fileID: 5539550317900049875}
   - component: {fileID: -9022006472604393309}
+  - component: {fileID: -7026035864197326950}
   m_Layer: 0
   m_Name: deciduous_sapling1
   m_TagString: Untagged
@@ -149,5 +150,18 @@ SortingGroup:
   m_GameObject: {fileID: 5539550317900049874}
   m_Enabled: 1
   m_SortingLayerID: -2103064757
-  m_SortingLayer: -3
+  m_SortingLayer: -1
   m_SortingOrder: 0
+--- !u!114 &-7026035864197326950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5539550317900049874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa65a8dd379650e46bc23ecaf8abf477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 2

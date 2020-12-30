@@ -1,63 +1,77 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class Chunk : MonoBehaviour
 {
-    public List<ChunkItem> chunks = new List<ChunkItem>();
+    private List<ChunkItem> chunks = new List<ChunkItem>();
+
+    public float additionalOffset;
 
     public float Width
     {
         get
         {
-            float width = 0;
+            float width = additionalOffset;
             foreach (var ch in chunks)
+            {
                 width += ch.Width;
+                width += additionalOffset;
+            }
+
             return width;
         }
     }
 
-    public void Load()
+    private void Awake()
     {
+        Invalidate();
+    }
+
+    public void Invalidate()
+    {
+        chunks.Clear();
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            DestroyImmediate(transform.GetChild(i).gameObject);
+            var go = transform.GetChild(i).gameObject;
+            Debug.Log(name + " - " + go.name);
+            var item = go.GetComponent<ChunkItem>();
+            if (item == null)
+                item = go.AddComponent<ChunkItem>();
+            chunks.Add(item);
         }
 
-        float start = 0;
+        float start = additionalOffset;
         foreach (var chunk in chunks)
         {
-            var loadedChunk = Instantiate(chunk, transform);
-            loadedChunk.transform.localPosition = new Vector2(start, 0);
-            loadedChunk.name = chunk.name;
-            //loadedChunk.LoadChunk();
-            start += loadedChunk.Width;
-        }
+            if (chunk == null)
+                continue;
+            chunk.transform.localPosition = new Vector2(start, 0);
+            start += chunk.Width;
+            start += additionalOffset;
+            Debug.Log(name + " - " + chunk.name);
+        };
     }
-}
 
 #if UNITY_EDITOR
 
-[CustomEditor(typeof(Chunk)), CanEditMultipleObjects]
-internal class ChunkEditor : Editor
-{
-    private Chunk gameObject;
-
-    public void OnEnable()
+    private void Update()
     {
-        gameObject = (serializedObject.targetObject as Chunk);
+        if (Application.isEditor)
+            Invalidate();
     }
 
-    public override void OnInspectorGUI()
+    private void OnValidate()
     {
-        DrawDefaultInspector();
-
-        if (GUILayout.Button("Reload chunk"))
-        {
-            gameObject.Load();
-        }
+        if (Application.isEditor)
+            Invalidate();
     }
-}
+
+    private void OnTransformChildrenChanged()
+    {
+        if (Application.isEditor)
+            Invalidate();
+    }
 
 #endif
+}

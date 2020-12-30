@@ -50,17 +50,8 @@ TagManager:
   - name: Background
     uniqueID: 2191902539
     locked: 0
-  - name: Interior
-    uniqueID: 1656723675
-    locked: 0
-  - name: Exterior
-    uniqueID: 2548630899
-    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Foreground
-    uniqueID: 1521481887
     locked: 0
   - name: GameHud
     uniqueID: 1809283417

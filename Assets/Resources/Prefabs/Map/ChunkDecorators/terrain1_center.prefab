@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3191209971034624021}
   - component: {fileID: 1271795747811293352}
-  - component: {fileID: 1684425259203547692}
   - component: {fileID: -1761365395745897943}
+  - component: {fileID: 5889304813245098146}
   m_Layer: 0
   m_Name: terrain1_center
   m_TagString: Untagged
@@ -51,7 +51,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2683d3e6f8fecc54692cce1d2b0e5a5c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1746336397
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 8886482512788788264, guid: 2c9e4316c3585bc42978a48cb3212543,
     type: 3}
@@ -84,17 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!210 &1684425259203547692
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8268192512572792263}
-  m_Enabled: 1
-  m_SortingLayerID: -1746336397
-  m_SortingLayer: -1
-  m_SortingOrder: 0
 --- !u!61 &-1761365395745897943
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -121,3 +110,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &5889304813245098146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8268192512572792263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa65a8dd379650e46bc23ecaf8abf477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Width: 4
